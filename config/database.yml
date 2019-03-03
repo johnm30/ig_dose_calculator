@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
   timeout: 5000
 
 development:
@@ -20,6 +20,14 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+#production:
+#  <<: *default
+#  database: db/production.sqlite3
+
+
+# This is new to recent tutorial versions
 production:
   <<: *default
-  database: db/production.sqlite3
+  database: calculator_template_production
+  username: calculator_template
+  password: <%= ENV['CALCULATOR_TEMPLATE_DATABASE_PASSWORD'] %>
