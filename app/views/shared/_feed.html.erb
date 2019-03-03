@@ -1,0 +1,10 @@
+<%# @feed_items is defined in static pages controller, the controller for the home page %>
+<% if @feed_items.any? %>
+  <ol class="microposts">
+
+    <%# Because every element of the @feed_items array is in the Micropost class
+        Rails knows to use the _micropost partial for this render %>
+    <%= render @feed_items %>
+  </ol>
+  <%= will_paginate @feed_items %>
+<% end %>

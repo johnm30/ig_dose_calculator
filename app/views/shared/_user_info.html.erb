@@ -1,0 +1,6 @@
+<%# This attaches font awesome icons which can be used for a button as below %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<%= link_to gravatar_for(user, size: 80), user %>
+
+<h2><%= user.name %> <sup style="font-size:15px"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "user_page_help" } %></sup></h2>
