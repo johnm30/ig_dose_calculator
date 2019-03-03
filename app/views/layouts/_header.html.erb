@@ -12,50 +12,13 @@
         as a placeholder) and an options hash with :id. Set a class with .class
         eg in custom.scss and set an id with #logo. Call a class with eg
         div class="center" and call an id with the id: "logo"%>
-        <%= link_to "Home-Time Stuff", root_path, id: "logo" %>
+        <%= link_to "DPS Calculator", root_path, id: "logo" %>
         <nav>
           <%# ul is unordered list tag%>
           <ul class="nav navbar-nav navbar-right">
             <%# li is list item%>
             <li><%= link_to "Home",  root_path %></li>
             <li><%= link_to "Help", help_path %></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  Stuff to do<b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Count Abacus", count_abacus_path %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to "Times-Tabler", times_tabler_path %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to "General knowledge", general_knowledge_session_path %></li>
-                  <li class="divider"></li>
-                  <% if logged_in? %>
-                    <li><%= link_to "My Book Reviews", book_reviews_path %></li>
-                  <% end %>
-                  <li><%= link_to "View all Book Reviews", book_reviews_index_path %></li>
-                  <% if logged_in? %>
-                    <li class="divider"></li>
-                    <li><%= link_to "My Created Prizes", prizes_path %></li>
-                    <%# current_user.(user)? is defined in sessions_helper, which
-                        seems to have a wide scope including this file, as it is
-                        also used lower down in this file %>
-                    <% if current_user.admin? %>
-                      <li><%= link_to "View all Created Prizes", prizes_index_path %></li>
-                    <% end %>
-                  <% end %>
-                  <% if logged_in? %>
-                    <li class="divider"></li>
-                    <li><%= link_to "My Created Questions", general_knowledges_path %></li>
-                    <%# current_user.(user)? is defined in sessions_helper, which
-                        seems to have a wide scope including this file, as it is
-                        also used lower down in this file %>
-                    <% if current_user.admin? %>
-                      <li><%= link_to "View all Questions", general_knowledges_index_path %></li>
-                    <% end %>
-                  <% end %>
-                </ul>
-              </li>
             <% if logged_in? %>
               <li><%= link_to "Users", users_path %></li>
               <li class="dropdown">

@@ -1,6 +1,13 @@
+# 3/3/19 I had a problem where wol dnot intially push to heroku because of wrong bundler versin I think.
+# Heroku has its own bundler version which must be compatible. I did gem install bunder version 2.0.1
+# and then had to change the gemlock file to BUNDLED WITH 2.0.1 instead of 2.0.0 at the bottom of the
+# file and that worked. Don't know if I will ahve to manually install the correct version of bundler
+# now, or perhaps I could add bundler 2.0.1 to the file to specify this
+
 source 'https://rubygems.org'
 
 gem 'rails',        '5.1.6'
+gem 'bootstrap-sass', '3.3.7'
 gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.2.0'
