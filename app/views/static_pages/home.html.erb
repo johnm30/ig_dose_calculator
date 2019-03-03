@@ -1,0 +1,36 @@
+<%# The center class is set by the custom.scss file where .center has text-align:center
+and the center h1 section also has margin-botton:10px %>
+
+<div class="center">
+  <%# This attaches font awesome icons which can be used for a button as below %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+  <h1>
+    <%# as specified in the custom.scss file, this has set animations%>
+    DPS Calculator
+  </h1>
+
+  <h2>
+    This App calculates Damage per Second or Damage per Round for D20 Rules Systems
+  </h2>
+
+  <%# using this below keeps the button shape with the fancy font awesome icons!%>
+      <%= link_to signup_path, class: 'btn btn-primary navbar-btn' do %>
+      <%= content_tag(:span, "", :class => "fa fa-cog fa-spin") %>
+      Sign-up now!<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "sign_up_help" } %><sup>
+      <% end %>
+</div>
+<div class="center_image">
+<%# can download any image and put it in the app/assets/images/ directory
+    This can be done using the curl utility. At the command line type:
+    curl -o app/assets/images/<name of image and extension> -OL <website and
+    image name on website without the http://>.
+    Sometimes need to run the command twice. Works for any file.
+    For now, I just took an image on my PC and dragged it onto the folder in
+    Cloud 9 and it seemed to work! Can preview it in a new tab by right-clicking
+    on the file. The image format Hartl used was .png%>
+<%#<%= link_to image_tag("blackboardsmall.jpg", alt: "Neurology Online Journal Club"),
+            'https://neurologyonlinejournalclub.wordpress.com/' %>
+<%= link_to image_tag("d20.jpg", alt: "DPS Calculator"),
+            'https://hometimestuff.herokuapp.com' %>
+</div>

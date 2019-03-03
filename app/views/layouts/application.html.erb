@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CalculatorTemplate</title>
+
+    <%# I added this within the head to display special characters like the divide
+        sign %>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <%# Below is the title on all the application's pages that sits in the tab
+    at the top. The full_title is a helper in application_helper ie available to all
+    files that sets a base title as well as the individual page title%>
+    <title><%= full_title(yield(:title)) %></title>
+
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all',
+                                              'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <%= render 'layouts/shim' %>
 
+
+
+  </head>
   <body>
-    <%= yield %>
+    <%#The custom.scss file assigns the body tag to have the attribute padding-top 60px,
+    to put 60 pixels between the nav bar, which is locked to the top, and the next
+    section which is the body%>
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% end %>
+      <%#Below yields to the individual body sections for different pages%>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+
+      <%#box at the bottom giving debug info on the page being rendered - see custom.scss%>
+      <%# decided not to have the debug window in local server for now %>
+      <%# <%= debug(params) if Rails.env.development? %>
+    </div>
   </body>
 </html>
