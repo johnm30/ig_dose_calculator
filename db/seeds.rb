@@ -10,6 +10,9 @@ User.create!(name:  "Mr Admin",
              activated: true,
              activated_at: Time.zone.now
              )
+user = User.find_by(name: "Mr Admin")
+user.microposts.create!(content: "My first post")
+
 
 
 
