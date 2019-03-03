@@ -1,0 +1,45 @@
+<%# This is used by the yield in application.html.erb to put the user's name on
+    the tab of the page.
+    We don't use current_user because showing this user might
+    not actually be the current user%>
+<% provide(:title, @user.name) %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      </br>
+      <%= render 'shared/user_info', user: @user %>
+
+    </section>
+    </br>
+    <% if current_user == @user %>
+      <div>
+      <%= link_to affected_relatives_path, class: 'btn btn-primary navbar-btn' do %>
+        <%= content_tag(:span, "", :class => "fa fa-sitemap") %>
+        Calculate Inheritance Probabilities<sup><%= link_to "(?)" , {:action => "help2", :controller => "static_pages", :anchor => "calculate_probabilities_help" } %></sup>
+      <% end %>
+      <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
+        <%= content_tag(:span, "", :class => "fa fa-sitemap") %>
+        Calculate Inheritance Sensitivity & Specificity<sup><%= link_to "(?)" , {:action => "help2", :controller => "static_pages", :anchor => "calculate_statistics_help" } %></sup>
+      <% end %>
+      </div>
+    <% end %>
+    </br>
+  </aside>
+  <div class="col-md-8">
+    </br>
+    <% if @user.microposts.any? %>
+      <h3><%=@user.name %>'s Comments (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%# As for the users list, can render  an array of microposts and Rails
+          will automatically iterate through all the instances of micropost and
+          render each one with the views/microposts/_micropost.html.erb %>
+        <%= render @microposts %>
+      </ol>
+      <%= will_paginate @microposts %>
+    <% else %>
+      <h3>No comments submitted</h3>
+    <% end %>
+  </div>
+
+</div>

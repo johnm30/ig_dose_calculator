@@ -1,0 +1,672 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* mixins, variables, etc. */
+/*sass allows setting of variable eg colours and there are also standard ones*/
+
+$gray-medium-light: #eaeaea;
+
+
+/* this is for debug screen box sizing and form box sizing*/
+/* the mixin below is included in the .debug class and forms tags at the bottom of the file*/
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* universal */
+
+/*my background stuff. I put it in html so hopefully will be background for whole
+  web site
+  background: <background-color> | <background-image> | <background-repeat> |
+  <background-attachment> | <background-position>*/
+
+/*html {
+  background: url(blackboard.jpg) no-repeat center center fixed;
+  /*-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+
+/*There is a further problem with background images. Images will load up in an
+html file eg home.html.erb, but not in a scss file because the asset pipelines
+are different. Have to specify the path differently - put the image in the
+public/images folder and reference as below with /images/blackboard*/
+
+/* The tutorial specifies only padding-top: 60px*/
+
+body {
+  height: 100%;        /*set this so that footer will always be at bottom*/
+  padding-top: 50px;
+  background: url("/images/blackboardcrop.jpg") no-repeat center center fixed;
+  /*-webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  background-size: 100% 100%;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+/* default width is 1170 pixels which is a bit narrow for a widescreen nowadays */
+@media (min-width: 980px) {
+    .container {
+        width: 980px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1200px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container {
+        width: 1600px;
+    }
+}
+
+@media (min-width: 1919px) {
+    .container {
+        width: 1900px;
+    }
+}
+
+section {
+  overflow: auto;
+}
+
+.row {
+  /*border-right: 1px solid #e8e8e8;*/
+  /*border-left: 1px solid #e8e8e8;*/
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.center_image {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.center h1 {
+  margin-bottom: 10px;
+}
+
+/* typography */
+
+/* This would probably be the best place to change all the fonts if I wanted to*/
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  /* So all the h1 sections will have this animation
+  /* code for font animation */
+
+  /* possible text animations are font-stretch (not supported by most browsers),
+  font-weight (usually only two styles), font-height (makes all the other text go
+  up and down as takes up different space, line-height, font-size, word-spacing,
+  text-shadow,text-decoration-color,background-color
+
+  The % specifies when teh animation change should happen, or have 0% "from" ie
+  when the animation starts and 100% "to" when the animation is complete, so for there and
+  back again to make smooth, specify 0%, 50% and 100%
+
+    /* Chrome, Safari, Opera */
+    -webkit-animation: mymove 5s infinite;
+    /* Standard syntax */
+    animation: mymove 5s infinite;
+
+
+  /* Chrome, Safari, Opera */
+  @-webkit-keyframes mymove {
+    0% {color: blue;letter-spacing: 0px;}
+    33% {color: red;}
+    50% {letter-spacing: 5px;}
+    66% {color: green;}
+    100% {color: blue;letter-spacing: 0px;}
+  }
+
+  /* Standard syntax */
+  @keyframes mymove {
+    /*0% {color: blue;letter-spacing: -1px;}
+    50% {color: red;letter-spacing: 5px;}
+    100% {color: blue;letter-spacing: -1px;}*/
+    0% {color: blue;letter-spacing: 0px;}
+    33% {color: red;}
+    50% {letter-spacing: 5px;}
+    66% {color: green;}
+    100% {color: blue;letter-spacing: 0px;}
+  }
+
+
+  font-size: 7em;
+  margin-bottom: 30px;
+  text-align: center;
+
+}
+
+h2 {
+  font-size: 2.5em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #565051;
+}
+
+h3 {
+  margin-top: 0px;
+  color: #565051;
+}
+
+
+/* this is large and scalable - used for sums */
+@media (max-width:1279px){h4 {
+  font-size: 5em;
+  text-align: center;
+  font-weight: normal;
+  color: #565051;
+}}
+
+@media (min-width:1280px){h4 {
+  font-size: 7em;
+  text-align: center;
+  font-weight: normal;
+  color: #565051;
+}}
+
+h5 {
+  font-size: 0.8em;
+  font-weight: normal;
+}
+
+/* this is large and scalable - used for sums */
+@media (max-width:1279px){h6 {
+  font-size: 1.5em;
+  text-align: center;
+  font-weight: normal;
+  color: #565051;
+}}
+
+@media (min-width:1280px){h6 {
+  font-size: 3.0em;
+  text-align: center;
+  font-weight: normal;
+  color: #565051;
+}}
+
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+  color: #565051;
+  text-align: justify;
+}
+
+/* header */
+
+
+/* The # means it is a css id rather than a class
+  use this when only expect to use it once */
+#logo {
+  float: left;
+  margin-right: 0px;
+
+  /* Font family - can hold several fonts as a fall back in case a browser
+  does not support one type, use a generic family (serif, sans-serif, cursive,
+  fantasy, monospace) for alternatives. If a name has
+  punctuation characters or digits it should be quoted
+
+  font - specifies all the properties at once eg
+  font: 15px arial, sans-serif;
+  font: font-style font-variant font-weight font-size/line-height
+    font-family|caption|icon|menu|message-box|small-caption|status-bar|initial|inherit;
+
+  needs at least font-size and font-family
+
+
+
+  /*font-family: "Oswald", Helvetica, Arial, sans-serif!important;*/
+  font-family:Book Antiqua;
+  /*font-family: Papyrus, fantasy;*/
+  /*font-family: Lucida Console, cursive;*/
+  font-size: 1em;
+  color: #ffd700;  /*this is gold*/
+  /*text-transform: uppercase;*/
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+
+  /*font-size, font-weight, font-stretch and line-height are animatable
+   which works in IE 10 and over */
+
+
+}
+
+#logo:hover {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+/* footer */
+
+/* top @media one is for mobiles or screen resolution 768 or less wide, like my work monitor*/
+  /*absolute means as opposed to relative - changed to relative so that on
+    a longer page will remain on bottom
+  /*bottom means stick to bottom
+  /*height mush be fixed to stay on bottom
+  /*width must be fixed so perhaps not very responsive*/
+  /* kept media same for now and later adjust on mobile if needed*/
+
+  @media (max-width:768px){ .footer{position:relative;bottom:0;height:60px;width:100%;} }
+  @media (min-width:768px){ .footer{position:relative;bottom:0;height:60px;width:100%;}}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $gray-medium-light;
+  color: #565051;
+  /*margin-left: 10px;  /* trying to get the whole footer centred horizontally*/
+ /* margin-right: 10px;*/
+  font-size: 1.5em;
+  text-align: center;
+}
+
+footer a {
+  color: #565051;
+}
+
+footer a:hover {
+  color: #ffd700;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+/* sidebar */
+
+aside {
+  float: right;
+  @media (min-width:1200px) {border-left: 1px solid #e8e8e8;}
+  /*border-left: 1px solid #e8e8e8;*/
+  /* padding: 0 0 0 100px; /* top, right, bottom, left or can just do padding-top: padding-right */
+  /*padding-right: 20px; */
+  /*div[class^="col"]{padding-left:15px; padding-right:40px;} */
+  section.user_info {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  section {
+    padding: 0px 0;
+    margin-top: 0px;
+    margin-left: 10px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h2 {
+      font-size: 1.8em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+    h3 {
+      font-size: 1.3em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 2px;
+      margin-top: 0px;
+    }
+  }
+}
+
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $gray-lighter;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      /*text-decoration: none;
+      color: blue;*/
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+  a {
+    padding: 0;
+  }
+}
+
+.users.follow {
+  padding: 0;
+}
+
+/* forms */
+
+
+/* supercedes what is in form_group but 1em just keeps to existing size
+  I can't seem to change the label sizes by using form group, even though
+  I have not set label here. I do not know what is now setting label size.
+  cannot see field class anywhere, and removing does not change.*/
+/*label {
+  font-size: 1em;
+  color: #565051;
+} */
+
+.control-label-2{
+  color: #337ab7;
+  /*color: #3B5999;*/
+    &:hover {
+      color: #2e6da3;
+      text-decoration: underline;
+    }
+
+}
+
+
+input, textarea, select, .uneditable-input {
+  border: 2px solid #ffd700;
+  width: 100%;
+  margin-bottom: 15px;
+  /*@include box_sizing;*/
+}
+
+/* this determines the text colour in the typical input field */
+/* height: auto !important; - the !important overrides subsequent more specific settings
+    which stopped me changing height for radio and checkboxes.
+    it may be set because of a bug with old internet explorer
+    where any height setting would set to minimum height*/
+input {
+  height: auto;
+  color: $gray;
+  text-align: left;
+}
+
+/* this determines the text colour in the textarea field */
+textarea {
+  color: $gray;
+  text-align: left;
+}
+
+/* this determines the text colour in the number_field input */
+input[type="number"] {
+  color: $gray;
+  text-align: center;
+  padding-left: 1px;
+  padding-right: 0px;
+}
+
+
+input[type="radio"] {
+    padding-left: 1px;
+    padding-right: 0px;
+    height: 15px ;
+    width: 15px ;
+}
+
+
+input[type='checkbox'] {
+   padding-left: 1px;
+   margin: 0px;
+   width: 20px ;
+   height: 20px ;
+}
+
+/* This is for the select box type of input */
+select {
+  color: $gray;
+  text-align: left;
+}
+
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+
+/* the @extend function allows Boostrup to include the functionality of the .has-error
+class*/
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+/* for the remember me on this computer checkbox*/
+.checkbox {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-size: 1.5em;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+
+/* FORMS */
+
+
+@media (max-width:1280px){.form-group {
+  font-size: 14px;
+  color: #565051;
+  font-weight: bold;
+}}
+
+@media (min-width:1281px) and (max-width:1600px){.form-group {
+  font-size: 16px;
+  color: #565051;
+  font-weight: bold;
+}}
+@media (min-width:1601px){.form-group {
+  font-size: 18px;
+  color: #565051;
+  font-weight: bold;
+}}
+
+
+
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+
+/* Mergins create a border round the outside and padding on the inside
+  The border is a thin line, and need a margin round the outside to create a
+  space where the navbar is. */
+.help {
+  margin: 40px 0 0 10px;
+  padding: 20px 0 0 0;
+  border-top: 1px solid #e8e8e8;
+  .bottom {
+    text-align: right;
+  }
+
+}
+
+
+//spacing when definitions is at bottom of screen
+//md size <=992, lg<=1200, xs<=768
+@media (max-width:1199px){.spacing {
+  margin-top: 50px;
+}}
+
+
+/* microposts */
+
+.microposts {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .content {
+    color: #565051;
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+}
+
+/* diseases list */
+
+.diseases {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .name {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .description {
+    color: #565051;
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .prevalence {
+    color: #565051;
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+
+}
+
+aside {
+  textarea {
+    height: 100px;
+    margin-bottom: 5px;
+  }
+}
+
+span.picture {
+  margin-top: 10px;
+  input {
+    border: 0;
+  }
+}
+
+

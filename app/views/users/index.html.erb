@@ -1,0 +1,24 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<div class = "col-xs-offset-2 col-xs-8">
+<h2>An Index of signed-up users of the Mendelian Calculator App<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "user_page_help" } %></sup></h2>
+
+<%= will_paginate %>
+
+
+<ul class="users">
+  <%# <% @users.each do |user| %>
+    <%# Instead of rendering a string with the name of the partial (without the
+      leading _ in the filename) can call on a user variable of class User, ie
+      render user and the file will be _user.html.erb.
+      But can also render on an array ie @users and Rails will automatically
+      iterate through all the instances of user and render each one with the
+      _user.html.erb%>
+    <%= render @users %>
+  <%# <% end %>
+</ul>
+
+
+<%= will_paginate %>
+</div>

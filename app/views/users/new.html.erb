@@ -1,0 +1,20 @@
+<% provide(:title, 'Sign up') %>
+
+<%# This provide sets the button text for the render "form" which calls the partial
+    _form.html.erb%>
+<% provide(:button_text, 'Create my account') %>
+<h1>Sign up</h1>
+
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <p>
+      To sign up to the <a href="https://neurodiagnosticator.herokuapp.com/">DPS Calculator</a>
+      App and be able to save settings and view and submit comments, please provide a unique user name and email.
+      Currently, you will need an activation key from the Site Admin. A message will
+      be sent to your email address inviting you to activate the account.<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "sign_up_help" } %></sup>
+    </p>
+    <%= render 'form' %>
+  </div>
+</div>

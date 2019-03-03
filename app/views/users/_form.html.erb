@@ -1,0 +1,75 @@
+<%# The form_for function takes a block with labels, fields and submits.
+      I can just use label as a tag for custom styling but not the others.
+      dummy variable.label : name followed by dummy_variable.text_field :name,
+      is converted by form_for into the html code:
+      <label for="user_name">Name</label>
+      <input id="user_name" name="user[name]" type="text" />
+
+      the label for creates a label type of field and /label closes it off
+      the user_name is just a dummy variable,
+      Name is the text displayed
+      the input_id means an input field
+      type="text" means expect plain text as opposed to email or password (which
+      hides the text)
+      name="user[name]" is the important bit which allows Rails to create an initialisation
+      Hash via the params variable to create User objects using the entered value, in this case
+      a value assigned to the key :name. It knows to create it as part of an instance
+      object called @user because of the @user argument in form_for before the block.
+
+      The class: "form_control" is for it to be recognised by bootstrap - perhaps can set
+      formatting on these!
+
+      The form_for also creates a form tag (I think this might be picked up by custom.scss
+      but not sure). Because the argument is @user, the form knows the class is User,
+      and it is a new user so uses the post method for creating a new user with the file path /users.
+
+      The render "shared/error_messages calls a partial in the shared folder -
+      which is where you put partials that are used across different controllers -
+      which handles error messages when invalid form fields are submitted
+
+      After an invalid form submission Rails automatically wraps the errors css  field
+      in divs with the class of field_with_errors, so can use custom.scss to style
+      the errors accordingly with a .field_with_errors section
+
+      The code resources :users in the routes file means that the url for form_for
+      is set automatically. Otherwise would do form_for(@user, url: sign_up path)%>
+
+    <%= form_for(@user) do |f| %>
+
+      <%# f.object might be @user or @micropost in different circumstances %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%# The form is also used to edit so don't display the name field if there
+          is already one %>
+      <% if !@user.name || @failed_signup%>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.label :email, "Email" %>
+        <%= f.email_field :email, class: 'form-control' %>
+      <% else %>
+        <h3>Change Account Settings<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "account_settings_help" } %></sup></h3>
+      <% end %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Password Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <% if !@user.name || @failed_signup %>
+        <%= f.label :activation_key, "Activation Key" %>
+        <%= f.text_field :activation_key, class: 'form-control' %>
+      <% end %>
+      <% @failed_signup = FALSE %>
+
+
+
+      <%# The yield(:button_text) is to allow for different buttons when the partial
+          is being used by new.html.erb or edit.html.erb %>
+      <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+
+      <%#<%= f.submit class: 'btn btn-primary navbar-btn' do %>
+        <%#<%= content_tag(:span, "", :class => "fa fa-cog fa-spin") %>
+        <%#Create my account
+        <% end %>
+    <% end %>
