@@ -87,7 +87,7 @@ module SessionsHelper
   #  under the key :forwarding_url
 
   def redirect_back_or(default)
-    if session[:forwarding_url] = "https://mendelator.herokuapp.com/help"
+    if session[:forwarding_url] = "https://calculator_template.herokuapp.com/help"
       redirect_to root_url
     else
       redirect_to(session[:forwarding_url] || default)
