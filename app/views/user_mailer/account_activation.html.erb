@@ -1,0 +1,29 @@
+<h1>Calculator</h1>
+
+<p>Hi, </p>
+
+<p>
+You have signed up <%= @user.name %> to the Calculator App! Click on the link below to activate their account:
+</p>
+
+<%# This is a link to a url belonging to the app, specifically:
+  /account_activations/<activation_token>/edit?email=example%40hotmail.com
+  The account_activations is the resource, equivalent to users
+  The <activation_token> works like the user_id passed below by @user.activation_token
+  like @user.id
+  The ? in the url is how to identify and separate out query parameters. These are parameters
+  used to communicate extra variables back to a web page.
+  The edit_account_activation_url is set by resources :account_activations in
+  the routes file, setting a GET request for an edit action, analogous to
+  edit_user_path(user id) - GET because bringing up a welcome page when click the
+  button and edit because changing the state of the user to activated.
+  The email: @user.email in the edit_account_activation_url hash is how to set
+  the query parameter, and the code knows to set it up correctly with the ? and
+  also escaping the @ character to a %40 to make the url make sense - @ might
+  break the url otherwise.
+  When the button is pressed, now the app will know the email that the user
+  set up (and the email address to where the button was sent) and the activation
+  token assigned when creating the user.%>
+
+<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+                                                    name: @user.name) %>

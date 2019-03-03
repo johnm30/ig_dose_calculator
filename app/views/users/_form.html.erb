@@ -34,7 +34,7 @@
       The code resources :users in the routes file means that the url for form_for
       is set automatically. Otherwise would do form_for(@user, url: sign_up path)%>
 
-    <%= form_for(@user, url: signup_path) do |f| %>
+    <%= form_for(@user) do |f| %>
 
       <%# f.object might be @user or @micropost in different circumstances %>
       <%= render 'shared/error_messages', object: f.object %>
