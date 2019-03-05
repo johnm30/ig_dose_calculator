@@ -165,12 +165,14 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
 }
 
 h3 {
   margin-top: 0px;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
 }
 
 
@@ -179,14 +181,16 @@ h3 {
   font-size: 5em;
   text-align: center;
   font-weight: normal;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
 }}
 
 @media (min-width:1280px){h4 {
   font-size: 7em;
   text-align: center;
   font-weight: normal;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
 }}
 
 h5 {
@@ -199,21 +203,24 @@ h5 {
   font-size: 1.5em;
   text-align: center;
   font-weight: normal;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
 }}
 
 @media (min-width:1280px){h6 {
   font-size: 3.0em;
   text-align: center;
   font-weight: normal;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
 }}
 
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
   text-align: justify;
 }
 
@@ -244,7 +251,7 @@ p {
   font-family:Book Antiqua;
   /*font-family: Papyrus, fantasy;*/
   /*font-family: Lucida Console, cursive;*/
-  font-size: 1em;
+  font-size: 2em;
   color: #ffd700;  /*this is gold*/
   /*text-transform: uppercase;*/
   letter-spacing: -1px;
@@ -279,7 +286,8 @@ footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
   /*margin-left: 10px;  /* trying to get the whole footer centred horizontally*/
  /* margin-right: 10px;*/
   font-size: 1.5em;
@@ -287,7 +295,7 @@ footer {
 }
 
 footer a {
-  color: #565051;
+  color: #767071;
 }
 
 footer a:hover {
@@ -411,14 +419,13 @@ aside {
 /* forms */
 
 
-/* supercedes what is in form_group but 1em just keeps to existing size
-  I can't seem to change the label sizes by using form group, even though
-  I have not set label here. I do not know what is now setting label size.
-  cannot see field class anywhere, and removing does not change.*/
-/*label {
-  font-size: 1em;
-  color: #565051;
-} */
+/* changes the text for labels in forms */
+label {
+  font-size: 1.5em;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
+}
+
 
 .control-label-2{
   color: #337ab7;
@@ -526,18 +533,21 @@ class*/
 
 @media (max-width:1280px){.form-group {
   font-size: 14px;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
   font-weight: bold;
 }}
 
 @media (min-width:1281px) and (max-width:1600px){.form-group {
   font-size: 16px;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
   font-weight: bold;
 }}
 @media (min-width:1601px){.form-group {
   font-size: 18px;
-  color: #565051;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
   font-weight: bold;
 }}
 

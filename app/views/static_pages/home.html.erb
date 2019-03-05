@@ -37,20 +37,33 @@ and the center h1 section also has margin-botton:10px %>
 
   <h1>
     <%# as specified in the custom.scss file, this has set animations%>
-    DPS Calculator
+    DPR Calculator
   </h1>
 
   <h2>
-    This App calculates Damage per Second or Damage per Round for D20 Rules Systems
+    This App calculates Damage per Round for D20 Rules Systems
   </h2>
-
-  <%# using this below keeps the button shape with the fancy font awesome icons!%>
-      <%= link_to signup_path, class: 'btn btn-primary navbar-btn' do %>
-      <%= content_tag(:span, "", :class => "fa fa-cog fa-spin") %>
-      Sign-up now!<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "sign_up_help" } %><sup>
+  <div class="col-xs-12"></br></br></div>
+  <div class="col-xs-offset-2 col-xs-4", style = "text-align:center">
+      <%# using this below keeps the button shape with the fancy font awesome icons!%>
+      <span style="font-size:14px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></span>
+      <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
+        <%= content_tag(:span, "", :class => "fa fa-sitemap") %>
+        Quick Calculation
       <% end %>
-</div>
-<div class="center_image">
+  </div>
+  <div class="col-xs-4", style = "text-align:center">
+      <%# using this below keeps the button shape with the fancy font awesome icons!%>
+      <span style="font-size:14px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "signup_help" } %></span>
+      <%= link_to signup_path, class: 'btn btn-primary navbar-btn' do %>
+        <%= content_tag(:span, "", :class => "fa fa-cog fa-spin") %>
+        Sign-Up
+      <% end %>
+  </div>
+  <div class="col-xs-offset-2"></div>
+  <div class="col-xs-12"></br></br></br></br></div>
+
+  <div class="center_image">
 <%# can download any image and put it in the app/assets/images/ directory
     This can be done using the curl utility. At the command line type:
     curl -o app/assets/images/<name of image and extension> -OL <website and

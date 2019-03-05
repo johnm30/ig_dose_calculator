@@ -1,0 +1,40 @@
+<%# The form for entering affected family members.
+  There is no model object for the form. Hence use the controller singular
+    instead ie :affected_relative %>
+
+<% provide(:title, "DPS Calculation") %>
+<%#= form_for(:affected_relative, url: affected_relatives_path) do |f| %>
+<%#= form_for(:affected_relative, url: {action: "create", anchor: "results_section"}) do |f| %>
+<%= form_for(:calculation) do |f| %>
+  <div class="row">
+    <aside class="col-md-3">
+    <% if current_user %>
+      <section class="user_info">
+        <%= render 'shared/user_info', user: current_user %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats', user: current_user %>
+      </section>
+    <% end %>
+    </br>
+    <section>
+  </aside>
+
+    <div class="col-md-9">
+      <section>
+        <%= render 'shared/calculations_form', f: f %>
+        <div class="form-group">
+          </br>
+          <div class="col-xs-3">
+            <%= f.submit "Calculate", class: "btn btn-default btn-primary" %>
+          </div>
+          <div class="col-xs-offset-1 col-xs-3">
+            <%= f.submit "Exit", class: "btn btn-default btn-primary" %>
+          </div>
+        </div>
+        <div class="col-xs-12"></div>
+      </section>
+    </div>
+
+  </div>
+<% end %>

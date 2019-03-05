@@ -1,101 +1,181 @@
 class CalculationsController < ApplicationController
 
-  # Bring up the form and dummy variables. If unlogged user do not save as a
-  # patient case
+
+  # Bring up the form for doing a new calculation
   def new
-    create_inheritance_categories
-    # In applications controller, this method will load from @settings from
-    # current user.settings, or from session[:initial_probabilities] or create
-    # default one afresh
+
     @settings = Hash.new
+    @crit_categories ||= create_crits_array
+    @crit_default = @crit_categories.first
+    logger.debug "Crits = #{@crit_default}"
 
     # even if new, may have stored settings in current user, but default to session
     # if available
 
-    if session[:relatives] != nil && !session[:relatives].empty?
-      logger.debug "Taking relatives from session"
-      @settings[:relatives] = session[:relatives]
-      @settings[:age] = session[:age]
-      @settings[:sex] = session[:sex]
-      @settings[:penetrance] = session[:penetrance]
-      @settings[:prevalence] = session[:prevalence]
-      @settings[:consanguineous] = session[:consanguineous]
-      @settings[:viable_homozygote] = session[:viable_homozygote]
-      @settings[:males_worse] = session[:males_worse]
-      @settings[:familial] = session[:familial]
-    elsif current_user && current_user.settings != nil && current_user.settings[:relatives] != nil
+    if session[:settings] != nil && !session[:settings].empty?
+      @settings = session[:settings]
+      logger.debug "Settings from session = #{@settings.inspect}"
+    elsif current_user && current_user.settings != nil && current_user.settings != nil
       @settings = current_user.settings
-      logger.debug "Taking relatives from current user"
+      logger.debug "Taking settings from current user"
     else
-      @settings[:relatives] = Hash.new
+      @settings["attacks"] = { "1" => { "bonus" => 5, "damage" => 0, "crit" => @crit_default }}
+      logger.debug "New settings"
     end
-
-    # assign inheritance especially as it may just have changed by probability calculation
-    if session[:inheritance] != nil
-      @settings[:inheritance] = session[:inheritance]
-    end
-    logger.debug "Inheritance settings in calculations controller new action is: #{session[:inheritance]}"
-
-    initial_frequencies_hash = create_initial_frequencies
-    @settings[:initial_frequencies] = initial_frequencies_hash
-    #logger.debug "Settings Initial probabilities is #{@settings[:initial_probabilities]}"
-  end
-
-
-  # When submit a form, calculates the probabilities, and renders show to
-  # display the page with calculation. Then if press recalculate, it points to
-  # create again not update, because the url is the same calculations_path
-  def create
-    if params[:commit] == "Reset"
-      flash[:success] = "Cancelled calculation and reset values."
-      if @patient_case != nil
-        @patient_case.delete
-      end
-      reset_settings
-      redirect_to root_path and return
-    end
-
-    # This is the main line that calls the patient_case_params method
-    @settings = patient_case_params
-    #logger.debug "Settings after running patient_case_params = #{@settings.inspect}"
-    @results ||= Hash.new
-    @results = @settings[:results]
 
     if current_user
       current_user.settings = @settings
       current_user.save
     end
-    # try without a local model now, just use the hash instance
 
-    create_inheritance_categories   #I am rendering show at the end of this so needed
-    if @settings[:initial_frequencies] == nil
-      @settings[:initial_frequencies] = create_initial_frequencies
-    end
+  end
 
-    sex_error = @settings[:sex_error]
-    cousins_error = @settings[:cousins_error]
-    males_worse_error = @settings[:males_worse_error]
-    if @not_add_up != 0
-      flash.now[:warning] = "Initial probabilities add up to #{@not_add_up}% not 100%."
-      # renders the new view without actually doing the new action so does not reset
-      # the values
-      render 'new' and return
-    elsif sex_error != nil && sex_error != ""
-      flash.now[:warning] = "#{sex_error}"
-      render 'new' and return
-    elsif cousins_error != nil && cousins_error != ""
-      flash.now[:warning] = "#{cousins_error}"
-      render 'new' and return
-    elsif males_worse_error != nil && males_worse_error != ""
-      flash.now[:info] = "#{males_worse_error}"
-    elsif params[:commit] == "Go to Probabilities"
-      # still save the parameters so do this right at the end
-      redirect_to affected_relatives_path and return
+  def create
+    @crit_categories ||= create_crits_array
+    @crit_default = @crit_categories.first
+
+    button_value = params[:commit]
+
+    # Form will have list of attacks (/round)
+    # columns will be attack bonus, modal damage, critical threat range, critical multiplier
+    # then an add button to add another attack on same pattern of columns
+
+    # Then defender stats
+    # AC, damage reduction
+
+
+
+    if button_value != nil
+      if button_value == "Calculate"
+        @settings = calculations_params
+
+        session[:settings] = @settings
+
+        if current_user
+          current_user.settings = @settings
+          current_user.save
+        end
+        # ? either point to new or point to show and do update for subsequent calculations
+        # need to add the results parameter to @settings, even if rendering new form
+        redirect_to calculations_path and return
+
+      elsif button_value == "Exit"
+        #temporary set to nil
+        session[:settings] = nil
+        redirect_to root_path and return
+      end
+
     else
+      @settings = calculations_params
+      button_key = nil
+      params.each do |key, value|
+        if value[0..2] == "Add" || value[0..5] == "Remove"
+          button_value = value
+          button_key = key
+          break
+        end
+      end
+      if button_key != nil
+        logger.debug "Key is: #{button_key}; Value is #{params[button_key]}"
+        case
+        when button_value === "Add Attack"
+          count = @settings["attacks"].count
+          @settings["attacks"][(count + 1).to_s] = { "bonus" => 0, "damage" => 0, "crit" => @crit_default }
 
-      render 'show'
+
+        # if want to access key rather than value and match a 30 letter long part of the label
+        #when button_key[0..29] === "add_paternal_uncle_male_cousin"
+        when button_value === "Remove Attack"
+          count = @settings["attacks"].count
+          logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
+          @settings["attacks"].delete(count.to_s)
+          logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
+
+        end
+
+
+        if current_user
+          current_user.settings = @settings
+          current_user.save
+        end
+        # or render show if a different form for edit
+        # perhaps keep the same form as want to update for new form if adding an attack
+        # as well as updating an edit form
+        logger.debug "Settings before calling form = #{@settings.inspect}"
+        render 'new' and return
+      end
+
     end
   end
+
+  private
+
+    def calculations_params
+      settings = Hash.new
+      settings = params.require(:calculation).permit(:AC, :DR, :crit_immune)
+      armour_class = settings["AC"].to_i
+      damage_reduction = settings["DR"].to_i
+      crit_immune = settings["crit_immune"]
+      logger.debug "Settings after params = #{settings}"
+      # first need to get number of attacks
+      # they are not in a hash now but just stored in labels as the numbers eg attack_1_bonus
+      number_attacks = 1
+      total_damage_per_round = 0
+      loop do
+        bonus = params[:calculation]["attack_#{number_attacks.to_s}_bonus"].to_i
+        damage = params[:calculation]["attack_#{number_attacks.to_s}_damage"].to_i
+        crit = params[:calculation]["attack_#{number_attacks.to_s}_crit"]
+        logger.debug "Attack count = #{number_attacks}, Bonus = #{bonus}, damage = #{damage}, crit = #{crit}"
+        prob_hit = (20 + 1 - armour_class + bonus) / 20.0
+        prob_hit = 0.05 if prob_hit < 0.05 # natural 20 always hits
+
+        if crit_immune == "0"
+          # deal with critical hit
+          case crit[1]
+          when "0"
+            prob_crit = 0.05 * prob_hit # threat range * chance of a hit (or crit) on a second roll
+          when "9"
+            prob_crit = 0.1 * prob_hit
+          when "8"
+            prob_crit = 0.15 * prob_hit
+          else
+            prob_crit = 0.2 * prob_hit
+          end
+          prob_hit -= prob_crit # either critical or normal not both
+          multiplier = crit[-1].to_i
+          basic_damage_per_round = damage - damage_reduction
+          basic_damage_per_round = 0 if basic_damage_per_round < 0
+          crit_damage_per_round = (damage * multiplier) - damage_reduction
+          crit_damage_per_round = 0 if crit_damage_per_round < 0
+          damage_per_round = prob_hit * basic_damage_per_round + prob_crit * crit_damage_per_round
+        else
+          basic_damage_per_round = damage - damage_reduction # but damage is a mean, so sometimes may be positive even if mean is less than DR
+          basic_damage_per_round = 0 if basic_damage_per_round < 0
+          damage_per_round = prob_hit * basic_damage_per_round
+        end
+
+        total_damage_per_round += damage_per_round
+
+        if settings["attacks"] == nil
+          settings["attacks"] = { number_attacks.to_s => { "bonus" => bonus, "damage" => damage, "crit" => crit }}
+        else
+          settings["attacks"][number_attacks.to_s] = { "bonus" => bonus, "damage" => damage, "crit" => crit }
+        end
+        settings["damage_per_round"] = total_damage_per_round
+        number_attacks += 1
+        break if params[:calculation]["attack_#{number_attacks.to_s}_bonus"] == nil
+      end
+      settings["damage_per_round"] = total_damage_per_round
+      return settings
+    end
+
+    def create_crits_array
+      crits_categories = ["20"+ "\u00A0" + "\u00A0" + "\u00A0"+ "\u00A0"+ "\u00A0" + "\u00A0" + "x2", "19-20 x2", "18-20 x2", "17-20 x2",
+                          "20"+ "\u00A0" + "\u00A0" + "\u00A0"+ "\u00A0"+ "\u00A0" + "\u00A0" + "x3", "19-20 x3", "18-20 x3", "17-20 x3",
+                          "20"+ "\u00A0" + "\u00A0" + "\u00A0"+ "\u00A0"+ "\u00A0" + "\u00A0" + "x4", "19-20 x4", "18-20 x4", "17-20 x4"]
+      return crits_categories
+    end
+
 end
 
 

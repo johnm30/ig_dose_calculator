@@ -14,13 +14,9 @@
     </br>
     <% if current_user == @user %>
       <div>
-      <%= link_to affected_relatives_path, class: 'btn btn-primary navbar-btn' do %>
-        <%= content_tag(:span, "", :class => "fa fa-sitemap") %>
-        Calculate Inheritance Probabilities<sup><%= link_to "(?)" , {:action => "help2", :controller => "static_pages", :anchor => "calculate_probabilities_help" } %></sup>
-      <% end %>
       <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
         <%= content_tag(:span, "", :class => "fa fa-sitemap") %>
-        Calculate Inheritance Sensitivity & Specificity<sup><%= link_to "(?)" , {:action => "help2", :controller => "static_pages", :anchor => "calculate_statistics_help" } %></sup>
+        Calculate<sup><%= link_to "(?)" , {:action => "help2", :controller => "static_pages", :anchor => "calculate_statistics_help" } %></sup>
       <% end %>
       </div>
     <% end %>
