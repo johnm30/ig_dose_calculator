@@ -454,6 +454,9 @@ input {
   height: auto;
   color: $gray;
   text-align: left;
+  padding-left: 0px;
+  padding-right: 0px;
+
 }
 
 /* this determines the text colour in the textarea field */
@@ -488,8 +491,11 @@ input[type='checkbox'] {
 
 /* This is for the select box type of input */
 select {
-  color: $gray;
+  color: #0000ff;
   text-align: left;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
 }
 
 

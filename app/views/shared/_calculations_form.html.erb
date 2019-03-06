@@ -15,7 +15,7 @@
       </h3>
     </div>
     <div class="field">
-      <%= f.label "attack_" + key +  "_bonus", class: "col-xs-3", style: "text-align:right" do %>
+      <%= f.label "attack_" + key +  "_bonus", class: "col-xs-2", style: "text-align:right" do %>
         <span>Attack Bonus<span>
       <% end %>
       <% bonus = @settings["attacks"][key]["bonus"] %>
@@ -24,15 +24,31 @@
       <% else %>
         <%= f.number_field "attack_" + key +  "_bonus", min: -10, max: 40, value: 0, class: "control-label  col-xs-1" %>
       <% end %>
-      <%= f.label "attack_" + key +  "_damage", class: "col-xs-3", style: "text-align:right" do %>
-        <span>Average Damage<span>
+
+      <%= f.label "attack_" + key +  "_damage_dice", class: "col-xs-2", style: "text-align:right" do %>
+        <span>Damage<span>
       <% end %>
-      <% bonus = @settings["attacks"][key]["damage"] %>
+      <% damage_dice = @settings["attacks"][key]["damage_dice"] %>
+      <% logger.debug "Damage dice = #{damage_dice}" %>
+        <% if  damage_dice != nil %>
+          <%= f.collection_select "attack_" + key +  "_damage_dice", @damage_categories,:to_s, :to_s,
+            {include_blank: false, selected: damage_dice},
+            {multiple: false, size: 3, class: "control label col-xs-1", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
+        <% else %>
+          <%= f.collection_select "attack_" + key +  "_damage_dice", @damage_categories,:to_s, :to_s,
+            {include_blank: false, selected: @damage_dice_default},
+            {multiple: false, size: 3, class: "control label col-xs-1", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
+        <% end %>
+      <%= f.label "attack_" + key +  "_damage_bonus", class: "col-xs-1", style: "text-align:center" do %>
+        <span>+<span>
+      <% end %>
+      <% bonus = @settings["attacks"][key]["damage_bonus"] %>
       <% if  bonus != nil %>
-        <%= f.number_field "attack_" + key +  "_damage", min: -10, max: 40, value: bonus, class: "control-label col-xs-1" %>
+        <%= f.number_field "attack_" + key +  "_damage_bonus", min: -10, max: 40, value: bonus, class: "control-label col-xs-1" %>
       <% else %>
-        <%= f.number_field "attack_" + key +  "_damage", min: -10, max: 40, value: 0, class: "control-label  col-xs-1" %>
+        <%= f.number_field "attack_" + key +  "_damage_bonus", min: -10, max: 40, value: 0, class: "control-label  col-xs-1" %>
       <% end %>
+
       <%= f.label "attack_" + key +  "_crit", "Critical Threat", class: "col-xs-2", style: "text-align:right" %>
       <% crit = @settings["attacks"][key]["crit"] %>
         <% if  crit != nil %>
@@ -68,7 +84,7 @@
   </h3>
 </div>
 <div class="field" >
-  <%= f.label :AC, class: "col-xs-3", style: "text-align:right" do %>
+  <%= f.label :AC, class: "col-xs-2", style: "text-align:right" do %>
     <span>Armour Class<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "ac_help" } %></sup><span>
   <% end %>
   <% if  @settings != nil && @settings["AC"] != nil %>
@@ -78,7 +94,7 @@
   <% end %>
 </div>
 <div class="field" >
-  <%= f.label :DR, class: "col-xs-3", style: "text-align:right" do %>
+  <%= f.label :DR, class: "col-xs-2", style: "text-align:right" do %>
     <span>Damage Reduction<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "dr_help" } %></sup><span>
   <% end %>
   <% if  @settings != nil && @settings["DR"] !=nil %>
@@ -88,7 +104,7 @@
   <% end %>
 </div>
 <div>
-  <%= f.label "crit_immune", "Crit Immune", class: "col-xs-2", style: "text-align:right" %>
+  <%= f.label "crit_immune", "Crit Immune", class: "col-xs-offset-2 col-xs-2", style: "text-align:right" %>
   <div class="col-xs-1" >
     <% if  @settings != nil && @settings["crit_immune"] == "1" %>
       <%= f.check_box "crit_immune", checked: true, class: "form_control" %>
