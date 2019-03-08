@@ -11,7 +11,9 @@ class SessionsController < ApplicationController
     # The authenticate method is provided automatically by has_secure_password helper
 
     # Using find by name not email now
+    logger.debug "Users = #{User.all}"
     @user = User.find_by(name: params[:session][:name])
+    #logger.debug "User Name = #{@user.name}"
     if @user && @user.authenticate(params[:session][:password])
       # Log the userrail in, remember the user, and redirect to the user's show page
       # Note that the remember function is a wrapper function declared
