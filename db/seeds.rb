@@ -2,7 +2,7 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-User.create!(name:  "Mr Admin",
+User.create!(name:  "Site Admin",
              email: "john_m_30@hotmail.com",
              password:              "280767",
              password_confirmation: "280767",
@@ -10,7 +10,7 @@ User.create!(name:  "Mr Admin",
              activated: true,
              activated_at: Time.zone.now
              )
-user = User.find_by(name: "Mr Admin")
+user = User.find_by(name: "Site Admin")
 user.microposts.create!(content: "My first post")
 
 

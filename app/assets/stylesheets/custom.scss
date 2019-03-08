@@ -38,7 +38,10 @@ public/images folder and reference as below with /images/blackboard*/
 
 body {
   height: 100%;        /*set this so that footer will always be at bottom*/
-  padding-top: 50px;
+  padding-top: 180px;
+  @media (min-width: 768px) {
+    padding-top: 100px;
+    }
   background: url("/images/blackboardcrop.jpg") no-repeat center center fixed;
   /*-webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
@@ -330,7 +333,7 @@ footer ul li {
 
 aside {
   float: right;
-  @media (min-width:1200px) {border-left: 1px solid #e8e8e8;}
+  /* @media (min-width:1200px) {border-right: 1px solid #e8e8e8;} */
   /*border-left: 1px solid #e8e8e8;*/
   /* padding: 0 0 0 100px; /* top, right, bottom, left or can just do padding-top: padding-right */
   /*padding-right: 20px; */

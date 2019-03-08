@@ -70,7 +70,7 @@
     <span style = "font-size:14px;">Add Attack</span>
   <% end %>
 </div>
-<% if @settings["attacks"]["2"] != nil %>
+<% if @settings["attacks"] != nil && @settings["attacks"]["2"] != nil %>
   <div class="col-xs-2">
     <%= f.button name: "remove_attack", value: "Remove Attack", class: "btn btn-default btn-primary" do  %>
       <span style = "font-size:14px;">Remove Attack</span>
@@ -85,7 +85,7 @@
 </div>
 <div class="field" >
   <%= f.label :AC, class: "col-xs-2", style: "text-align:right" do %>
-    <span>Armour Class<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "ac_help" } %></sup><span>
+    <span>Armour Class</span>
   <% end %>
   <% if  @settings != nil && @settings["AC"] != nil %>
     <%= f.number_field "AC", min: 0, max: 40, value: @settings["AC"], class: "control-label col-xs-1" %>
@@ -95,7 +95,7 @@
 </div>
 <div class="field" >
   <%= f.label :DR, class: "col-xs-2", style: "text-align:right" do %>
-    <span>Damage Reduction<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "dr_help" } %></sup><span>
+    <span>Damage Reduction</span>
   <% end %>
   <% if  @settings != nil && @settings["DR"] !=nil %>
     <%= f.number_field "DR", min: -10, max: 20, value: @settings["DR"], class: "control-label col-xs-1" %>

@@ -102,5 +102,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # I don;t seem to be able to set environment variables in development now
   ACTIVATION_KEY = ENV['ACTIVATION_KEY']
 end

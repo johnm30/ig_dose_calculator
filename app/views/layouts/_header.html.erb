@@ -19,6 +19,7 @@
             <%# li is list item%>
             <li><%= link_to "Home",  root_path %></li>
             <li><%= link_to "Help", help_path %></li>
+            <li><%= link_to "Calculate", calculations_path %></li>
             <% if logged_in? %>
               <li><%= link_to "Users", users_path %></li>
               <li class="dropdown">

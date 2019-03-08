@@ -9,9 +9,15 @@ and the center h1 section also has margin-botton:10px %>
         <%# Calls the _user_info partial in shared folder%>
         <%= render 'shared/user_info', user: current_user %>
       </section>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
+      <div class="col-xs-12"></br></div>
+      <div>
+        <%# using this below keeps the button shape with the fancy font awesome icons!%>
+        <span style="font-size:14px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></span>
+        <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
+          <%= content_tag(:span, "", :class => "fa fa-calculator") %>
+          Calculate DPR
+        <% end %>
+      </div>
       <section class="micropost_form">
         <h3 style="font-size:24px">
         </br>Send a New Message</br></br>

@@ -13,11 +13,15 @@ class CalculationsController < ApplicationController
     # even if new, may have stored settings in current user, but default to session
     # if available
 
+
     if session[:settings] != nil && !session[:settings].empty?
       @settings = session[:settings]
       logger.debug "Settings from session = #{@settings.inspect}"
-    elsif current_user && current_user.settings != nil && current_user.settings != nil
+    elsif current_user && current_user.settings != nil
       @settings = current_user.settings
+      if @settings["attacks"]  == nil
+        @settings["attacks"] = { "1" => { "bonus" => 5, "damage_dice" => "1d6", "damage_bonus" => 0, "crit" => @crit_default }}
+      end
       logger.debug "Taking settings from current user"
     else
       @settings["attacks"] = { "1" => { "bonus" => 5, "damage_dice" => "1d6", "damage_bonus" => 0, "crit" => @crit_default }}
