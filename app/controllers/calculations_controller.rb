@@ -59,7 +59,7 @@ class CalculationsController < ApplicationController
         session[:settings] = @settings
 
         if current_user
-          current_user.settings = @settings
+          current_user.settings = @settings.to_unsafe_hash
           current_user.save
         end
         # ? either point to new or point to show and do update for subsequent calculations
@@ -84,7 +84,7 @@ class CalculationsController < ApplicationController
         end
       end
       if button_key != nil
-        logger.debug "Key is: #{button_key}; Value is #{params[button_key]}"
+        #logger.debug "Key is: #{button_key}; Value is #{params[button_key]}"
         case
         when button_value === "Add Attack"
           logger.debug("settings attacks after calculation = #{@settings["attacks"]}")
@@ -99,7 +99,11 @@ class CalculationsController < ApplicationController
         # if want to access key rather than value and match a 30 letter long part of the label
         #when button_key[0..29] === "add_paternal_uncle_male_cousin"
         when button_value === "Remove Attack"
-          count = @settings["attacks"].size
+          logger.debug("settings attacks on remove attack = #{@settings["attacks"]}")
+          # @settings is an action controller::parameters object not a hash as of rails 5
+          # so functions liek size and length do not work, so use .to_h to make it a normal hash
+          # only permitted parameters will get converted this way, so use to_unsafe_hash
+          count = @settings["attacks"].to_unsafe_hash.length
           logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
           @settings["attacks"].delete(count.to_s)
           logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
@@ -108,7 +112,7 @@ class CalculationsController < ApplicationController
 
 
         if current_user
-          current_user.settings = @settings
+          current_user.settings = @settings.to_unsafe_hash
           current_user.save
         end
         # or render show if a different form for edit
@@ -173,7 +177,7 @@ class CalculationsController < ApplicationController
           prob_hit -= prob_crit # either critical or normal not both
           multiplier = crit[-1].to_i
           damage_per_attack = prob_hit * damage_calculation(dice_number, dice_size, damage_bonus, damage_reduction) +
-                              prob_crit * damage_calculation(dice_number * multiplier, dice_size, damage_bonus, damage_reduction)
+                              prob_crit * damage_calculation(dice_number * multiplier, dice_size, damage_bonus * multiplier, damage_reduction)
         else
           damage_per_attack = prob_hit * damage_calculation(dice_number, dice_size, damage_bonus, damage_reduction)
         end
