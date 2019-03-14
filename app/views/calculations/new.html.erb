@@ -16,32 +16,15 @@
       </div>
       <div class="col-md-9">
         <%= render 'shared/calculations_form', f: f %>
-        <div class="form-group">
-          </br>
-          <div class="col-xs-3">
-            <%= f.submit "Calculate", class: "btn btn-default btn-primary" %>
-          </div>
-          <div class="col-xs-offset-1 col-xs-3">
-            <%= f.submit "Exit", class: "btn btn-default btn-primary" %>
-          </div>
-        </div>
-        <div class="col-xs-12"></div>
       </div>
     </div>
   <% else %>
     <div class="row">
       <div class="col-md-12">
         <%= render 'shared/calculations_form', f: f %>
-        <div class="form-group">
-          </br>
-          <div class="col-xs-3">
-            <%= f.submit "Calculate", class: "btn btn-default btn-primary" %>
-          </div>
-          <div class="col-xs-offset-6 col-xs-3">
-            <%= f.submit "Exit", class: "btn btn-default btn-primary" %>
-          </div>
-        </div>
-        <div class="col-xs-12"></div>
+      </div>
+      <div class="col-xs-offset-4 col-xs-4">
+        <%= f.submit "Export Table", class: "btn btn-default btn-primary" %>
       </div>
     </div>
   <% end %>

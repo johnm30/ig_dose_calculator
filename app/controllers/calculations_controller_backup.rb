@@ -49,44 +49,27 @@ class CalculationsController < ApplicationController
     else
       @label = "DPR: #{attacks} attacks, Opponent DR #{damage_reduction}"
     end
-    logger.debug "Table for index = #{@table}"
+    #logger.debug "Table for index = #{@table}"
 
-    # I think below means if xlsx format, as determined by the call from create: redirect_to calculations_index_url(format: :xlsx),
-    # then do the xlsx format row and if html format do that row ie jsut render new.
     respond_to do |format|
-      format.xlsx {response.headers['Content-Disposition'] = "attachment; filename = dpr_table.xlsx"}
-      format.html { render :index }
+      format.xlsx {response.headers['Content-Disposition'] = "inline; filename = dpr_table.xlsx"}
+      format.html { render :new }
 
     end
 
     #render xlsx: "dpr_table", template: "calculations/index.xlsx.axlsx"
 
+    #render "index" and return # not showing the index page - test this
+    #render 'new' and return
 
+    #redirect_to calculations_path and return
+    # problem is cannot click on the buttons, but can for add attack because that is not part of form submission
 
-
+    # consider ajax to refresh view without reloading page - ajax is only for form refresh I think
 
     #    <!-- refresh every 30 seconds -->
     #<meta http-equiv="refresh" content="30">
   end
-
-=begin
-Consider having an update action to update teh user.settings model that holds a table of the results
-every time saved, as opposed to just calculated. It would be the show action that would then export to a xls file.
-Need to do some kind of serialise to save a hash rather tahn separate values - need to check settings when serialsied would work for all the subhashes
-and it would be quite big, possible text rather than string format.
-Would be cleared by reset button instead of exit button
-So save would call to update, and append the AC/DPR table in current_user.settings
-Now the current user settings would have a trial number key, with attacks, bonus, opponent parameters (not AC), and a series of AC key, DPR values.
-
-When converting to xls table, want to do teh keys only for the first trial
-so headings would be AC, then trial 1, trial 2 etc.
-Next row would be blank for AC and an array of strings belonging to each trial describing attack bonuses etc
-Then row would be the first AC key for trial 1, then the DPR value for trial 1, then the DPR value for trial 2 etc
-Might do an array of rows in the action in this format, so just need to do an .each loop in the actual axlsx view file
-[[AC, trial 1 DPR, trial 2 DPR],[next AC, next trial 1 DPR, next trial 2 DPR]]
-
-
-=end
 
 
   def create
@@ -107,9 +90,19 @@ Might do an array of rows in the action in this format, so just need to do an .e
 
 
     if button_value != nil
-      if button_value == "Export as DPR vs AC Table"
-        logger.debug "GOING TO EXPORT
-        "
+      if button_value == "Calculate"
+        @settings = calculations_params
+
+        session[:settings] = @settings
+
+        if current_user
+          current_user.settings = @settings.to_unsafe_hash
+          current_user.save
+        end
+        # ? either point to new or point to show and do update for subsequent calculations
+        # need to add the results parameter to @settings, even if rendering new form
+        redirect_to calculations_path and return
+      elsif button_value == "Export"
         @settings = calculations_params
         session[:settings] = @settings
         if current_user
@@ -119,21 +112,25 @@ Might do an array of rows in the action in this format, so just need to do an .e
         redirect_to calculations_index_url(format: :xlsx) and return
         #redirect_to calculations_index_url and return
 
+      elsif button_value == "Exit"
+        #temporary set to nil
+        session[:settings] = nil
+        redirect_to root_path and return
       end
 
     else
       @settings = calculations_params
-      #logger.debug("settings after calculation = #{@settings}")
+      logger.debug("settings after calculation = #{@settings}")
       button_key = nil
       params.each do |key, value|
-        if value[0..2] == "Add" || value[0..5] == "Remove" || value[0..3] == "Exit" || value[0..8] == "Calculate" || value[0..3] == "Save" || value[0..3] == "Show"
+        if value[0..2] == "Add" || value[0..5] == "Remove"
           button_value = value
           button_key = key
           break
         end
       end
       if button_key != nil
-        logger.debug "Key is: #{button_key}; Value is #{params[button_key]}"
+        #logger.debug "Key is: #{button_key}; Value is #{params[button_key]}"
         case
         when button_value === "Add Attack"
           logger.debug("settings attacks after calculation = #{@settings["attacks"]}")
@@ -156,36 +153,16 @@ Might do an array of rows in the action in this format, so just need to do an .e
           logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
           @settings["attacks"].delete(count.to_s)
           logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
-
-        when button_value === "Calculate"
-          settings = calculations_params.to_unsafe_hash
-          session[:settings] = settings
+=begin
+        when button_value === "Export"
+          @settings = calculations_params
+          session[:settings] = @settings
           if current_user
-            trial_parameters = Hash.new
-            trial_parameters[:attacks] = settings["attacks"]
-            trial_parameters[:damage_reduction] = settings["damage_reduction"]
-            trial_parameters[:damage_reduction] = 0 if trial_parameters[:damage_reduction] = nil
-            trial_parameters[:crit_immune] = settings["crit_immune"]
-            trial_parameters[:table] = settings["table"]
-            trial = current_user.trials.build(trial_parameters)
-            if trial.save
-              flash[:success] = "Trial saved!"
-            else
-              flash[:warning] = "Trial not saved!"
-            end
-            current_user.settings = settings
+            current_user.settings = @settings.to_unsafe_hash
             current_user.save
           end
-          redirect_to calculations_path and return
-
-        when button_value === "Show Trials"
-          redirect_to trials_path and return
-
-        else #ie if exit
-          #temporary set to nil
-          session[:settings] = nil
-          redirect_to root_path and return
-
+          redirect_to calculations_index_url(format: :xlsx) and return
+=end
         end
 
 
@@ -240,7 +217,7 @@ Might do an array of rows in the action in this format, so just need to do an .e
           dice_size = damage_dice[2,3].to_i
 
           dice_number = damage_dice[0].to_i
-          #logger.debug "Dice size = #{dice_size}, dice_number = #{dice_number}"
+          logger.debug "Dice size = #{dice_size}, dice_number = #{dice_number}"
           damage_per_attack = 0
 
           if crit_immune == "0"
@@ -296,7 +273,7 @@ Might do an array of rows in the action in this format, so just need to do an .e
             combinations = dice_number * dice_size - (n - 1)
           end
           damage = 1.0 * combinations / (dice_size ** dice_number) * (n + damage_bonus - damage_reduction)
-          #logger.debug "Damage iteration = #{damage}"
+          logger.debug "Damage iteration = #{damage}"
           damage = 0.0 if damage < 0.0
           damage_per_attack += damage
           n += 1
@@ -305,7 +282,7 @@ Might do an array of rows in the action in this format, so just need to do an .e
         # mean damage approximation assuming always at least 0 damage
         damage_per_attack = (dice_size + 1) / 2 * dice_number + damage_bonus - damage_reduction
       end
-      #logger.debug "Damage calculation = #{damage_per_attack}"
+      logger.debug "Damage calculation = #{damage_per_attack}"
       return damage_per_attack
     end
 

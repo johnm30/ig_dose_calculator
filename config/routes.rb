@@ -11,11 +11,16 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   get '/calculations', to: 'calculations#new'       # Produce form for creating a new case
-  get '/calculations', to: 'calculations#show'      # show the page for new diagnose disease result without saving case
+  get '/calculations', to: 'calculations#show'      # show the page for new diagnose disease result without saving case - don;t need now
+  get '/calculations/index', to: 'calculations#index'     # show the results for all AC to export as a table
+
+  get '/trials', to: 'trials#show'
+  delete	'/trials', to:	  'trials#destroy'	  #delete a specific trial
 
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :destroy]
-  resources :calculations,     only: [:create, :update]
+  resources :calculations,     only: [:create, :index]
+  resources :trials,     only: [:show, :destroy]
 end

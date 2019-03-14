@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # The option dependent: :destroy means that if a user is destroyed all the
   # assocated microposts are too.
   has_many :microposts, dependent: :destroy
+  has_many :trials, dependent: :destroy
 
   # to make remember_token an instance variable that can be read and written
   # by just calling as if it were a method ie .remember_token

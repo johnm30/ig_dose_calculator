@@ -1,0 +1,33 @@
+<% user = current_user %>
+
+<% page_title = "#{user.name}'s Rounds" %>
+<% provide(:title, page_title) %>
+
+<div class="row">
+  <aside class="col-md-2">
+    <section class="user_info">
+      <% if current_user %>
+        <%= render 'shared/user_info', user: current_user %>
+      <% end %>
+    </section>
+
+  </aside>
+  <div class="col-md-10">
+    <% if user.trials.any? %>
+      <h3><%= user.name %>'s Rounds (<%= user.trials.count %>)</h3>
+        <ol class="microposts">
+        <%= render @trials %>
+      </ol>
+      <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
+        <%= content_tag(:span, "", :class => "fa fa-calculator") %>
+        Return
+      <% end %>
+      <%= link_to calculations_index_url(format: :xlsx), class: 'btn btn-primary navbar-btn' do %>
+        <%= content_tag(:span, "", :class => "fa fa-download") %>
+        Download to File
+      <% end %>
+    <% else %>
+      <h3><%= user.name %> has not yet saved any trials</h3>
+    <% end %>
+  </div>
+</div>
