@@ -21,7 +21,7 @@ and the center h1 section also has margin-botton:10px %>
       <div class="col-xs-12"></br></div>
       <div class="micropost_form">
         <h3 style="font-size:24px">
-        </br>Send a New Message</br></br>
+        </br>Post a New Comment</br></br>
         </h3>
         <%# Calls the _micropost_form partial in shared folder%>
         <%= render 'shared/micropost_form' %>
@@ -29,7 +29,7 @@ and the center h1 section also has margin-botton:10px %>
       <div class="col-xs-12"></div>
     </div>
     <div class="col-md-8">
-      <h3>My Messages<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "home_page_help" } %></sup></h3>
+      <h3>My Comments<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "home_page_help" } %></sup></h3>
       <%= render 'shared/feed' %>
     </div>
   </div>
@@ -51,7 +51,7 @@ and the center h1 section also has margin-botton:10px %>
       <%# using this below keeps the button shape with the fancy font awesome icons!%>
       <span style="font-size:14px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></span>
       <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
-        <%= content_tag(:span, "", :class => "fa fa-sitemap") %>
+        <%= content_tag(:span, "", :class => "fa fa-calculator") %>
         Quick Calculation
       <% end %>
   </div>

@@ -94,13 +94,13 @@
   <% end %>
 </div>
 <div class="field" >
-  <%= f.label :DR, class: "col-xs-2", style: "text-align:right" do %>
+  <%= f.label :damage_reduction, class: "col-xs-2", style: "text-align:right" do %>
     <span>Damage Reduction</span>
   <% end %>
-  <% if  @settings != nil && @settings["DR"] !=nil %>
-    <%= f.number_field "DR", min: -10, max: 20, value: @settings["DR"], class: "control-label col-xs-1" %>
+  <% if  @settings != nil && @settings["damage_reduction"] !=nil %>
+    <%= f.number_field "damage_reduction", min: -10, max: 20, value: @settings["damage_reduction"], class: "control-label col-xs-1" %>
   <% else %>
-    <%= f.number_field "DR", min: -10, max: 20, value: 0, class: "control-label col-xs-1" %>
+    <%= f.number_field "damage_reduction", min: -10, max: 20, value: 0, class: "control-label col-xs-1" %>
   <% end %>
 </div>
 <div>
@@ -132,21 +132,45 @@
 
 <%# Anything that is submitted rather than using a button gets greyed out when rendering the excel file and cannot do two renders in one action
 Therefore I used buttons and the complicated button key value system for all but the export button %>
-<div class="col-xs-offset-2 col-xs-2", style = "text-align:left">
-  <%= f.button name: "calculate", value: "Calculate", class: "btn btn-default btn-primary" do  %>
-    <span style = "font-size:20px">Calculate Round</span>
-  <% end %>
-</div>
 <% if current_user %>
-<div class="col-xs-offset-1 col-xs-2">
-  <%= f.button name: "show_trials", value: "Show Trials", class: "btn btn-default btn-primary" do  %>
-    <span style = "font-size:20px;">Show Rounds</span>
-  <% end %>
-</div>
+  <div class="col-xs-offset-1 col-xs-3", style = "text-align:left">
+    <%= f.button name: "calculate", value: "Calculate", class: "btn btn-default btn-primary" do  %>
+      <span style = "font-size:20px">Calculate Round</span>
+    <% end %>
+    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_round_help" } %></sup>
+  </div>
+  <div class="col-xs-offset-1 col-xs-3", style = "text-align:center">
+    <%= f.button name: "show_trials", value: "Show Trials", class: "btn btn-default btn-primary" do  %>
+      <span style = "font-size:20px;">Show Rounds</span>
+    <% end %>
+  <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "show_rounds_help" } %></sup>
+  </div>
+  <div class="col-xs-offset-1 col-xs-3", style = "text-align:right">
+    <%= f.button name: "exit", value: "Exit", class: "btn btn-default btn-primary" do  %>
+      <span style = "font-size:20px;">Reset and Exit</span>
+    <% end %>
+  <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "exit_help" } %></sup>
+  </div>
+<% else %>
+  <div class="col-xs-offset-1 col-xs-3", style = "text-align:left">
+    <%= f.button name: "calculate", value: "Calculate", class: "btn btn-default btn-primary" do  %>
+      <span style = "font-size:20px">Calculate Round</span>
+    <% end %>
+    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_round_help" } %></sup>
+  </div>
+  <div class="col-xs-offset-1 col-xs-3", style = "text-align:center">
+    <%#= f.submit "Export Table", class: "btn btn-default btn-primary", style: "font-size:20px" %>
+    <%= f.button name: "export_table", value: "Export", class: "btn btn-default btn-primary" do  %>
+      <span style = "font-size:20px">Export Table</span>
+    <% end %>
+    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "export_table_help" } %></sup>
+  </div>
+
+  <div class="col-xs-offset-1 col-xs-3", style = "text-align:right">
+    <%= f.button name: "exit", value: "Exit", class: "btn btn-default btn-primary" do  %>
+      <span style = "font-size:20px;">Reset and Exit</span>
+    <% end %>
+  <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "exit_help" } %></sup>
+  </div>
 <% end %>
-<div class="col-xs-offset-1 col-xs-2">
-  <%= f.button name: "exit", value: "Exit", class: "btn btn-default btn-primary" do  %>
-    <span style = "font-size:20px;">Reset and Exit</span>
-  <% end %>
-</div>
 <div class="col-xs-12"></br></div>

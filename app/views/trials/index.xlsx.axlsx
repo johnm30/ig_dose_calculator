@@ -1,0 +1,34 @@
+wb = xlsx_package.workbook
+wb.use_autowidth = true
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+
+  wb.add_worksheet(name: "Table of DPR vs AC") do |sheet|
+    # Add a title row
+    sheet.add_row ["Table of Damage per Round vs Armour Class"], style: project_heading
+    # Add the date this was downloaded
+    sheet.add_row [Time.now.strftime("%H:%M:%S, %-d %b %Y")]
+    # Add a blank row
+    sheet.add_row []
+    # Create the header row
+    sheet.add_row @header
+    # Create entries for each item
+    @rows_array.each do |row|
+      sheet.add_row row
+    end
+    sheet.column_widths 6,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+    sheet.add_chart(Axlsx::LineChart, :start_at => [0, @rounds + 5], :end_at => [32, @rounds + 35], :title => "DPR vs AC", :rotX => 0, :rotY => 0) do |chart|
+      (5..@rounds + 4).each do |round|
+        data_set = "B#{round}:AF#{round}"
+        round_label = "Round #{round - 4}"
+        chart.add_series :data => sheet[data_set], :labels => sheet["B4:AF4"], :title => round_label
+      end
+      chart.catAxis.gridlines = false
+      chart.catAxis.title = 'AC'
+      chart.valAxis.title = 'DPR'
+    end
+  end
+end
+

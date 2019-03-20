@@ -6,16 +6,21 @@ wb.styles do |style|
 
   wb.add_worksheet(name: "Table of DPR vs AC") do |sheet|
     # Add a title row
-    sheet.add_row ["Table of DPR vs AC"], style: project_heading
+    sheet.add_row ["Table of Damage per Round vs Armour Class"], style: project_heading
     # Add the date this was downloaded
     sheet.add_row ["Downloaded at", Time.now.strftime("%H:%M:%S, %-d %b %Y")]
     # Add a blank row
     sheet.add_row []
     # Create the header row
-    sheet.add_row ["AC", @label]
+    @label.each do |label|
+      sheet.add_row [label]
+    end
+    sheet.add_row ["AC", "DPR"], style: project_heading
     # Create entries for each item
     @table.each do |key, value|
       sheet.add_row [key, value]
     end
+    sheet.column_widths 6,5
+
   end
 end

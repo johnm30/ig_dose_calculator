@@ -18,16 +18,29 @@
         <ol class="microposts">
         <%= render @trials %>
       </ol>
+      <div class="col-xs-offset-2 col-xs-3", style = "text-align:left">
       <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
         <%= content_tag(:span, "", :class => "fa fa-calculator") %>
-        Return
+        <span style = "font-size:20px;">Return</span>
       <% end %>
-      <%= link_to calculations_index_url(format: :xlsx), class: 'btn btn-primary navbar-btn' do %>
-        <%= content_tag(:span, "", :class => "fa fa-download") %>
-        Download to File
-      <% end %>
+      <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></sup>
+      </div>
+      <div class="col-xs-offset-2 col-xs-3", style = "text-align:right">
+        <%= link_to trials_index_url(format: :xlsx), class: 'btn btn-primary navbar-btn' do %>
+          <%= content_tag(:span, "", :class => "fa fa-download") %>
+          <span style = "font-size:20px;">Download to File</span>
+        <% end %>
+        <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "download_help" } %></sup>
+      </div>
     <% else %>
-      <h3><%= user.name %> has not yet saved any trials</h3>
+      <h3><%= user.name %> has not saved any rounds</h3>
+      <div class="col-xs-offset-5 col-xs-2", style = "text-align:center">
+      <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
+        <%= content_tag(:span, "", :class => "fa fa-calculator") %>
+        <span style = "font-size:20px;">Return</span>
+      <% end %>
+      <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></sup>
+      </div>
     <% end %>
   </div>
 </div>

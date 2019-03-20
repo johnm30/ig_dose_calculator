@@ -2,6 +2,203 @@
 <h1>DPR Calculator Help</h1>
 
 
-<h2>An Index of signed-up users of the Calculator App</h2>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+<p>This is an app useable on all mobiles, tablets and desktops that calculates the mean damage done per round in D20 RPG systems</p>
+<p>The app has the following features:</p>
+<ul class="fa-ul">
+ <li><p><i class="fa-li fa fa-hand-o-right"></i> Calculates mean damage per round for different numbers of attacks per round with different attack bonuses, damage dice, damage bonus and critical threat ranges and multipliers</p></li>
+ <li><p><i class="fa-li fa fa-hand-o-right"></i> Takes into account opponent damage reduction and critical hit immunity</p></li>
+ <li><p><i class="fa-li fa fa-hand-o-right"></i> Export a table of damage per round for different opponent armour classes into an Excel spreadsheet</p></li>
+ <li><p><i class="fa-li fa fa-hand-o-right"></i> Sign up to the app to save rounds using different attack methods and compare them visually in an Excel chart - see the cross over points where one method becomes better than another with changing opponent armour class!</p></li>
+</ul>
+</br>
 
-<div class = "col-xs-12"></br></div>
+<span id = "sign_up_help">&nbsp;</span>
+<div class= "help">
+  <h3>Sign Up</h3>
+  <p> Signing up requires submitting a unique user name and email address. Also
+  required is an activation key code supplied offline by the Site Admin.
+  An email is sent to the submitted email address with an activation
+  link. Clicking this link activates the account. Lost and retrieved passwords are sent
+  to the submitted email account.
+  </p>
+  <p>All comments are visible to all logged-in users. Users' profiles (their previous comments)
+     are visible to other logged-in users by clicking the Users tab but not editable.
+     The Site Admin can remove a user or edit cases at his discretion.
+  </p>
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "home_page_help">&nbsp;</span>
+    <div class= "help">
+      <h3>Home Page</h3>
+    <p> If the user is not logged in, this brings up the sign-up page for creating
+     a new user account. To log into an existing account, click 'Log in' to the right
+      of the top menu bar.</p>
+    <p> If the user is logged in, the Home page shows a live feed of recent comments from
+     all users, and a form to send a new comment. If desired,
+      the user can upload a picture with the comment. To the top left of the screen
+      is the user's name. To view the comments of a particular user, click the Users tab on the
+      top menu bar, then select the user from the list.</p>
+     <div class= "bottom">
+      <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+     </div>
+    </div>
+
+     <span id = "user_page_help">&nbsp;</span>
+     <div class= "help">
+     <h3>User Page</h3>
+    <p> When a user logs in, this brings up their User page. This shows their previous
+        comments. (The Home page shows the comments of all users.)</p>
+        <p>A user can also view their User page by clicking 'Profile' under 'Account' on the navigation bar at the top of any page,
+        or by clicking Users on the navigation bar and selecting the User's name from the list
+        of all users. The last method also allows the user to view the profiles of other users.
+        </p>
+        <div class= "bottom">
+      <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+     </div>
+    </div>
+
+    <span id = "account_settings_help">&nbsp;</span>
+     <div class= "help">
+     <h3>Account Settings</h3>
+    <p> After a user has signed up to the Mendelian Calculator, they may change their password or
+        Gravatar image on this page. (The Gravatar is a third party facility to associate
+        an image with an email account so that the user's chosen custom image is displayed typically
+        with their user name in many different apps.) Upon changing password, a confirmation
+        message is sent to the email address the user employed to sign up to the Mendelian Calculator.
+        </p>
+        <div class= "bottom">
+      <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+     </div>
+    </div>
+
+<span id = "calculate_help">&nbsp;</span>
+<div class= "help">
+  <h3>Calculation</h3>
+  <p> Clicking this button brings up a form for entering the attack stats in a round of combat and the opponent's
+      defence stats.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "attack_help">&nbsp;</span>
+<div class= "help">
+  <h3>Attack</h3>
+  <p> Enter the attack bonus of this attack, and select the damage dice up to 2d20, and the total damage bonus for the attack.
+      Also select the appropriate critical threat range (the natural dice rolls that yield a critical threat with than weapon e.g. 20, or 19 to 20)
+      and critical hit multiplier (the number of times the normal number of damage dice is multiplied and the number of times the damage dice are multiplied).
+  </p>
+  <p> Note that for criticals, the critical threat is not a guaranteed critical. A second roll must be made and that must be a hit with the same attack stats for it
+      to be a critical hit rather than a normal hit. So if the opponent's AC is so high that a natural 20 is required to hit, then a critical hit would require two
+      natural 20s in a row!
+  </p>
+  <p> Note also that when calculating critical hit damage, the total damage on damage dice plus bonus dice is not simply doubled for x2 multiplier or tripled for x3 multiplier, etc.
+      Instead the number of damage dice rolled is doubled or tripled, and then added to double or triple the damage bonus. So if the damage dice is normally 2d6 + 5,
+      roll 4d6 and add 10 for total damage. This has the effect of evening out critical damage closer to its mean value.
+  </p>
+  <p> To add stats for another attack in the same round, click the "Add Attack" button, and to remove the most recently added attack, click the "Remove Attack" button.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "opponent_help">&nbsp;</span>
+<div class= "help">
+  <h3>Opponent</h3>
+  <p> Enter the opponent's Armour Class (AC) and any Damage Reduction for that attack. Damage Reduction has a complicated effect on calculating damage per round
+      so that it is not possible simply to take mean damage on damage rolls. If the damage reduction is greater than the attack's damage bonus, the attack may do zero damage but
+      never negative damage; to do any damage now is a less than 100% probability even with a hit, a probability that varies according to the relative sizes of the damage reduction
+      and attack damage bonus.
+  </p>
+  <p> Some opponents will be immune to critical hits. This will obviously reduce the Damage per Round (DPR), more so for lower opponent armour classes where it is more likely to
+      score a critical hit when there is a critical threat.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "calculate_round_help">&nbsp;</span>
+<div class= "help">
+  <h3>Calculate Round</h3>
+  <p> Clicking this button calculates the total mean Damage per Round (DPR) for all the attacks entered. If the user is logged in, a table of DPR for all Armour Class (AC)
+      values is saved to the user's profile.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "export_table_help">&nbsp;</span>
+<div class= "help">
+  <h3>Export Table</h3>
+  <p> When the user is not logged in, clicking this button from the calculations page downloads an Excel worksheet file with a table
+      of Damage per Round (DPR) values for all Armour Class (AC) values, not just the entered AC value.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "download_help">&nbsp;</span>
+<div class= "help">
+  <h3>Download File</h3>
+  <p> When the user is logged in, clicking this button from the Show Rounds page downloads an Excel worksheet file with a table
+      of all the saved rounds, with attack and opponent stats and Damage per Round (DPR) vs Armour Class (AC) tables.
+  </p>
+  <p> This is also graphically represented, so the user can instantly min-max different attack strategies for different opponent AC values.
+      For example, at a point where one round's DPR crossed above the value of another round's, it would be at this range of AC values where
+      that strategy should be used. Now you know when to use flurry, or whether to attack with two weapons or one!
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "show_rounds_help">&nbsp;</span>
+<div class= "help">
+  <h3>Show Rounds</h3>
+  <p> When the user is logged in, clicking this button from the calculations page brings up a page listing, most recent uppermost, all the saved rounds and their attack
+      and opponent stats and the associated Damage per Round (DPR) vs Armour Class (AC) tables.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "exit_help">&nbsp;</span>
+<div class= "help">
+  <h3>Reset and Exit</h3>
+  <p> Clicking this button will reset the session's values for attacks and opponent stats and return to the home screen.
+  </p>
+  <p> When the user is logged in, it will also permanently delete <i>all</i> the saved rounds of Damage per Round (DPR) vs Armour Class (AC) tables for the current user.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "version_number">&nbsp;</span>
+       <h3 style="padding-top:400px">
+         Version Number
+       </h3>
+    <p>
+    This is version 0.1 of the
+    <a href="https://dprcalculator.herokuapp.com/">DPR Calculator</a>
+    application.
+    </p>
+    </br></br></br></br>

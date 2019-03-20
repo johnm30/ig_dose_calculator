@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get '/trials', to: 'trials#show'
   delete	'/trials', to:	  'trials#destroy'	  #delete a specific trial
+  get '/trials/index', to: 'trials#index'     # show the results for all AC to export as a table
 
   resources :users
   resources :account_activations, only: [:edit]

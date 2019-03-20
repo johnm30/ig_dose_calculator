@@ -36,37 +36,38 @@ class CalculationsController < ApplicationController
   end
 
   def index
-    # need to see if will work on a hash object rather than model object
-    @settings = Hash.new
-    @settings = session[:settings]
-    @table = Hash.new
-    @table = @settings["table"] # or ? change table to symbol
-    attacks = @settings["attacks"].length
-    damage_reduction = @settings["DR"]
-    crit_immune = @settings["crit_immune"]
-    if crit_immune == "1"
-      @label = "DPR: #{attacks} attacks, Opponent DR #{damage_reduction}, Immune to crits"
-    else
-      @label = "DPR: #{attacks} attacks, Opponent DR #{damage_reduction}"
-    end
-    logger.debug "Table for index = #{@table}"
 
-    # I think below means if xlsx format, as determined by the call from create: redirect_to calculations_index_url(format: :xlsx),
-    # then do the xlsx format row and if html format do that row ie jsut render new.
-    respond_to do |format|
-      format.xlsx {response.headers['Content-Disposition'] = "attachment; filename = dpr_table.xlsx"}
-      format.html { render :index }
+      settings = Hash.new
+      settings = session[:settings]
+      @table = Hash.new
+      @table = settings["table"] # or ? change table to symbol
+      attacks = settings["attacks"]
+      damage_reduction = settings["damage_reduction"]
+      crit_immune = settings["crit_immune"]
+      @label = Array.new
+      attacks.each do |key, value|
+        crit = value["crit"]
+        crit = "20 x2" if crit == "20"+ "\u00A0" + "\u00A0" + "\u00A0"+ "\u00A0"+ "\u00A0" + "\u00A0" + "x2"
+        crit = "20 x3" if crit == "20"+ "\u00A0" + "\u00A0" + "\u00A0"+ "\u00A0"+ "\u00A0" + "\u00A0" + "x3"
+        crit = "20 x4" if crit == "20"+ "\u00A0" + "\u00A0" + "\u00A0"+ "\u00A0"+ "\u00A0" + "\u00A0" + "x4"
+        @label << "Attack #{key}: Bonus #{value["bonus"]}, Damage Dice #{value["damage_dice"]}, Damage Bonus #{value["damage_bonus"]}, Critical Threat #{crit}"
+      end
+      if crit_immune == "1"
+        @label << "Opponent: Damage Reduction #{damage_reduction}, Immune to Criticals"
+      else
+        @label << "Opponent: Damage Reduction #{damage_reduction}"
+      end
 
-    end
+      logger.debug "Table for index = #{@table}"
 
-    #render xlsx: "dpr_table", template: "calculations/index.xlsx.axlsx"
+      # I think below means if xlsx format, as determined by the call from create: redirect_to calculations_index_url(format: :xlsx),
+      # then do the xlsx format row and if html format do that row ie jsut render new.
+      respond_to do |format|
+        format.xlsx {response.headers['Content-Disposition'] = "attachment; filename = dpr_table.xlsx"}
+        format.html { render :index }
+      end
 
 
-
-
-
-    #    <!-- refresh every 30 seconds -->
-    #<meta http-equiv="refresh" content="30">
   end
 
 =begin
@@ -106,16 +107,11 @@ Might do an array of rows in the action in this format, so just need to do an .e
 
 
 
+    # Only if not logged in
     if button_value != nil
-      if button_value == "Export as DPR vs AC Table"
-        logger.debug "GOING TO EXPORT
-        "
+      if button_value == "Export Table" && !current_user
         @settings = calculations_params
         session[:settings] = @settings
-        if current_user
-          current_user.settings = @settings.to_unsafe_hash
-          current_user.save
-        end
         redirect_to calculations_index_url(format: :xlsx) and return
         #redirect_to calculations_index_url and return
 
@@ -126,7 +122,7 @@ Might do an array of rows in the action in this format, so just need to do an .e
       #logger.debug("settings after calculation = #{@settings}")
       button_key = nil
       params.each do |key, value|
-        if value[0..2] == "Add" || value[0..5] == "Remove" || value[0..3] == "Exit" || value[0..8] == "Calculate" || value[0..3] == "Save" || value[0..3] == "Show"
+        if value[0..2] == "Add" || value[0..5] == "Remove" || value[0..3] == "Exit" || value[0..8] == "Calculate" || value[0..3] == "Show" || value[0..5] == "Export"
           button_value = value
           button_key = key
           break
@@ -144,7 +140,7 @@ Might do an array of rows in the action in this format, so just need to do an .e
           logger.debug "Count = #{count}, Settings = #{@settings}"
           @settings["attacks"][(count + 1).to_s] = { "bonus" => 0, "damage_dice" => "1d6", "damage_bonus" => 0, "crit" => @crit_default }
           logger.debug "Count = #{count}, Settings = #{@settings}"
-
+          render "new" and return
         # if want to access key rather than value and match a 30 letter long part of the label
         #when button_key[0..29] === "add_paternal_uncle_male_cousin"
         when button_value === "Remove Attack"
@@ -156,50 +152,54 @@ Might do an array of rows in the action in this format, so just need to do an .e
           logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
           @settings["attacks"].delete(count.to_s)
           logger.debug "Count = #{count}, Settings = #{@settings.inspect}"
+          render "new" and return
+
+        when button_value === "Show Trials"
+          #@settings = calculations_params.to_unsafe_hash
+          #session[:settings] = @settings
+          redirect_to trials_path and return
+
+        when button_value === "Export"
+          @settings = calculations_params
+          session[:settings] = @settings
+          redirect_to calculations_index_url(format: :xlsx) and return
 
         when button_value === "Calculate"
-          settings = calculations_params.to_unsafe_hash
-          session[:settings] = settings
+          @settings = calculations_params.to_unsafe_hash
+          session[:settings] = @settings
+
           if current_user
+            # just get from session as saved when calculate
             trial_parameters = Hash.new
-            trial_parameters[:attacks] = settings["attacks"]
-            trial_parameters[:damage_reduction] = settings["damage_reduction"]
-            trial_parameters[:damage_reduction] = 0 if trial_parameters[:damage_reduction] = nil
-            trial_parameters[:crit_immune] = settings["crit_immune"]
-            trial_parameters[:table] = settings["table"]
+            trial_parameters[:attacks] = @settings["attacks"]
+            trial_parameters[:damage_reduction] = @settings["damage_reduction"]
+            trial_parameters[:crit_immune] = @settings["crit_immune"]
+            trial_parameters[:table] = @settings["table"]
+            logger.debug "Trial parameters = #{trial_parameters}"
+
             trial = current_user.trials.build(trial_parameters)
             if trial.save
-              flash[:success] = "Trial saved!"
+              flash[:success] = "Round saved!"
             else
-              flash[:warning] = "Trial not saved!"
+              flash[:warning] = "Round not saved!"
             end
-            current_user.settings = settings
+            current_user.settings = @settings
             current_user.save
           end
           redirect_to calculations_path and return
 
-        when button_value === "Show Trials"
-          redirect_to trials_path and return
-
         else #ie if exit
           #temporary set to nil
           session[:settings] = nil
+          if current_user
+            current_user.settings = nil if current_user.settings != nil
+            Trial.where(user_id: current_user.id).delete_all
+            current_user.save
+          end
           redirect_to root_path and return
 
         end
-
-
-        if current_user
-          current_user.settings = @settings.to_unsafe_hash
-          current_user.save
-        end
-        # or render show if a different form for edit
-        # perhaps keep the same form as want to update for new form if adding an attack
-        # as well as updating an edit form
-        logger.debug "Settings before calling form = #{@settings.inspect}"
-        render 'new' and return
       end
-
     end
   end
 
@@ -207,12 +207,12 @@ Might do an array of rows in the action in this format, so just need to do an .e
 
     def calculations_params
       settings = Hash.new
-      settings = params.require(:calculation).permit(:AC, :DR, :crit_immune)
+      settings = params.require(:calculation).permit(:AC, :damage_reduction, :crit_immune)
       logger.debug "Settings after params = #{settings}"
       # iterate for all AC, storing the answer for the actual AC
       table = Hash.new
-      armour_class = 0
-      damage_reduction = settings["DR"].to_i
+      armour_class = 10
+      damage_reduction = settings["damage_reduction"].to_i
       crit_immune = settings["crit_immune"]
       while armour_class <= 40 do
         # first need to get number of attacks
@@ -272,7 +272,7 @@ Might do an array of rows in the action in this format, so just need to do an .e
           number_attacks += 1
           break if params[:calculation]["attack_#{number_attacks.to_s}_bonus"] == nil
         end
-        table[armour_class.to_s] = round_value(total_damage_per_round)
+        table["AC"+ armour_class.to_s] = round_value(total_damage_per_round)
         if armour_class == settings["AC"].to_i
           settings["damage_per_round"] = round_value(total_damage_per_round)
         end
