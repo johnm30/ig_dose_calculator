@@ -143,6 +143,7 @@ Might do an array of rows in the action in this format, so just need to do an .e
           render "new" and return
         # if want to access key rather than value and match a 30 letter long part of the label
         #when button_key[0..29] === "add_paternal_uncle_male_cousin"
+
         when button_value === "Remove Attack"
           logger.debug("settings attacks on remove attack = #{@settings["attacks"]}")
           # @settings is an action controller::parameters object not a hash as of rails 5

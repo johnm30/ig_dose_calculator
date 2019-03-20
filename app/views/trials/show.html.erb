@@ -4,18 +4,18 @@
 <% provide(:title, page_title) %>
 
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-lg-2">
     <section class="user_info">
       <% if current_user %>
         <%= render 'shared/user_info', user: current_user %>
       <% end %>
     </section>
-
+    <div class="col-xs-12"></br></div>
   </div>
 
 
 
-  <div class="col-md-10">
+  <div class="col-lg-10">
     <% if user.trials.any? %>
       <h3><%= user.name %>'s Rounds (<%= user.trials.count %>)</h3>
         <ol class="microposts">
