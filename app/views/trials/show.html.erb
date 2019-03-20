@@ -4,14 +4,17 @@
 <% provide(:title, page_title) %>
 
 <div class="row">
-  <aside class="col-md-2">
+  <div class="col-md-2">
     <section class="user_info">
       <% if current_user %>
         <%= render 'shared/user_info', user: current_user %>
       <% end %>
     </section>
 
-  </aside>
+  </div>
+
+
+
   <div class="col-md-10">
     <% if user.trials.any? %>
       <h3><%= user.name %>'s Rounds (<%= user.trials.count %>)</h3>
