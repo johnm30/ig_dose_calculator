@@ -15,8 +15,8 @@
     <% if current_user == @user %>
       <div>
       <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
-        <%= content_tag(:span, "", :class => "fa fa-sitemap") %>
-        Calculate<sup><%= link_to "(?)" , {:action => "help2", :controller => "static_pages", :anchor => "calculate_statistics_help" } %></sup>
+        <%= content_tag(:span, "", :class => "fa fa-calculator") %>
+        Calculate<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></sup>
       <% end %>
       </div>
     <% end %>
