@@ -1,130 +1,87 @@
-<div class="col-xs-12">
-    <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
-      </br>
-      DPR Calculation
-    </h3>
-</div>
-<div class="col-xs-12"></br></div>
-
-<% if @settings["attacks"] != nil %>
-  <%# the key :attacks has a value of a hash, %>
-  <% @settings["attacks"].each do |key, value| %>
-    <div class="col-xs-12">
-      <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
-        Attack <%= key %><sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "attack_help" } %><sup>
-      </h3>
-    </div>
-    <div class="field">
-      <%= f.label "attack_" + key +  "_bonus", class: "col-xs-2", style: "text-align:right" do %>
-        <span>Attack Bonus<span>
-      <% end %>
-      <% bonus = @settings["attacks"][key]["bonus"] %>
-      <% if  bonus != nil %>
-        <%= f.number_field "attack_" + key +  "_bonus", min: -10, max: 40, value: bonus, class: "control-label col-xs-1" %>
-      <% else %>
-        <%= f.number_field "attack_" + key +  "_bonus", min: -10, max: 40, value: 0, class: "control-label  col-xs-1" %>
-      <% end %>
-
-      <%= f.label "attack_" + key +  "_damage_dice", class: "col-xs-2", style: "text-align:right" do %>
-        <span>Damage<span>
-      <% end %>
-      <% damage_dice = @settings["attacks"][key]["damage_dice"] %>
-      <% logger.debug "Damage dice = #{damage_dice}" %>
-        <% if  damage_dice != nil %>
-          <%= f.collection_select "attack_" + key +  "_damage_dice", @damage_categories,:to_s, :to_s,
-            {include_blank: false, selected: damage_dice},
-            {multiple: false, size: 3, class: "control label col-xs-1", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
-        <% else %>
-          <%= f.collection_select "attack_" + key +  "_damage_dice", @damage_categories,:to_s, :to_s,
-            {include_blank: false, selected: @damage_dice_default},
-            {multiple: false, size: 3, class: "control label col-xs-1", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
-        <% end %>
-      <%= f.label "attack_" + key +  "_damage_bonus", class: "col-xs-1", style: "text-align:center" do %>
-        <span>+<span>
-      <% end %>
-      <% bonus = @settings["attacks"][key]["damage_bonus"] %>
-      <% if  bonus != nil %>
-        <%= f.number_field "attack_" + key +  "_damage_bonus", min: -10, max: 40, value: bonus, class: "control-label col-xs-1" %>
-      <% else %>
-        <%= f.number_field "attack_" + key +  "_damage_bonus", min: -10, max: 40, value: 0, class: "control-label  col-xs-1" %>
-      <% end %>
-
-      <%= f.label "attack_" + key +  "_crit", "Critical Threat", class: "col-xs-2", style: "text-align:right" %>
-      <% crit = @settings["attacks"][key]["crit"] %>
-        <% if  crit != nil %>
-          <%= f.collection_select "attack_" + key +  "_crit", @crit_categories,:to_s, :to_s,
-            {include_blank: false, selected: crit},
-            {multiple: false, size: 3, class: "control label col-xs-2", style: "font-size:16px; color:#808080; text-align:left"} %>
-        <% else %>
-          <%= f.collection_select "attack_" + key +  "_crit", @crit_categories,:to_s, :to_s,
-            {include_blank: false, selected: @crit_default},
-            {multiple: false, size: 3, class: "control label col-xs-2", style: "font-size:16px; color:#808080; text-align:left"} %>
-        <% end %>
-    </div>
-  <% end %>
-<% end %>
-
-<div class="col-xs-12"></br></div>
-<div class="col-xs-2">
-  <%= f.button name: "add_attack", value: "Add Attack", class: "btn btn-default btn-primary" do  %>
-    <span style = "font-size:16px;">Add Attack</span>
-  <% end %>
-</div>
-<% if @settings["attacks"] != nil && @settings["attacks"]["2"] != nil %>
-  <div class="col-xs-2">
-    <%= f.button name: "remove_attack", value: "Remove Attack", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:16px;">Remove Attack</span>
-    <% end %>
-  </div>
-<% end %>
 <div class="col-xs-12"></br></br></div>
 <div class="col-xs-12">
   <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
-    Opponent<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "attack_help" } %><sup>
+    Patient<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "patient_help" } %><sup>
   </h3>
 </div>
 <div class="field" >
-  <%= f.label :AC, class: "col-xs-2", style: "text-align:right" do %>
-    <span>Armour Class</span>
+  <%= f.label :sex, "Sex", class: "col-xs-2", style: "text-align:right"  %>
+      <% if  @settings != nil && @settings[:sex] != nil && @settings[:sex] == "1" %>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "1",  :checked => true, class: "form_control" %>
+          <%= f.label :sex, 'Male', class: "control-label", style: "text-align:left;font-weight:normal" do %>
+            <span style = "font-weight:900; font-size:20px;">&#9794;</span>
+          <% end %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "0", class: "form_control" %>
+          <%= f.label :sex, 'Female', class: "control-label", style: "text-align:left; font-weight:normal" do %>
+            <span style = "font-weight:900; font-size:20px;">&#9792;</span>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "1",  class: "form_control" %>
+          <%= f.label :sex, "Male", class: "control-label", style: "text-align:left;font-weight:normal" do  %>
+            <span style = "font-weight:900; font-size:20px;">&#9794;</span>
+          <% end %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "0",  :checked => true, class: "form_control" %>
+          <%= f.label :sex, "Female", class: "control-label", style: "text-align:left; font-weight:normal" do %>
+            <span style = "font-weight:900; font-size:20px;">&#9792;</span>
+          <% end %>
+        </div>
+      <% end %>
+</div>
+<div class="field" >
+  <%= f.label :height, class: "col-xs-2", style: "text-align:right" do %>
+    <span>Height (cm)</span>
   <% end %>
-  <% if  @settings != nil && @settings["AC"] != nil %>
-    <%= f.number_field "AC", min: 0, max: 40, value: @settings["AC"], class: "control-label col-xs-1" %>
+  <% if  @settings != nil && @settings["height"] != nil %>
+    <%= f.number_field "height", min: 0, max: 300, value: @settings["height"], class: "control-label col-xs-1" %>
   <% else %>
-    <%= f.number_field "AC", min: 0, max: 40, value: 10, class: "control-label  col-xs-1" %>
+    <%= f.number_field "height", min: 0, max: 300, value: 0, class: "control-label  col-xs-1" %>
   <% end %>
 </div>
 <div class="field" >
-  <%= f.label :damage_reduction, class: "col-xs-2", style: "text-align:right" do %>
-    <span>Damage Reduction</span>
+  <%= f.label :weight, class: "col-xs-2", style: "text-align:right" do %>
+    <span>Weight (Kg)</span>
   <% end %>
-  <% if  @settings != nil && @settings["damage_reduction"] !=nil %>
-    <%= f.number_field "damage_reduction", min: -10, max: 20, value: @settings["damage_reduction"], class: "control-label col-xs-1" %>
+  <% if  @settings != nil && @settings["weight"] !=nil %>
+    <%= f.number_field "weight", min: 0, max: 200, value: @settings["weight"], class: "control-label col-xs-1" %>
   <% else %>
-    <%= f.number_field "damage_reduction", min: -10, max: 20, value: 0, class: "control-label col-xs-1" %>
+    <%= f.number_field "weight", min: 0, max: 200, value: 0, class: "control-label col-xs-1" %>
   <% end %>
-</div>
-<div>
-  <%= f.label "crit_immune", "Crit Immune", class: "col-xs-offset-2 col-xs-2", style: "text-align:right" %>
-  <div class="col-xs-1" >
-    <% if  @settings != nil && @settings["crit_immune"] == "1" %>
-      <%= f.check_box "crit_immune", checked: true, class: "form_control" %>
-    <% else %>
-      <%= f.check_box "crit_immune", checked: false, class: "form_control" %>
-    <% end %>
-  </div>
-</div>
-
-<div class="col-xs-12">
-  </br>
 </div>
 
 <div class="col-xs-12"></br></div>
-<% damage_per_round = @settings["damage_per_round"] %>
-<% if damage_per_round != nil %>
+<div class="col-xs-12">
+  <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
+    Dosage<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "dosage_help" } %><sup>
+  </h3>
+</div>
+<div class="field">
+  <% dosage = @settings["dosage"] %>
+  <% if  dosage != nil %>
+    <%= f.collection_select "dosage" , @dosage_categories,:to_s, :to_s,
+      {include_blank: false, selected: dosage},
+      {multiple: false, size: 3, class: "control label col-xs-offset-1 col-xs-5", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
+  <% else %>
+      <%= f.collection_select "dosage" , @dosage_categories,:to_s, :to_s,
+        {include_blank: false, selected: @dosage_default},
+        {multiple: false, size: 3, class: "control label col-xs-offset-1 col-xs-5", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
+  <% end %>
+</div>
+
+
+<div class="col-xs-12"></br></div>
+<% dose = @settings["dose"] %>
+<% if dose != nil %>
   <div class="col-xs-12">
     <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
       </br>
-      Total Damage per Round = <%= damage_per_round %>
+      Total Dose of Immunoglobulin = <%= dose %>
     </h3>
   </div>
 <% end %>
@@ -132,45 +89,10 @@
 
 <%# Anything that is submitted rather than using a button gets greyed out when rendering the excel file and cannot do two renders in one action
 Therefore I used buttons and the complicated button key value system for all but the export button %>
-<% if current_user %>
-  <div class="col-xs-offset-1 col-xs-3", style = "text-align:left">
+<div class="col-xs-3", style = "text-align:left">
     <%= f.button name: "calculate", value: "Calculate", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:20px">Calculate Round</span>
+      <span style = "font-size:20px">Calculate</span>
     <% end %>
-    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_round_help" } %></sup>
-  </div>
-  <div class="col-xs-offset-1 col-xs-3", style = "text-align:center">
-    <%= f.button name: "show_trials", value: "Show Trials", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:20px;">Show Rounds</span>
-    <% end %>
-  <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "show_rounds_help" } %></sup>
-  </div>
-  <div class="col-xs-offset-1 col-xs-3", style = "text-align:right">
-    <%= f.button name: "exit", value: "Exit", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:20px;">Reset and Exit</span>
-    <% end %>
-  <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "exit_help" } %></sup>
-  </div>
-<% else %>
-  <div class="col-xs-offset-1 col-xs-3", style = "text-align:left">
-    <%= f.button name: "calculate", value: "Calculate", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:20px">Calculate Round</span>
-    <% end %>
-    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_round_help" } %></sup>
-  </div>
-  <div class="col-xs-offset-1 col-xs-3", style = "text-align:center">
-    <%#= f.submit "Export Table", class: "btn btn-default btn-primary", style: "font-size:20px" %>
-    <%= f.button name: "export_table", value: "Export", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:20px">Export Table</span>
-    <% end %>
-    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "export_table_help" } %></sup>
-  </div>
-
-  <div class="col-xs-offset-1 col-xs-3", style = "text-align:right">
-    <%= f.button name: "exit", value: "Exit", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:20px;">Reset and Exit</span>
-    <% end %>
-  <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "exit_help" } %></sup>
-  </div>
-<% end %>
+    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></sup>
+</div>
 <div class="col-xs-12"></br></div>

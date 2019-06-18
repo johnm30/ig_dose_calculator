@@ -42,7 +42,7 @@ body {
   @media (min-width: 768px) {
     padding-top: 100px;
     }
-  background: url("/images/blackboardcrop.jpg") no-repeat center center fixed;
+  background: url("/images/queens_hospital_pale_1.jpg") no-repeat center center fixed;
   /*-webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
@@ -116,45 +116,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  /* So all the h1 sections will have this animation
-  /* code for font animation */
-
-  /* possible text animations are font-stretch (not supported by most browsers),
-  font-weight (usually only two styles), font-height (makes all the other text go
-  up and down as takes up different space, line-height, font-size, word-spacing,
-  text-shadow,text-decoration-color,background-color
-
-  The % specifies when teh animation change should happen, or have 0% "from" ie
-  when the animation starts and 100% "to" when the animation is complete, so for there and
-  back again to make smooth, specify 0%, 50% and 100%
-
-    /* Chrome, Safari, Opera */
-    -webkit-animation: mymove 5s infinite;
-    /* Standard syntax */
-    animation: mymove 5s infinite;
-
-
-  /* Chrome, Safari, Opera */
-  @-webkit-keyframes mymove {
-    0% {color: blue;letter-spacing: 0px;}
-    33% {color: red;}
-    50% {letter-spacing: 5px;}
-    66% {color: green;}
-    100% {color: blue;letter-spacing: 0px;}
-  }
-
-  /* Standard syntax */
-  @keyframes mymove {
-    /*0% {color: blue;letter-spacing: -1px;}
-    50% {color: red;letter-spacing: 5px;}
-    100% {color: blue;letter-spacing: -1px;}*/
-    0% {color: blue;letter-spacing: 0px;}
-    33% {color: red;}
-    50% {letter-spacing: 5px;}
-    66% {color: green;}
-    100% {color: blue;letter-spacing: 0px;}
-  }
-
 
   font-size: 7em;
   margin-bottom: 30px;
@@ -255,7 +216,8 @@ p {
   /*font-family: Papyrus, fantasy;*/
   /*font-family: Lucida Console, cursive;*/
   font-size: 2em;
-  color: #ffd700;  /*this is gold*/
+  /*color: #ffd700;  /*this is gold*/
+  color: #868081;
   /*text-transform: uppercase;*/
   letter-spacing: -1px;
   padding-top: 9px;

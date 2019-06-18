@@ -2,38 +2,6 @@
 <%# The center class is set by the custom.scss file where .center has text-align:center
 and the center h1 section also has margin-botton:10px %>
 
-<% if logged_in? %>
-  <div class="row">
-    <div class="col-md-4">
-      <section class="user_info">
-        <%# Calls the _user_info partial in shared folder%>
-        <%= render 'shared/user_info', user: current_user %>
-      </section>
-      <div class="col-xs-12"></br></div>
-      <div class="col-xs-12">
-        <%# using this below keeps the button shape with the fancy font awesome icons!%>
-        <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
-          <%= content_tag(:span, "", :class => "fa fa-calculator") %>
-          Calculate DPR
-          <span style="font-size:14px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></span>
-        <% end %>
-      </div>
-      <div class="col-xs-12"></br></div>
-      <div class="micropost_form">
-        <h3 style="font-size:24px">
-        </br>Post a New Comment</br></br>
-        </h3>
-        <%# Calls the _micropost_form partial in shared folder%>
-        <%= render 'shared/micropost_form' %>
-      </div>
-      <div class="col-xs-12"></div>
-    </div>
-    <div class="col-md-8">
-      <h3>My Comments<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "home_page_help" } %></sup></h3>
-      <%= render 'shared/feed' %>
-    </div>
-  </div>
-<% else %>
 <div class="center">
   <%# This attaches font awesome icons which can be used for a button as below %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
@@ -44,40 +12,19 @@ and the center h1 section also has margin-botton:10px %>
   </h1>
 
   <h2>
-    This App calculates Damage per Round for D20 Rules Systems
+    This App calculates Immunoglobulin doses based on height, weight and indication and takes into account ideal body mass
   </h2>
-  <div class="col-xs-12"></br></br></div>
-  <div class="col-xs-offset-2 col-xs-4", style = "text-align:center">
-      <%# using this below keeps the button shape with the fancy font awesome icons!%>
-      <span style="font-size:14px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></span>
-      <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
-        <%= content_tag(:span, "", :class => "fa fa-calculator") %>
-        Quick Calculation
-      <% end %>
-  </div>
-  <div class="col-xs-4", style = "text-align:center">
-      <%# using this below keeps the button shape with the fancy font awesome icons!%>
-      <span style="font-size:14px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "signup_help" } %></span>
-      <%= link_to signup_path, class: 'btn btn-primary navbar-btn' do %>
-        <%= content_tag(:span, "", :class => "fa fa-cog fa-spin") %>
-        Sign-Up
-      <% end %>
-  </div>
-  <div class="col-xs-offset-2"></div>
-  <div class="col-xs-12"></br></br></br></br></div>
+  <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
+    <%= content_tag(:span, "", :class => "fa fa-calculator") %>
+    Go to Calculation
+  <% end %>
 
-  <div class="center_image">
-<%# can download any image and put it in the app/assets/images/ directory
-    This can be done using the curl utility. At the command line type:
-    curl -o app/assets/images/<name of image and extension> -OL <website and
-    image name on website without the http://>.
-    Sometimes need to run the command twice. Works for any file.
-    For now, I just took an image on my PC and dragged it onto the folder in
-    Cloud 9 and it seemed to work! Can preview it in a new tab by right-clicking
-    on the file. The image format Hartl used was .png%>
-<%#<%= link_to image_tag("blackboardsmall.jpg", alt: "Neurology Online Journal Club"),
-            'https://neurologyonlinejournalclub.wordpress.com/' %>
-<%= link_to image_tag("d20.jpg", alt: "D20 System"),
-            'https://en.wikipedia.org/wiki/D20_System' %>
+  <div class="col-xs-12"></br></br></div>
+
+
+<div class="center_image">
+  <%= link_to image_tag("pride_logo.jpg", alt: "BHRUT"),
+            'https://www.bhrhospitals.nhs.uk' %>
 </div>
-<% end %>
+</div>
+
