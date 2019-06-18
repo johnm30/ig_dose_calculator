@@ -41,7 +41,7 @@
   <% if  @settings != nil && @settings["height"] != nil %>
     <%= f.number_field "height", min: 0, max: 300, value: @settings["height"], class: "control-label col-xs-1" %>
   <% else %>
-    <%= f.number_field "height", min: 0, max: 300, value: 0, class: "control-label  col-xs-1" %>
+    <%= f.number_field "height", min: 0, max: 300, value: 150, class: "control-label  col-xs-1" %>
   <% end %>
 </div>
 <div class="field" >
@@ -51,7 +51,7 @@
   <% if  @settings != nil && @settings["weight"] !=nil %>
     <%= f.number_field "weight", min: 0, max: 200, value: @settings["weight"], class: "control-label col-xs-1" %>
   <% else %>
-    <%= f.number_field "weight", min: 0, max: 200, value: 0, class: "control-label col-xs-1" %>
+    <%= f.number_field "weight", min: 0, max: 200, value: 50, class: "control-label col-xs-1" %>
   <% end %>
 </div>
 
