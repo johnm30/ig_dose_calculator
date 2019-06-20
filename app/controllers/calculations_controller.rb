@@ -78,7 +78,11 @@ class CalculationsController < ApplicationController
         dose = corrected_weight * 0.5
       end
       logger.debug "sex = #{sex}, ibm = #{ibm}, corrected_weight = #{corrected_weight}, dose = #{dose}"
-      settings["dose"] = "#{round_value(dose)} g"
+      if dosage.first == "2"
+        settings["dose"] = "#{round_value(dose)} g split over 2-5 days"
+      else
+        settings["dose"] = "#{round_value(dose)} g"
+      end
       logger.debug("settings after calculation = #{settings}")
       return settings
     end
