@@ -1,6 +1,6 @@
 <div class="col-xs-12"></br></br></div>
 <div class="col-xs-12">
-  <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
+  <h3 style="padding-top:2px"> <%# the padding is just to show the superscript question mark %>
     Patient<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "patient_help" } %><sup>
   </h3>
 </div>
@@ -10,32 +10,32 @@
         <div class="col-xs-1">
           <%= f.radio_button :sex, "1",  :checked => true, class: "form_control" %>
           <%= f.label :sex, 'Male', class: "control-label", style: "text-align:left;font-weight:normal" do %>
-            <span style = "font-weight:900; font-size:20px;">&#9794;</span>
+            <span style = "font-weight:1200; font-size:28px;">&#9794;</span>
           <% end %>
         </div>
         <div class="col-xs-1">
           <%= f.radio_button :sex, "0", class: "form_control" %>
           <%= f.label :sex, 'Female', class: "control-label", style: "text-align:left; font-weight:normal" do %>
-            <span style = "font-weight:900; font-size:20px;">&#9792;</span>
+            <span style = "font-weight:1200; font-size:28px;">&#9792;</span>
           <% end %>
         </div>
       <% else %>
         <div class="col-xs-1">
           <%= f.radio_button :sex, "1",  class: "form_control" %>
           <%= f.label :sex, "Male", class: "control-label", style: "text-align:left;font-weight:normal" do  %>
-            <span style = "font-weight:900; font-size:20px;">&#9794;</span>
+            <span style = "font-weight:1200; font-size:28px;">&#9794;</span>
           <% end %>
         </div>
         <div class="col-xs-1">
           <%= f.radio_button :sex, "0",  :checked => true, class: "form_control" %>
           <%= f.label :sex, "Female", class: "control-label", style: "text-align:left; font-weight:normal" do %>
-            <span style = "font-weight:900; font-size:20px;">&#9792;</span>
+            <span style = "font-weight:1200; font-size:28px;">&#9792;</span>
           <% end %>
         </div>
       <% end %>
 </div>
 <div class="field" >
-  <%= f.label :height, class: "col-xs-2", style: "text-align:right" do %>
+  <%= f.label :height, class: "col-xs-3", style: "text-align:right" do %>
     <span>Height (cm)</span>
   <% end %>
   <% if  @settings != nil && @settings["height"] != nil %>
@@ -45,8 +45,8 @@
   <% end %>
 </div>
 <div class="field" >
-  <%= f.label :weight, class: "col-xs-2", style: "text-align:right" do %>
-    <span>Weight (Kg)</span>
+  <%= f.label :weight, class: "col-xs-3", style: "text-align:right" do %>
+    <span>Weight (kg)</span>
   <% end %>
   <% if  @settings != nil && @settings["weight"] !=nil %>
     <%= f.number_field "weight", min: 0, max: 200, value: @settings["weight"], class: "control-label col-xs-1" %>
@@ -57,7 +57,7 @@
 
 <div class="col-xs-12"></br></div>
 <div class="col-xs-12">
-  <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
+  <h3 style="padding-top:2px"> <%# the padding is just to show the superscript question mark %>
     Dosage<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "dosage_help" } %><sup>
   </h3>
 </div>
@@ -66,11 +66,11 @@
   <% if  dosage != nil %>
     <%= f.collection_select "dosage" , @dosage_categories,:to_s, :to_s,
       {include_blank: false, selected: dosage},
-      {multiple: false, size: 3, class: "control label col-xs-offset-1 col-xs-5", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
+      {multiple: false, size: 3, class: "control label  col-xs-12", style: "font-size:30px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
   <% else %>
       <%= f.collection_select "dosage" , @dosage_categories,:to_s, :to_s,
         {include_blank: false, selected: @dosage_default},
-        {multiple: false, size: 3, class: "control label col-xs-offset-1 col-xs-5", style: "font-size:14px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
+        {multiple: false, size: 3, class: "control label  col-xs-12", style: "font-size:30px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
   <% end %>
 </div>
 
@@ -79,7 +79,7 @@
 <% dose = @settings["dose"] %>
 <% if dose != nil %>
   <div class="col-xs-12">
-    <h3 style="font-weight:bold; font-size:26px; padding-top:2px"> <%# the padding is just to show the superscript question mark %>
+    <h3 style="padding-top:2px"> <%# the padding is just to show the superscript question mark %>
       </br>
       Total Dose of Immunoglobulin = <%= dose %>
     </h3>
@@ -91,8 +91,8 @@
 Therefore I used buttons and the complicated button key value system for all but the export button %>
 <div class="col-xs-3", style = "text-align:left">
     <%= f.button name: "calculate", value: "Calculate", class: "btn btn-default btn-primary" do  %>
-      <span style = "font-size:20px">Calculate</span>
+      <span style = "font-size:34px">Calculate</span>
     <% end %>
-    <sup style="font-size:16px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></sup>
+    <sup style="font-weight:bold; font-size:28px;"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "calculate_help" } %></sup>
 </div>
 <div class="col-xs-12"></br></div>

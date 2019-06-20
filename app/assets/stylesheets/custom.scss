@@ -133,11 +133,21 @@ h2 {
   color: #767071; /* for dark backgrounds */
 }
 
-h3 {
+@media (max-width:1080px){h3 {
   margin-top: 0px;
+  font-weight:bold;
+  font-size:34px;
   /* color: #565051; for light backgrounds */
   color: #767071; /* for dark backgrounds */
-}
+}}
+
+@media (min-width:1081px){h3 {
+  margin-top: 0px;
+  font-weight:bold;
+  font-size:38px;
+  /* color: #565051; for light backgrounds */
+  color: #767071; /* for dark backgrounds */
+}}
 
 
 /* this is large and scalable - used for sums */
@@ -181,10 +191,10 @@ h5 {
 
 
 p {
-  font-size: 1.2em;
+  font-size: 1.5em;
   line-height: 1.7em;
-  /* color: #565051; for light backgrounds */
-  color: #868081; /* for dark backgrounds */
+  color: #565051; /* for light backgrounds */
+  /*color: #868081; /* for dark backgrounds */
   text-align: justify;
 }
 
@@ -215,7 +225,7 @@ p {
   font-family:Book Antiqua;
   /*font-family: Papyrus, fantasy;*/
   /*font-family: Lucida Console, cursive;*/
-  font-size: 2em;
+  font-size: 2.5em;
   /*color: #ffd700;  /*this is gold*/
   color: #868081;
   /*text-transform: uppercase;*/
@@ -386,7 +396,7 @@ aside {
 
 /* changes the text for labels in forms */
 label {
-  font-size: 1.5em;
+  font-size: 2.0em;
   /* color: #565051; for light backgrounds */
   color: #767071; /* for dark backgrounds */
 }
@@ -421,6 +431,7 @@ input {
   text-align: left;
   padding-left: 0px;
   padding-right: 0px;
+  font-size: 2.5em;
 
 }
 
@@ -442,8 +453,8 @@ input[type="number"] {
 input[type="radio"] {
     padding-left: 1px;
     padding-right: 0px;
-    height: 15px ;
-    width: 15px ;
+    height: 24px ;
+    width: 24px ;
 }
 
 
@@ -461,6 +472,7 @@ select {
   padding-left: 0px;
   padding-right: 0px;
   width: 100%;
+  font-size: 2.5em;
 }
 
 
