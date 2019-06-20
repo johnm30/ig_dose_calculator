@@ -47,6 +47,7 @@ class CalculationsController < ApplicationController
       height = settings["height"].to_i
       weight = settings["weight"].to_i
       dosage = params[:calculation]["dosage"]
+      settings["dosage"] = dosage
 
       ibm = 0.0
       if sex == "1"
