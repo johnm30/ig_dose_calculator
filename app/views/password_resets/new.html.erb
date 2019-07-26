@@ -1,0 +1,20 @@
+<% provide(:title, "Forgot Password") %>
+<h1>Forgot Password</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+    <%# Unlike for the new user form where the new action in users_controller sets
+        a new @user from the User class, a new password_reset object does not yet
+        exist so we would not use @password_reset, but a symbol instead. Unlike
+        the user object, password_reset and account_activation are considered
+        virtual objects %>
+    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.submit "Submit", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

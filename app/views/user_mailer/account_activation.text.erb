@@ -1,0 +1,5 @@
+Hi <%= @user.name %>,
+
+You have signed up to the Neurodiagnosticator App! Click on the link below to activate your account:
+
+<%= edit_account_activation_url(@user.activation_token, name: @user.name) %>

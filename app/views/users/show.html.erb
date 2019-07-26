@@ -1,0 +1,43 @@
+<%# This is used by the yield in application.html.erb to put the user's name on
+    the tab of the page.
+    We don't use current_user because showing this user might
+    not actually be the current user%>
+<% provide(:title, @user.name) %>
+
+<div class="row">
+  <aside class="col-md-3">
+    <section class="user_info">
+      <%= render 'shared/user_info', user: @user %>
+    </section>
+    </br>
+  </aside>
+  <div class="col-md-9">
+    <div class="col-xs-12">
+    <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
+      <div style = "font-size:20px">
+      <%= content_tag(:span, "", :class => "fa fa-calculator") %>
+      Go to Calculation
+      </div>
+    <% end %>
+    </div>
+    <div class="col-xs-12">
+    <%= link_to diseases_path, class: 'btn btn-primary navbar-btn' do %>
+      <div style = "font-size:20px">
+      <%= content_tag(:span, "", :class => "fa fa-list-ul") %>
+      Go to Index of Indications
+      </div>
+    <% end %>
+    </div>
+    <div class="col-xs-12">
+    <%= link_to diseases_export_path(format: :xlsx), class: 'btn btn-primary navbar-btn' do %>
+      <div style = "font-size:20px">
+      <%= content_tag(:span, "", :class => "fa fa-file-excel-o") %>
+      Export all Indications to Excel file
+      </div>
+    <% end %>
+    </div>
+
+  </div>
+
+
+</div>

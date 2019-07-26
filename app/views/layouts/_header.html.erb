@@ -20,7 +20,36 @@
 
             <li><%= link_to "Home",  root_path %></li>
             <li><%= link_to "Calculate",  calculations_path %></li>
+            <li><%= link_to "Index", diseases_path %></li>
             <li><%= link_to "Help", help_path %></li>
+            <% if logged_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Account<b class="caret"></b>&nbsp;&nbsp;
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Options", current_user %></li>
+                  <li><%= link_to "Password Settings", edit_user_path(current_user) %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to logout_path, method: "delete" do %>
+                      <%= content_tag(:span, "", :class => "fa fa-sign-out") %>
+                      Log out &nbsp;
+                    <% end %>
+                    <%#= content_tag(:span, "", :class => "fa fa-stethoscope") %>
+
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <%# &nbsp; doesn't work in these link_to quotes. Use html_safe method
+                  can also do haml ie <li><%= link_to "Log in \xA0", login_path %>
+              <li><%= link_to login_path do %>
+                Admin &nbsp;
+              <% end %>
+              </li>
+              <%# <%= link_to "Log in &nbsp;".html_safe, login_path %>
+            <% end %>
 
           </ul>
         </nav>

@@ -13,7 +13,14 @@ User.create!(name:  "Site Admin",
 user = User.find_by(name: "Site Admin")
 user.microposts.create!(content: "My first post")
 
-
+# Always include the name in the description for search purposes
+Disease.create!(category: "No prior panel approval")
+disease = Disease.find(1)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Primary immunodeficiency",
+    description: "Primary immunodeficiencies associated with significant antibody defects (excluding specific antibody deficiency) – long term use"
+    )
 
 
 # Book reviews

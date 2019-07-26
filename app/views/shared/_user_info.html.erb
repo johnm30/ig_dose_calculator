@@ -10,7 +10,5 @@
     <%= user.name %><sup style="font-size:15px"><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "user_page_help" } %></sup>
   </h3>
 </div>
-<div class="col-xs-12" style="text-align:left">
-  <h4 style="font-size:14px; text-align:left">(<%= pluralize(current_user.microposts.count, "comment")%>)</h4>
-</div>
+
 

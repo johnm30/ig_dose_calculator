@@ -1,0 +1,55 @@
+<%# The html multipart: true in form for is necessary for file uploads
+
+    Using object in place of @disease but the render in both new and edit html files
+    is @disease in either case %>
+
+<%# Below doesn't work unless I set resources :diseases in routes. Resources knows
+    to push to create if a new object and patch to update if an existing one.
+
+    If I wanted to do it without resources might need something
+    like:
+
+    <%= form_for(object, url: diseases_path(object), html: {multipart: true, method: :get }) do |f|
+
+    but then messes up if using object for two views calling
+    the same form but different routes. Would here have to take the
+    form_for line out of the partial and do in new or edit:
+    new:
+    form_for @disease, url: diseases_path, html: { method: :get } do |f|
+      render 'disease_form', f: f
+
+    EDiting version:
+    form_for @disease, url: diseases_path(@disease), html: { method: :get } do |f|
+      render 'form', f: f
+      %>
+<%= form_for(object, html: { multipart: true }) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="form_group">
+    <%= f.label :name, "Name", class: "control-label col-xs-2" %>
+    <%= f.text_field :name, placeholder: "Name of the disease" %>
+
+    <%= f.label :description, "Description", class: "control-label col-xs-2" %>
+    <%= f.text_area :description, placeholder: "Description of the disease" %>
+
+    <%= f.label :category, "Indication Category", class: "control-label col-xs-6" %>
+    <div class="col-xs-12"></div>
+    <%= f.collection_select "category" , @categories,:to_s, :to_s,
+      {include_blank: false},
+      {multiple: false, size: 3, class: "control label  col-xs-6", style: "font-size:30px; color:#808080; padding-left: 0px; padding-right: 0px; text-align:left"} %>
+
+    <div class="col-xs-12"></div>
+
+
+    <%# forces a line break %>
+    <div class="col-xs-12"></br></div>
+    <div class="col-xs-5">
+      <%= f.submit "Save", class: "btn btn-default btn-primary" %>
+    </div>
+    <div class="col-xs-offset-2 col-xs-5">
+      <%= f.submit "Cancel", class: "btn btn-default btn-primary" %>
+    </div>
+    <%# forces a line break %>
+    <div class="col-xs-12"></br></div>
+</div>
+<% end %>
+

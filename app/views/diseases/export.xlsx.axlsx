@@ -1,0 +1,24 @@
+wb = xlsx_package.workbook
+wb.use_autowidth = true
+
+wb.styles do |style|
+  project_heading = style.add_style(b: true, sz: 14)
+  heading = style.add_style(b: true)
+
+  wb.add_worksheet(name: "Index of all Diseases") do |sheet|
+    # Add a title row
+    # sheet.add_row ["Table of Damage per Round vs Armour Class"], style: project_heading
+    # Add the date this was downloaded
+    sheet.add_row [Time.now.strftime("%H:%M:%S, %-d %b %Y")]
+    # Add a blank row
+    sheet.add_row []
+    # Create the header row
+    sheet.add_row @header
+    # Create entries for each item
+    @rows_array.each do |row|
+      sheet.add_row row
+    end
+    # sheet.column_widths 6,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+  end
+end
+

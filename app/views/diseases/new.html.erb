@@ -1,0 +1,90 @@
+<%# This page displays the index of diseases, and a form for the admin to enter
+  new diseases and a search form, and user info if logged in which should be
+  anyway %>
+<% if params[:action] != "index" %>
+  <% page_title = "Index of Indications for Immunoglobulin" %>
+<% else %>
+  <% page_title = "Description of Disease #{@disease_description.name}" %>
+<% end %>
+<% provide(:title, page_title) %>
+
+<div class="row">
+  <aside class="col-md-6">
+    <section class="user_info">
+      <% if current_user %>
+        <%= render 'shared/user_info', user: current_user %>
+      <% end %>
+    </section>
+    </br>
+    <section>
+      <h3 style="font-size:24px; font-weight:bold">
+        Search for disease
+        </br>
+      </h3>
+      <%# Need to make sure to call the show action not the create action as both
+      are currently post to diseases_path. So I change the verb to patch instead
+      of post in routes and use method: :patch. (When testing note that you have
+      to reload the form page!). There is a long-hand way below
+      to specify the show action in a certain controller %>
+
+      <%#= form_for :search, :url => {:action=>"show", :controller=>"diseases"}, :html => {:method => "PATCH"} do |f| %>
+
+      <%= form_for :search, url: diseases_path, method: :put do |f| %>
+        <div class="form-group">
+          <div class="col-xs-10">
+            <%= f.text_field :search_string, placeholder: "Disease description contains...", cols: "20", rows: "2", class: "form-control" %>
+          </div>
+          <div class="col-xs-2">
+            <%= button_tag(class: "btn btn-default", type: "submit") do %>
+              <i class="glyphicon glyphicon-search"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      </br>
+      </br>
+    </section>
+
+    <%# admin is a column in the User model and with ? automatically generates a boolean method %>
+    <% if current_user.admin? && params[:action] != "index" %>
+      <section>
+        <h3 style="font-size:24px; padding-top:2px; font-weight:bold">
+          </br>Enter a new disease<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "new_disease_help" } %><sup>
+          </br></br>
+        </h3>
+        <%= render 'shared/disease_form', object: @disease %>
+      </br></br></br>
+      </section>
+    <% end %>
+  </aside>
+  <div class="col-md-6">
+    <% if params[:action] != "index" %>
+      <% if @diseases.any? %>
+        <h3 style="padding-top:2px; font-weight:bold">
+          <% if params[:action] != "show" || session[:search_term] == nil %>
+            Diseases (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %><sup>
+          <% else %>
+            Diseases containing "<%= session[:search_term] %>" (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %><sup>
+          <% end %>
+        </h3>
+          <ol class="diseases">
+            <%= render @diseases %>
+          </ol>
+          <% if params[:action] != "show" %>
+            <%= will_paginate @diseases %>
+          <% end %>
+      <% else %>
+        <h3>There are not yet any diseases in the database</h3>
+      <% end %>
+    <% else %>
+      <ol class="diseases">
+        <%= render @disease %>
+      </ol>
+      <div class="col-xs-offset-5 col-xs-2">
+        <%#= link_to "Return", :back , class: 'btn btn-primary navbar-btn' %>
+        <%# This one preserves all the entered form data %>
+        <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<%# render @diseases in diseases/new.html.erb is what calls this partial
+    @diseases is what is passed in render but need the description for each
+    @disease, instance variable @disease_descriptions.
+    Get the name etc from the disease_description hash with the key matching disease.id%>
+
+
+<% controller = params[:controller] %>
+
+
+  <li id="disease-<%= disease.id %>">
+    <%#= disease.id %>
+    <%# disease_description = @disease_descriptions.select{|key,value| disease_id, disease.id} %>
+    <% if @expand_description[disease.id.to_s] != 1 %>
+      <span class="name">
+      <%= disease.disease_description.name.sub(/^./, &:upcase) %>
+      <%= link_to diseases_path(disease.id), method: :patch do %>
+        <span style = "font-weight:900; font-size:18px;">&#9660;</span>
+      <% end %>
+      </span><br>
+
+    <% else %>
+
+    <span class="name">
+      <%= disease.disease_description.name.sub(/^./, &:upcase) %>
+      <%= link_to diseases_path(disease.id), method: :patch do %>
+        <span style = "font-weight:900; font-size:18px;">&#9650;</span>
+      <% end %>
+    </span><br>
+
+    <span class="description"><%= disease.disease_description.description.sub(/^./, &:upcase) %></span><br>
+
+    <span class="prevalence">
+      Indication Category
+      <% category = disease.category %>
+      <% if category != nil %>
+        <ul><%=  category %></ul>
+      <% end %>
+
+    </span><br>
+
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(disease.created_at) %> ago.
+    </span>
+
+      <% if current_user.admin? %>
+        <span>&nbsp;&nbsp;</span>
+        <span class="timestamp">
+          <%= link_to "Edit Disease", diseases_edit_path(disease.id) %>
+        </span>
+        <span>&nbsp;&nbsp;</span>
+        <span class="timestamp">
+          <%= link_to "Delete Disease", diseases_path(disease.id), method: :delete,
+                                       data: { confirm: "Are you sure?" } %>
+        </span>
+      <% end %>
+    <% end %>
+  </li>

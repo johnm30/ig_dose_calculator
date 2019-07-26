@@ -1,0 +1,30 @@
+<<% provide(:title, 'Reset password') %>
+<h1>Reset password</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%# Need below because need to find user by email address (now name)
+          when updating password. The edit action can use the email
+          from the query parameter in the link address but update cannot.
+          So the email is put on the form as a hidden field so it gets
+          stored in params and can be accessed again.
+          It is stored as hidden_field_tag so accessed by params[:email]
+          rather than f.hidden_field which would store it as
+          params[:user][:email] which we don't want because we don't know
+          the user.%>
+
+      <%= hidden_field_tag :name, @user.name %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "Update password", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

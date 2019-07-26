@@ -1,0 +1,40 @@
+<%# This file is very similar to new, as just editing instead of creating new.
+But admin can view index and then edit others' prizes so need to find the user, from
+the user_id column associated with the prize; @prize was set in the edit action in
+prizes_controller%>
+
+
+
+<% page_title = "Editing a Neurological Disease" %>
+<% provide(:title, page_title) %>
+
+<div class="row">
+  <aside class="col-md-6">
+    <section class="user_info">
+      <% if current_user %>
+        <%= render 'shared/user_info', user: current_user %>
+      <% end %>
+    </section>
+    </br>
+    <section>
+      <h3 style="font-size:24px; padding-top:2px; font-weight:bold">
+        Editing <%= @disease_description.name %><sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "edit_disease_help" } %><sup>
+      </h3>
+      </br>
+      <%= render 'shared/disease_form', object: @disease %>
+    </section>
+  </aside>
+  <div class="col-md-6">
+    <% if @diseases.any? %>
+      <h3 style="padding-top:2px">
+        Diseases (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %><sup>
+      </h3>
+        <ol class="diseases">
+          <%= render @diseases %>
+        </ol>
+        <%= will_paginate @diseases %>
+    <% else %>
+      <h3>There are not yet any diseases in the database</h3>
+    <% end %>
+  </div>
+</div>
