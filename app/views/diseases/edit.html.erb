@@ -9,7 +9,7 @@ prizes_controller%>
 <% provide(:title, page_title) %>
 
 <div class="row">
-  <aside class="col-md-6">
+  <div class="col-md-6">
     <section class="user_info">
       <% if current_user %>
         <%= render 'shared/user_info', user: current_user %>
@@ -23,12 +23,32 @@ prizes_controller%>
       </br>
       <%= render 'shared/disease_form', object: @disease %>
     </section>
-  </aside>
+  </div>
   <div class="col-md-6">
     <% if @diseases.any? %>
-      <h3 style="padding-top:2px">
-        Diseases (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %><sup>
-      </h3>
+      <h3 style="padding-top:2px; font-weight:bold">
+          <% if params[:action] != "show" || session[:search_term] == nil %>
+            Diseases (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
+          <% else %>
+            Diseases containing "<%= session[:search_term] %>" (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
+          <% end %>
+          <span style="font-size:16px;">
+            Sort by:
+            <% if @sort_by == "speciality" %>
+              <%= link_to "Speciality", diseases_sort_path %>
+            <% elsif @sort_by == "abc" %>
+              <%= link_to "ABC", diseases_sort_path %>
+            <% elsif @sort_by == "commissioning" %>
+              <%= link_to "Commissioning", diseases_sort_path %>
+            <% elsif @sort_by == "default" %>
+              <%= link_to "Default", diseases_sort_path %>
+            <% elsif @sort_by == "regimen" %>
+              <%= link_to "Dose Regimen", diseases_sort_path %>
+            <% elsif @sort_by == "priority" %>
+              <%= link_to "Demand Management Priority", diseases_sort_path %>
+            <% end %>
+          </span>
+        </h3>
         <ol class="diseases">
           <%= render @diseases %>
         </ol>

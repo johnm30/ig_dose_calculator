@@ -6,14 +6,19 @@ class DiseasesController < ApplicationController
   def new
 
     @expand_description = get_expand_descriptions
-    @categories ||= create_categories
-
+    session[:sort_by] = "default" if session[:sort_by] == nil
+    @sort_by = session[:sort_by]
+    @commissionings ||= create_commissionings
+    @priorities ||= create_priorities
+    @specialities ||= create_specialities
 
     # Class method defined in Disease model
     current_page = params[:page] || 1
     per_page = params[:per_page] || 10
-    @diseases = Disease.sort_by_description(current_page, per_page)
+    @diseases = Disease.sort_by(session[:sort_by], current_page, per_page)
     @disease_count = Disease.count
+
+    #logger.debug "All diseases = #{@diseases.inspect}"
 
 
     # will_paginate normally only works on Activerecord object rather than array
@@ -34,10 +39,12 @@ class DiseasesController < ApplicationController
   end
 
   def index
-    @categories ||= create_categories
+    @commissionings ||= create_commissionings
+    @priorities ||= create_priorities
+    @specialities ||= create_specialities
     @disease = Disease.find(params[:format])
     @disease_description = @disease.disease_description
-
+    @sort_by = session[:sort_by]
     @expand_description = get_expand_descriptions
 
     render 'new'
@@ -201,7 +208,7 @@ class DiseasesController < ApplicationController
         @disease.destroy
       end
     else
-      final_message = "This Disease not saved:" + "<br>"
+      final_message = "Disease not saved:" + "<br>"
       @disease.errors.full_messages.each do |message|
         final_message << message + "<br>"
       end
@@ -209,11 +216,14 @@ class DiseasesController < ApplicationController
     flash.now[:warning] = final_message.html_safe
     current_page = params[:page] || 1
     per_page = params[:per_page] || 10
-    @diseases = Disease.sort_by_description(current_page, per_page)
+    @diseases = Disease.sort_by(session[:sort_by], current_page, per_page)
     @disease_count = Disease.count
-    @categories ||= create_categories
+    @commissionings ||= create_commissionings
+    @priorities ||= create_priorities
+    @specialities ||= create_specialities
     #@disease = Disease.new(temp_diseases_params)
     @expand_description = get_expand_descriptions
+    @sort_by = session[:sort_by]
     render 'new'
 
   end
@@ -223,8 +233,10 @@ class DiseasesController < ApplicationController
   def edit
 
     @expand_description = get_expand_descriptions
-
-    @categories ||= create_categories
+    @sort_by = session[:sort_by]
+    @commissionings ||= create_commissionings
+    @priorities ||= create_priorities
+    @specialities ||= create_specialities
 
     # Use the instance and params format to fill form with existing data
     @disease = Disease.find(params[:format])
@@ -238,7 +250,7 @@ class DiseasesController < ApplicationController
     # As for new, this is to do the list of created diseases.
     current_page = params[:page] || 1
     per_page = params[:per_page] || 10
-    @diseases = Disease.sort_by_description(current_page, per_page)
+    @diseases = Disease.sort_by(session[:sort_by], current_page, per_page)
     @disease_count = Disease.count
     @disease_descriptions = DiseaseDescription.all
 
@@ -248,34 +260,60 @@ class DiseasesController < ApplicationController
   def update
     # when using update, we use params[:id] perhaps because it came from a form
     # rather than from clicking a link
+    @expand_description = get_expand_descriptions
+    @commissionings ||= create_commissionings
+    @priorities ||= create_priorities
+    @specialities ||= create_specialities
+    @sort_by = session[:sort_by]
     @disease = Disease.find(params[:id])
     edit_disease_description = @disease.disease_description
-    if @disease.update_attributes(diseases_params)
+
+    # update_attributes is alias for update, and is being deprecated
+    if @disease.update(diseases_params)
+      logger.debug "Diseases params = #{diseases_params}, new @diseases = #{@disease.inspect}"
+
       if edit_disease_description.update_attributes(disease_description_params)
         flash[:success] = "#{@disease.disease_description.name} edited"
-        redirect_to diseases_url
+        redirect_to diseases_url and return
       else
         final_message = "Disease description not saved:" + "<br>"
         edit_disease_description.errors.full_messages.each do |message|
           final_message << message + "<br>"
         end
-        flash.now[:warning] = final_message.html_safe
-        @diseases = Disease.paginate(page: params[:page])
-        @disease = Disease.new(temp_diseases_params)
-        render 'new'
+        #flash.now[:warning] = final_message.html_safe
+
+        current_page = params[:page] || 1
+        per_page = params[:per_page] || 10
+        @diseases = Disease.sort_by(session[:sort_by], current_page, per_page)
+        @disease_count = Disease.count
+        @disease_descriptions = DiseaseDescription.all
+        @disease_description = edit_disease_description
+        @disease.name = @disease_description.name
+        @disease.description = @disease_description.description
+        render 'edit'# or consider redirect_to diseases_edit_url(@disease)
       end
     else
       final_message = "Disease not saved:" + "<br>"
       @disease.errors.full_messages.each do |message|
         final_message << message + "<br>"
       end
+      #flash.now[:warning] = final_message.html_safe
+
+      # doing the redirect below redirects to edit and the correct disease but the
+      # nice error messages do not work because restarting edit from scratch, and what
+      # was edited already partially might be lost, so choose render
+      # redirect_to diseases_edit_url(@disease) and return
+
+      # As for new, this is to do the list of created diseases.
       current_page = params[:page] || 1
-      per_page = params[:per_page] || 5
-      @diseases = Disease.sort_by_description(current_page, per_page)
+      per_page = params[:per_page] || 10
+      @diseases = Disease.sort_by(session[:sort_by], current_page, per_page)
       @disease_count = Disease.count
-      @disease = Disease.new(temp_diseases_params)
-      @expand_description = get_expand_descriptions
-      render 'new'
+      @disease_descriptions = DiseaseDescription.all
+      @disease_description = edit_disease_description
+      @disease.name = @disease_description.name
+      @disease.description = @disease_description.description
+      render 'edit'
     end
   end
 
@@ -292,7 +330,11 @@ class DiseasesController < ApplicationController
   # prizes it was on the index page)
   def show
 
-    @categories ||= create_categories
+    @commissionings ||= create_commissionings
+    @priorities ||= create_priorities
+    @specialities ||= create_specialities
+    @sort_by = session[:sort_by]
+
     # The method search(search_string) is defined in the disease_description.rb model file and it
     # knows to look up the description column for ILIKE which is a case insensitive search
     search_term = params[:search][:search_string]
@@ -331,9 +373,9 @@ class DiseasesController < ApplicationController
 
   def expander
     disease_id = params[:format].to_s
-    #logger.debug "Session Expand description is #{session[:expand_description].inspect}"
+    logger.debug "Session Expand description is #{session[:expand_description].inspect}"
     @expand_description = session[:expand_description]
-    #logger.debug "Disease id is #{disease_id}"
+    logger.debug "Disease id is #{disease_id}"
     if @expand_description[disease_id] == 1
       @expand_description[disease_id] = 0
     else
@@ -343,7 +385,27 @@ class DiseasesController < ApplicationController
     session[:expand_description] = @expand_description
     #logger.debug "Expand description is #{@expand_description.inspect}"
     #logger.debug "Session Expand description is #{session[:expand_description].inspect}"
-    redirect_to request.referrer || diseases_url
+    redirect_to request.referrer || diseases_url  # if call from calculations form redirects to that form
+  end
+
+  def sort
+    sort_by = session[:sort_by]
+    #logger.debug "Sort criterion = #{sort_by}"
+    case sort_by
+    when "default"
+      session[:sort_by] = "abc"
+    when "abc"
+      session[:sort_by] = "speciality"
+    when "speciality"
+      session[:sort_by] = "priority"
+    when "priority"
+      session[:sort_by] = "regimen"
+    when "regimen"
+      session[:sort_by] = "commissioning"
+    else
+      session[:sort_by] = "default"
+    end
+    redirect_to request.referrer || diseases_url #hopefuly send back to new, edit or show as appropriate
   end
 
   private
@@ -351,7 +413,10 @@ class DiseasesController < ApplicationController
     #now I need separate methods to get the form data that belongs in disease
     # model and the form data that belongs in DiseaseDescription model
     def diseases_params
-      params.require(:disease).permit(:category)
+      parameters = Hash.new
+      parameters = params.require(:disease).permit(:speciality, :commissioning, :priority, :regimen, :criteria, :outcome)
+      logger.debug "Diseases params parameters = #{parameters}"
+      return parameters
     end
 
     def disease_description_params

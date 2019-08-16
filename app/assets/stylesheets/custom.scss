@@ -136,7 +136,7 @@ h2 {
 @media (max-width:1080px){h3 {
   margin-top: 0px;
   font-weight:bold;
-  font-size:34px;
+  font-size:30px;
   /* color: #565051; for light backgrounds */
   color: #767071; /* for dark backgrounds */
 }}
@@ -417,6 +417,7 @@ input, textarea, select, .uneditable-input {
   border: 2px solid #ffd700;
   width: 100%;
   margin-bottom: 15px;
+  font-size: 1.2em;
   /*@include box_sizing;*/
 }
 
@@ -431,15 +432,38 @@ input {
   text-align: left;
   padding-left: 0px;
   padding-right: 0px;
-  font-size: 2.5em;
+  font-size: 20px;
 
 }
 
-/* this determines the text colour in the textarea field */
-textarea {
-  color: $gray;
-  text-align: left;
+/* specifically change the font of placeholder text */
+::-webkit-input-placeholder { /* Google chrome */
+   font-style: italic;
+   color: #337ab7;
+
 }
+
+:-moz-placeholder { /* Firefox 18- */
+   font-style: italic;
+   color: #337ab7;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-style: italic;
+   color: #337ab7;
+}
+
+:-ms-input-placeholder {  /* Internet explorer */
+   font-style: italic;
+   color: #337ab7;
+
+}
+
+.element:-o-input-placeholder { /* opera */
+    font-style: italic;
+   color: #337ab7;
+}
+
 
 /* this determines the text colour in the number_field input */
 input[type="number"] {
@@ -449,13 +473,19 @@ input[type="number"] {
   padding-right: 0px;
 }
 
-
 input[type="radio"] {
     padding-left: 1px;
     padding-right: 0px;
     height: 24px ;
     width: 24px ;
 }
+
+
+input[type="text"] {
+    font-size: 16px;
+    padding-left: 1px;
+}
+
 
 
 input[type='checkbox'] {
@@ -602,6 +632,43 @@ class*/
     margin-right: 10px;
     margin-top: 5px;
   }
+}
+
+/* diseases list */
+
+.diseases {
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  li {
+    padding: 5px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .name {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .description {
+    color: #565051;
+    display: block;
+    /*margin-left: 60px;*/
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+
+  .timestamp {
+    color: $gray-light;
+    /*display: block;*/
+
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+
 }
 
 

@@ -19,30 +19,73 @@
       </span><br>
 
     <% else %>
-
     <span class="name">
       <%= disease.disease_description.name.sub(/^./, &:upcase) %>
       <%= link_to diseases_path(disease.id), method: :patch do %>
         <span style = "font-weight:900; font-size:18px;">&#9650;</span>
       <% end %>
-    </span><br>
+    </span><br></br>
 
-    <span class="description"><%= disease.disease_description.description.sub(/^./, &:upcase) %></span><br>
-
-    <span class="prevalence">
-      Indication Category
-      <% category = disease.category %>
-      <% if category != nil %>
-        <ul><%=  category %></ul>
-      <% end %>
-
-    </span><br>
-
+    <span class="description">
+      <ul>
+        <%= link_to "Description:" , {:action => "help", :controller => "static_pages", :anchor => "indication_help" } %>
+        <%= disease.disease_description.description.sub(/^./, &:upcase) %>
+        </br>
+        <% speciality = disease.speciality %>
+        <% if speciality != nil %>
+          <%= link_to "Speciality:" , {:action => "help", :controller => "static_pages", :anchor => "speciality_help" } %>
+          <%=  speciality %>
+          </br>
+        <% end %>
+        <% criteria = disease.criteria %>
+        <% if criteria != nil %>
+          <%= link_to "Eligibility Criteria:" , {:action => "help", :controller => "static_pages", :anchor => "criteria_help" } %>
+          <%=  criteria %>
+          </br>
+        <% end %>
+        <% priority = disease.priority %>
+        <% if priority == "1. Red" %>
+          <%= link_to "Demand Management Priority Colour Code:" , {:action => "help", :controller => "static_pages", :anchor => "priority_help" } %>
+          <span style="font-weight:600; color:red;"><%=  priority %></span>
+        <% elsif priority == "2. Blue" %>
+          <%= link_to "Demand Management Priority Colour Code:" , {:action => "help", :controller => "static_pages", :anchor => "priority_help" } %>
+          <span style="font-weight:600; color:blue;"><%=  priority %></span>
+        <% elsif priority == "3. Grey" %>
+          <%= link_to "Demand Management Priority Colour Code:" , {:action => "help", :controller => "static_pages", :anchor => "priority_help" } %>
+          <span style="font-weight:600; color:gray;"><%=  priority %></span>
+        <% elsif priority == "Black" %>
+          <%= link_to "Demand Management Priority Colour Code:" , {:action => "help", :controller => "static_pages", :anchor => "priority_help" } %>
+          <span style="font-weight:600; color:black;"><%=  priority %></span>
+        <% else %>
+          <%= link_to "Demand Management Priority Colour Code:" , {:action => "help", :controller => "static_pages", :anchor => "priority_help" } %> unlisted
+        <% end %>
+        </br>
+        <% regimen = disease.regimen %>
+        <% if regimen != nil %>
+          <%= link_to "Recommended Dose Regimen:" , {:action => "help", :controller => "static_pages", :anchor => "regimen_help" } %>
+          <%=  regimen %>
+          </br>
+        <% end %>
+        <% outcome = disease.outcome %>
+        <% if outcome != nil %>
+          <%= link_to "Outcome Measures for National Database:" , {:action => "help", :controller => "static_pages", :anchor => "outcome_help" }%>
+          <%=  outcome %>
+          </br>
+        <% end %>
+        <% commissioning = disease.commissioning %>
+        <% if commissioning != nil %>
+          <%= link_to "Commissioning Category:" , {:action => "help", :controller => "static_pages", :anchor => "commissioning_help" }%>
+          <%=  commissioning %>
+          </br>
+        <% end %>
+      </ul>
+    </span>
+    </br>
     <span class="timestamp">
-      Posted <%= time_ago_in_words(disease.created_at) %> ago.
+      Last updated <%= time_ago_in_words(disease.updated_at) %> ago.
     </span>
 
-      <% if current_user.admin? %>
+      <% if current_user && current_user.admin? %>
         <span>&nbsp;&nbsp;</span>
         <span class="timestamp">
           <%= link_to "Edit Disease", diseases_edit_path(disease.id) %>

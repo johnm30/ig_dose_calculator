@@ -22,7 +22,12 @@ ActiveRecord::Schema.define(version: 20190303192523) do
   end
 
   create_table "diseases", force: :cascade do |t|
-    t.string "category"
+    t.text "speciality"
+    t.string "commissioning"
+    t.string "priority"
+    t.string "regimen"
+    t.text "criteria"
+    t.text "outcome"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,7 +1,7 @@
 class DiseaseDescription < ApplicationRecord
   belongs_to :disease
   validates :description, presence: true, length: { maximum: 2500 }
-  validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
+  validates :name,  presence: true, length: { maximum: 200 }, uniqueness: true
 
   # Need to check below, wanting alphabetical order
   # Might even do this when going though diseases, as the ID will just depend on

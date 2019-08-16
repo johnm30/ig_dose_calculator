@@ -11,9 +11,21 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def create_categories
+    def create_commissionings
 
-      @categories = ["No prior panel approval", "Emergency list", "Prior panel approval", "Left hand grey", "Right hand grey", "Black"]
+      commissionings = ["Prior panel approval not required", "Prior panel approval not required (emergency list)", "Prior panel approval required", "Prior panel approval required (left-hand grey)", "Requires IFR (right-hand grey)", "Shown to be ineffective (black)", "Unlisted"]
+
+    end
+
+    def create_priorities
+
+      priorities = ["1. Red", "2. Blue", "3. Grey", "Black", "Unlisted"]
+
+    end
+
+    def create_specialities
+
+      specialities = ["Immunology", "Haematology", "Neurology", "Infectious Diseases", "Other"]
 
     end
 
