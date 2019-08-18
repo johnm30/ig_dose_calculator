@@ -9,6 +9,218 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 
 </br>
 
+<span id = "user_page_help">&nbsp;</span>
+<div class= "help">
+  <h3>Admin User</h3>
+  <p> When an administrator user is logged in, their gravitar and name appear here. This allows editing of the disease indication database.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "new_indication_help">&nbsp;</span>
+<div class= "help">
+  <h3>Enter New Indication</h3>
+  <p> When an administrator user is logged in, they can enter new diseases into the disease indication database by completing all the below fields and clickig save.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "edit_indication_help">&nbsp;</span>
+<div class= "help">
+  <h3>Editing Existing Indication</h3>
+  <p> An administrator can edit existing indications on the database. This form is reached by expanding an indication on the right hand panel and clicking "Edit Disease" at the bottom of the section.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "diseases_page_help">&nbsp;</span>
+<div class= "help">
+  <h3>Indications</h3>
+  <p> This is a list of all the indications for immunoglobulin therapy. Click on the inverted triangle next to an indication name to see detailed information about the indication, specifically a description of the disease,
+  the speciality it falls under (to aid in searching through the list), the eligibility criteria for immunoglobulin, the Demand Management priority colour code, the recommended dose regimen usually in g/kg, the outcome measures
+  to enter in the National database and the Commissioning Category (including whether or not prior permission from the subregional panel is required).
+  </p>
+  <p> Click the item next to "Sort by" to select how to sort the indications in the database; each click cycles through the sort criteria. The options are:
+  <ul class="fa-ul">
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Default": the order they appear in the database</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"ABC": alphabetical order</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Speciality": grouped according to their speciality</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Demand Management Priority": grouped from highest to lowest priority</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Dose regimen": roughly lowest to highest dose requirement</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Commissioning": grouped from highest to lowest commissioning status</p></li>
+  </ul>
+  </p>
+  <p> An administrator can edit or delete the entire indication from here.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "indication_help">&nbsp;</span>
+<div class= "help">
+  <h3>Description</h3>
+  <p> This is a brief description of the disease considered to be an indication for immunoglobulin treatment. There may be greater detail presented here for some grey and non-commissioned indications
+      to aid in decision making.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "speciality_help">&nbsp;</span>
+<div class= "help">
+  <h3>Speciality</h3>
+  <p> This is simply a convenient means to help find a certain indication for immunoglobulin.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "criteria_help">&nbsp;</span>
+<div class= "help">
+  <h3>Eligibility Criteria</h3>
+  <p> For Red and Blue indications in the listed specialities, eligibility criteria are taken from NHS England's Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019). For other indications,
+      criteria are determined from a brief review of the limited literature on immunoglobulin's efficacy. The second phase of NHS England's update will review Red and Blue indications outside
+      of these specialities (the "other" group) and the third phase will review grey indications.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "priority_help">&nbsp;</span>
+<div class= "help">
+  <h3>Demand Management Priority Colour Code</h3>
+  <p> For Red and Blue indications in the listed specialities, the Demand Management Priority system has been superceded by the new commissioning criteria (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019).
+      However, in situations of short supply, the priorities still apply:
+    <ul class="fa-ul">
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Red": defined as indications where there may be no other good alternative treatment, these are therefore the highest priority indications where there is short supply.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Blue": indications with good evidence for efficacy,but there are alternative treatments available that may be as effective.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Grey": indications with limited, if any, evidence for efficacy. These are the lowest priority indications in circumstances of short supply.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Black": indications where there is positive evidence that immunoglobulin is <i>not</i> effective. Applications should not normally be sought for such indications.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Unlisted": this is an indication that has never been considered by NHS England or the Department of Health in regard to its suitability fo immunoglobulin treatment. It might be added onto
+        the local database because of previous local applications.</p></li>
+    </ul>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "regimen_help">&nbsp;</span>
+<div class= "help">
+  <h3>Recommended Dosage Regimen</h3>
+  <p> For Red and Blue indications in the listed specialities, the new commissioning criteria (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019) describe the recommended
+      dosages and regimens for each indication. Other indications do not yet have these speficied in all cases so typical regimens are taken from the literature.
+  </p>
+  <p> It is now no longer considered necessary to check for IgA deficiency before administration in routine as well as in urgent indications (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019).
+  </P>
+  <p> Blood tests should be performed on day 1 and on day 3 of administration to check for haemolysis (FBC, blood film and unconjugated bilirubin).
+  </p>
+  <p> Ig may have prothrombotic risks which patients on long term therapy should be counselled about, and prevention measures should be addressed as in DVT prevention guidelines.
+  </p>
+  <p> While many regimens of 2 g/kg can be administered in as few as 2 split daily doses, note that in certain conditions, due to autonomic instability, the 2 g/kg dose must always
+      be split over 5 days.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "outcome_help">&nbsp;</span>
+<div class= "help">
+  <h3>Outcome Measures</h3>
+  <p> For Red and Blue indications in the listed specialities, the new commissioning criteria (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019) list the outcome measures that are
+      expected to be entered on the national database. The outcome measures are not specified for most other indicatins so they have been instead determined based on review of the limited
+      literature and on extrapolation from Red and Blue indications.
+  </p>
+  <p> For some indications, there will be some choice re outcome measures to be used depending on the individual patient. Since many require before and after treatment measurements, these measures
+      must be decided upon and taken before treatment. It is therefore expected that the form submitted to pharmacy will include the outcome measures being used and the pre-treatment results.
+      There must be a plan for recording the post-treatment outcome around 2-4 weeks after treatment and commuicating this to pharmacy for entry on the database. </p>
+  <p> Note that for a number of indications, the IgG level must be measured as a baseline before treatment, e.g. Guillain Barre Syndrome; this is because monitoring of its change determines further management.
+  </p>
+  <p> In most situations, long term treatment requires annual review (most cases). When a request for a repeat course is made of pharmacy, the time of last review should be checked. If a review is due, this is
+      communicated to the clinician if review data have not been submitted with the request. If this information is not provided by the time of the <i>next</i> course, that course of immunoglobulin may not be dispensed until
+      the information is forthcoming.
+  </p>
+  <p> The nature of long-term annual review might take the following forms:
+    <ul class="fa-ul">
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>Delay next course until relapse, record outcome measures on relapse and compare with the most recent peak treatment outcome scores, and with a subsequent outcome score following the next treatment.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>Record outcome measures again to confirm that the improved scores following a previous course compared with pre-treatment scores have been maintained.</p></li>
+    </ul>
+  </p>
+  <p> Note that the latest guidance (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019) points out that in certain conditions, most notably CIDP and inflammatory myopathies, spontaneous stabilisation is common
+      and so the first of the above methods of long term review (i.e. trial withdrawal) should be used on at least 2-3 occasions.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
+<span id = "commissioning_help">&nbsp;</span>
+<div class= "help">
+  <h3>NHS England Commissioning</h3>
+  <p> Most established indications for immunoglobulin therapy are commissioned directly by NHS England. However, the rules for whether commissioning consent needs to be obtained
+      in advance by an Immunoglobulin Panel acting on behalf of NHS England have been clarified in the latest Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019). The different levels of status of various
+      indications with respect to commissioning are listed below:
+    <ul class="fa-ul">
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission not required.</i> This category roughly corresponds to red priority indications where prior permisison was not required. This is
+    because immunoglobulin is recognised to be the best treatment for the indication, assuming the eligibility criteria are met.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission not required (emergency list).</i> These are conditions that normally require prior permission, usually because of limited evidence for
+    efficacy at the time of the previous Commissioning update in 2011, or because there are considered to be equally effective alternative treatments. However, it was recognised that in some of these conditions patients might suffer
+    harm because of the potential delay before the decision of an immunoglobulin panel that meets monthly. Hence many regions have agreed and drawn up "exception" lists of emergency indications.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission required.</i> The prior permission of the local immunoglobulin panel or of the subregional immunoglobulin panal is required before the immunoglobulin can be dispensed.
+    This submission is normally managed by pharmacy using the information provided by clinicians. There may be up to a month's delay before a decision is reached. If a clinician considers the decision must be made
+    more urgently than this, they would follow the Trust's procedure for prescribing and dispensing urgent non-formulary medicines (typically local Drugs and Therapeutics committee Chair's action).
+    It would need to be very clear that the patient i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has a justification
+    for requiring this treatment urgently as opposed to being given any other standard treatment for their condition.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission required (left-hand grey indication).</i> In drawing up their latest Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019),
+    NHS England have not yet considered former grey indications. In 2011, these were divided into left-hand grey indications (potential immune-mediated diseases with some evidence of benefit) and
+    right-hand grey indications (little or no evidence of benefit). In a recent communication (July 2019), NHS England clarified interim commissioning arrangements for these indications. Left-hand grey indications
+    are to be commissioned routinely, requiring prior approval provided they have not been placed on the Emergency List where no prior approval is required. However, commissioned grey indications will be subject
+    to quarterly review by the London Ig commissioning oversight group. As with other indications requiring prior approval, if a clinician considers the decision must be made more urgently than this, they would follow
+    the Trust's procedure for prescribing and dispensing urgent non-formulary medicines (typically local Drugs and Therapeutics committee Chair's action).
+    It would need to be very clear that the patient i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has a justification
+    for requiring this treatment urgently as opposed to being given any other standard treatment for their condition.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission required (right-hand grey indication).</i> In drawing up their latest Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019),
+    NHS England have not yet considered former grey indications. In 2011, these were divided into left-hand grey indications (potential immune-mediated diseases with some evidence of benefit) and
+    right-hand grey indications (little or no evidence of benefit). In a recent communication (July 2019), NHS England clarified interim commissioning arrangements for these indications. Right hand grey indications
+    and indications not yet thought of by the pre-existing Guidance (2011) will require an evidence appraisal and demonstration of exceptionality
+    to be submitted to NHS England's IFR team, and then funded by NHS England if approved. As with other indications requiring prior approval, if a clinician considers the decision must be made more urgently than this, they would follow
+    the Trust's procedure for prescribing and dispensing urgent non-formulary medicines (typically local Drugs and Therapeutics committee Chair's action).
+    It would need to be very clear that the patient i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has a justification
+    for requiring this treatment urgently as opposed to being given any other standard treatment for their condition. For a right-hand grey indication, there would have to be compelling evidence since 2011
+    of the efficacy of immunoglobulin compared to any other treatments for the condition. It is more likely in this circumstance that the clinician's department would bear responsibility for its cost because
+    retrospective approval from the IFR team would not be given.</p></li>
+
+    </ul>
+  </p>
+  <p> Note that the latest guidance (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019) points out that in certain conditions, most notably CIDP and inflammatory myopathies, spontaneous stabilisation is common
+      and so the first of the above methods of long term review (i.e. trial withdrawal) should be used on at least 2-3 occasions.
+  </p>
+
+  <div class= "bottom">
+    <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
+  </div>
+</div>
+
 <span id = "patient_help">&nbsp;</span>
 <div class= "help">
   <h3>Patient</h3>

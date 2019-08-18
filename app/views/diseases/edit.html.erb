@@ -15,10 +15,9 @@ prizes_controller%>
         <%= render 'shared/user_info', user: current_user %>
       <% end %>
     </section>
-    </br>
     <section>
-      <h3 style="font-size:24px; padding-top:2px; font-weight:bold">
-        Editing <%= @disease_description.name %><sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "edit_disease_help" } %><sup>
+      <h3 style="padding-top:2px; font-weight:bold">
+        Editing <%= @disease_description.name %><sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "edit_indication_help" } %><sup>
       </h3>
       </br>
       <%= render 'shared/disease_form', object: @disease %>
@@ -28,9 +27,9 @@ prizes_controller%>
     <% if @diseases.any? %>
       <h3 style="padding-top:2px; font-weight:bold">
           <% if params[:action] != "show" || session[:search_term] == nil %>
-            Diseases (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
+            Indications (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
           <% else %>
-            Diseases containing "<%= session[:search_term] %>" (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
+            Indications containing "<%= session[:search_term] %>" (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
           <% end %>
           <span style="font-size:16px;">
             Sort by:
