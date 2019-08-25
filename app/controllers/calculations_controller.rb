@@ -298,21 +298,25 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
               settings["selected_dose"] = dosage
             end
           else
+            logger.debug "Dosage left when no hyphen = #{dosage_left}"
             number = dosage_left.to_f
             if number == 0
-              dosage_left = dosage_left.scan(/\d+[,.]\d+/).first # (\d+[,.]\d+) the first block of digits commas or points
+              number = dosage_left.scan(/\d+[,.]\d+/).first # (\d+[,.]\d+) the first block of digits commas or points
+              logger.debug "Dosage left after parse = #{number}"
               number = dosage_left.to_f
             end
-            if number != 0
+            if number != 0 && number != nil
               settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
             else
-              dosage_left = dosage_left.scan(/one/).first
-              if dosage_left == "one"
+              number = dosage_left.scan(/one/).first
+              if number == "one"
                 number = 1
+                settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
               else
-                dosage_left = dosage_left.scan(/two/).first
-                if dosage_left == "two"
+                number = dosage_left.scan(/two/).first
+                if number == "two"
                   number = 2
+                  settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
                 else
                   settings["selected_dose"] = dosage
                 end

@@ -224,7 +224,7 @@
 </div>
 <div class="col-xs-6">
   <h3 style="padding-top:2px"> <%# the padding is just to show the superscript question mark %>
-    Unlisted Indications Regimen<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "unlisted_regimen_help" } %><sup>
+    Unlisted Regimen<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "unlisted_regimen_help" } %><sup>
   </h3>
 </div>
 <div class="col-xs-12"></br></div>
@@ -252,7 +252,7 @@
     <% manual_regimen_dose = @settings["manual_regimen_dose"] %>
     <% if manual_regimen_dose != nil %>
       <%= f.label " g/kg", class: "col-xs-12", style: "text-align:left" do %>
-        <span>Manual regime = <%= manual_regimen_dose %></span>
+        <span>Unlisted regimen = <%= manual_regimen_dose %></span>
       <% end %>
     <% end %>
   <% else %>
