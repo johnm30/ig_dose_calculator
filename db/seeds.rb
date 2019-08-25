@@ -315,6 +315,86 @@ DiseaseDescription.create!(
                   is a separately listed indication."
     )
 
+Disease.create!(speciality: "Haematology",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg divided over 2-5 days single course.",
+                criteria: "There are no longer any clear criteria for the use of immunoglubulin (see description)",
+                outcome: "Reduction in life-threatening infections.")
+disease = Disease.find(22)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Aplastic anaemia/ pancytopaenia",
+    description: "Aplastic anaemia/ pancytopaenia. After excluding secondary causes, such as drug reactions, standard management of aplastic anaemia
+                  no longer includes immunoglobulin. Patients are managed with supportive care (blood transfusions and if necessary chelation therapy for iron
+                  overload), haemopoietic stem cell transplant or with immunosuppressive therapy (British Committee for Standards in Haematology, 2015). In the last group,
+                  first line treatment is specific horse antithymocyte globulin with ciclosporin. Other options include oxymetholone, danazol, eltrombopag or alemtuzumab, not
+                  cyclophosphamide. As infection is the major cause of death, prophylactic antibiotics and antifungals are used, not immunoglobulin."
+    )
+
+
+Disease.create!(speciality: "Haematology",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg maximum divided over 2-5 days weekly for 4 weeks.",
+                criteria: "Neutrophil count persistently lower than 0.5x10^9/l with severe infection and failure to respond to G-CSF and other immunosuppressives
+                          failed or inappropriate. if a patient has previously responded well, the presence of the low neutrophil count and severe infection alone satisfy the criteria.",
+                outcome: "Reduction in life-threatening infections, neutrophil count.")
+disease = Disease.find(23)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Autoimmune neutropenia",
+    description: "Autoimmune neutropenia is a clinical diagnosis where there is a steadily declining neutrophil count and infectious complications.
+                  When secondary to large granular lymphocyte leukaemia, low dose methotreaxate or cyclophosphamide may be effective. Treatment of
+                  severe symptomatic cases may be with granulocyte colomy stimulating factor. Rituximab has been used. Some authors consider immunoglubulin not
+                  not to have a role (Farruggia et al., 2015). The Autralian national Blood Authority (2018) recommends immunoglobulin in cases refractory to
+                  granulocyte colomy stimulating factor and antibiotics where its role is short term use to help control severe infection."
+    )
+
+Disease.create!(speciality: "Haematology",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "0.4 g/kg daily for 3 days has been used (Zhao et al., 2016).",
+                criteria: "No clear recommendations for use.",
+                outcome: "Survival. Recoverey of renal function.")
+disease = Disease.find(24)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Haemolytic uraemic syndrome",
+    description: "Atypical haemolytic uraemic syndrome. Haemolytic uraemic syndrome is typically a complication of E. coli infection in children. Atypical cases
+                  have a poorer prognosis and are treated first-line with plasma exchange as well as typical supportive management (UK Clinical Practice Guidelines, 2009). Other treatments include renal transplant,
+                  sometimes with rituximab, in patients with certain underlying genetic mutations, or liver/kidney transplant as part of a clinical trial. Recently, eculizumab has been recommended by NICE as an
+                  option in treatment of atypical cases (2015). Immunoglobuliln therapy is not listed as an option."
+    )
+
+Disease.create!(speciality: "Haematology",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg divided over 2-5 days.",
+                criteria: "No clear recommendations for use.",
+                outcome: "Survival. Symptom improvement. Reduction in VEGF levels.")
+disease = Disease.find(25)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "POEMS",
+    description: "POEMS syndrome stands for polyneuropathy, organomegaly, endocrinopathy, M-band on electrophoresis and skin changes. There may also be papilloedema,
+                  effusions, oedema and pulmonary hypertension. Treatment includes removal or radiotherapy of isolated plasmacytomas, or immunosuppressives or autologous stem cell
+                  transplantation. Bortezomib and bevacizumab have been trialled. Despite the neuropathy of POEMS being demyelinating and often the dominant symptom, immunoglobulin and plasmapheresis are ineffective in POEMS syndrome
+                  (Dispenzieri, 2012).")
+
+Disease.create!(speciality: "Haematology",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(26)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Autologous BMT",
+    description: "Autologous bone marrow transplant (BMT)."
+    )
+
 Disease.create!(speciality: "Neurology",
                 commissioning: "Prior panel approval not required",
                 priority: "1. Red",
@@ -324,7 +404,7 @@ Disease.create!(speciality: "Neurology",
                           ONLS (Overall Neuropathy Limitation Score), Hand dynamometry, Inflammatory RODS score, timed 10m walk,
                           timed up and go 10m walk, Berg Balance scale, Other validated disability score.
                           All patients should have documented assessment pre-treatment, on relapse after first course dosing if relapse occurs, and at best response after end of short term treatment to demonstrate meaningful functional improvement.")
-disease = Disease.find(22)
+disease = Disease.find(27)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "CIDP (short term)",
@@ -340,7 +420,7 @@ Disease.create!(speciality: "Neurology",
                           ONLS (Overall Neuropathy Limitation Score), hand dynamometry, inflammatory RODS score, timed 10m walk,
                           timed up and go 10m walk, Berg balance scale, other validated disability score.
                           Annual withdrawal or clinical review scoring to document ongoing need. If > 2-3 failed withdrawals, no need for further withdrawal trials.")
-disease = Disease.find(23)
+disease = Disease.find(28)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "CIDP (maintenance)",
@@ -354,7 +434,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Diagnosis of GBS or variant with significant disability (Hughes Grade 4) or disease progression towards intubation and ventilation or
                           mEGRIS score ≥ 3 or poor prognosis with mEGOS ≥ 4. (Miller-Fisher syndrome does not usually require Ig).",
                 outcome: "Measure IgG level change as described in regimen.")
-disease = Disease.find(24)
+disease = Disease.find(29)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Guillain-Barre syndrome",
@@ -368,7 +448,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Diagnosis by a neurologist, with significant functional impairment inhibiting normal daily activities and other therapies have failed, are contra-indicated or undesirable.",
                 outcome: "Clinically meaningful improvement in 3 of: MRC score (7 pairs of muscles in upper and lower limb scored 0–5, maximum 70), INCAT sensory sum score,
                           ONLS (Overall Neuropathy Limitation Score), Hand dynamometry, Inflammatory RODS score, timed 10m walk, timed 10m up and go walk, Berg Balance scale.")
-disease = Disease.find(25)
+disease = Disease.find(30)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "IgM Paraprotein-associated demyelinating neuropathy (short term)",
@@ -384,7 +464,7 @@ Disease.create!(speciality: "Neurology",
                 outcome: "Clinically meaningful improvement in 3 of: MRC score (7 pairs of muscles in upper and lower limb scored 0–5, maximum 70), INCAT sensory sum score,
                           ONLS (Overall Neuropathy Limitation Score), Hand dynamometry, Inflammatory RODS score, timed 10m walk, timed 10m up and go walk, Berg Balance scale, other validated disability score.
                           6-monthly withdrawal or clinical review scoring to document ongoing need.")
-disease = Disease.find(26)
+disease = Disease.find(31)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "IgM Paraprotein-associated demyelinating neuropathy (long term)",
@@ -405,7 +485,7 @@ Disease.create!(speciality: "Neurology",
                           timed up and go 10m walk, CDASI, FVC, HAQ. Polymyositis: ADLs, MRC sumscore, quantitative muscle strengths,
                           time up and go 10m walk, HAQ, FVC.
                           Record before initiation, on relapse if occurs after first course, after second course, and at yearly intervals thereafter.")
-disease = Disease.find(27)
+disease = Disease.find(32)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Inflammatory Myopathies",
@@ -418,7 +498,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course, repeated after several days if no response.",
                 criteria: "Myasthenic crisis of potentially life threatening nature (ITU with respoiratory or bulbar failure) diagnosed by a neurologist where plasma excahgen not available or failed.",
                 outcome: "Quantitative Myasthenia Gravis Score (Duke), respiratory function e.g. forced vital capacity, dysphagia score, dysarthria 1-50 counting, diplopia or ptosis measurement.")
-disease = Disease.find(28)
+disease = Disease.find(33)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Myasthenia Gravis crisis",
@@ -432,7 +512,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Myasthenia diagnosed by a neurologist with weakness requiring hospital admission where plasma exchange not available or failed and rituximab biosimilar failed or unsuitable.
                           Stabilisation prior to surgery or thymectomy.",
                 outcome: "Improvement in Quantitative Myasthenia Gravis Score, forward arm abduction time, variation of another myasthenic muuscular score, respiratory function e.g. forced vital capacity, dysphagia score, dysarthria 1-50 counting, diplopia or ptosis measurement.")
-disease = Disease.find(29)
+disease = Disease.find(34)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Myasthenia Gravis maintenance therapy",
@@ -445,7 +525,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course divided over 2-5 days repeated at intervals of three months or at relapse interval if relapsed during short term treatment.  Attempt dose reductions of 20% each course until demonstrated inferior response.",
                 criteria: "Diagnosis by neurologist with or without persistent conduction block and significant functional impairment inhibiting normal daily activities",
                 outcome: "Improvement in 3 of: MRC score from 7 pre-defined pairs of muscles, RODS for MMN, Hand dynamometry, ONLS, timed 10m walk, any other validated MMN disability measure.")
-disease = Disease.find(30)
+disease = Disease.find(35)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Multifocal Motor Neuropathy (short term)",
@@ -460,7 +540,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Significant functional improvement after short term treatment.",
                 outcome: "Improvement in 3 of: MRC score from 7 pre-defined pairs of muscles, RODS for MMN, Hand dynamometry, ONLS, timed 10m walk, any other validated MMN disability measure.
                           Annual withdrawal or clinical review scoring to document ongoing need. If > 2-3 failed withdrawals, no need for further withdrawal trials.")
-disease = Disease.find(31)
+disease = Disease.find(36)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Multifocal motor neuropathy (maintenance)",
@@ -473,7 +553,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg divided over 2-5 days every month for three months as initial trial.",
                 criteria: "When other therapies such as steroids have failed.",
                 outcome: "Continue therapy if seizure reduction of a least 30%.")
-disease = Disease.find(32)
+disease = Disease.find(37)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Rasmussen’s encephalitis",
@@ -486,7 +566,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course divided over 2-5 days. 2nd course when relapse, or after 4 weeks if poor response, or after 8 weeks if response and no relapse.",
                 criteria: "When other therapies such as steroids have failed.",
                 outcome: "Improvement in 2 of: reduction in stiffness, timed up an dgo 10 m walk, BRIT score, number of spasms per day, validated measure of functional abilities.")
-disease = Disease.find(33)
+disease = Disease.find(38)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Stiff person syndrome (initiation trial)",
@@ -500,7 +580,7 @@ Disease.create!(speciality: "Neurology",
                           Attempt dose reductions of 20% each course until demonstrated inferior response.",
                 criteria: "When respose to intial short term trial.",
                 outcome: "Improvement in 2 of: reduction in stiffness, timed up an dgo 10 m walk, BRIT score, number of spasms per day, validated measure of functional abilities.")
-disease = Disease.find(34)
+disease = Disease.find(39)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Stiff person syndrome (maintenance)",
@@ -515,7 +595,7 @@ Disease.create!(speciality: "Neurology",
                           commissioned requiring prior panel approval, but since life-threating brainstem involvement or encephalopathy can occur, there could be
                           insufficient time for panel approval.",
                 outcome: "Clinically meaningful improvement in GCS, seizures or a validated disabillity measure recorded 2-4 weeks after initation of treatment.")
-disease = Disease.find(35)
+disease = Disease.find(40)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Acute disseminated encephalomyelitis",
@@ -531,7 +611,7 @@ Disease.create!(speciality: "Neurology",
                           commissioned requiring prior panel approval, but since encephalopathy may be acutely life-threatening, there could be
                           insufficient time for panel approval.",
                 outcome: "Clinically meaningful improvement in GCS, seizures or a validated disabillity measure recorded 2-4 weeks after initation of treatment.")
-disease = Disease.find(36)
+disease = Disease.find(41)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Autoimmune encephalitis",
@@ -544,7 +624,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course divided over 2-5 days for short term stabilisation.",
                 criteria: "Acute cerebral infarction in the presence of evidence on blood tests for antiphospholipid syndrome.",
                 outcome: "Prevention of further cerebral infarction.")
-disease = Disease.find(37)
+disease = Disease.find(42)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Cerebral infarction with antiphospholipid antibodies",
@@ -559,7 +639,7 @@ Disease.create!(speciality: "Neurology",
                           and failure to respond to other therapies, such as ketamine, magnesium, and tadalafil.
                           In the absence of clear data on long-term use, such use should be instituted as part of a placebo-controlled trial.",
                 outcome: "Reduction in pain by at least 5 points on visual analogue scale, or 2 points versus placebo.")
-disease = Disease.find(38)
+disease = Disease.find(43)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Complex regional pain syndrome",
@@ -573,7 +653,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Infarction or haemorrhage visible on MRI brain, encephalopathy requiring intensive care management,
                           and clear evidence of active vasculitis from laboratory findings, systemic vasculitic involvement or vascular imaging.",
                 outcome: "Prevention of further cerebral infarction.")
-disease = Disease.find(39)
+disease = Disease.find(44)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "CNS vasculitis",
@@ -586,7 +666,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "1 g/kg dose given every 4 weeks for 3 doses (Billiau et al., 2007). Continuatino for another 3 doses if >50% seizure reduction.",
                 criteria: "Short to medium control of seizures in children with West syndrome or other intractable epilepsy, when standard antiepileptic drugs, ketotic diet and steroids have failed.",
                 outcome: ">50% seizure frequency reduction.")
-disease = Disease.find(40)
+disease = Disease.find(45)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Intractable childhood epilepsy",
@@ -607,7 +687,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Acquired neuromyotonia, with or without Morvan syndrome, debilitating and refractory after treatment with steroids and oral
                           immunosuppression, and after treatment of any underlying malignancy. Plasma exchange should be tried first if available and not contraindicated.",
                 outcome: "Major improvement in debilitating and painful muscle cramps, severity of which measured on visual analogue scale before and after treatment.")
-disease = Disease.find(41)
+disease = Disease.find(46)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Neuromyotonia",
@@ -625,7 +705,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Acquired neuromyotonia, with or without Morvan syndrome, debilitating and refractory after treatment with steroids and oral
                           immunosuppression, and after treatment of any underlying malignancy. Plasma exchange should be tried first if available and not contraindicated.",
                 outcome: "Major improvement in debilitating and painful muscle cramps, severity of which measured on visual analogue scale before and after treatment.")
-disease = Disease.find(42)
+disease = Disease.find(47)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Opsoclonus myoclonus (paediatric neuroblastoma)",
@@ -640,7 +720,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg single course divided over 2-5 days repeated after 8 weeks if partial response.",
                 criteria: "Non paranoplastic opsoclonus myoclonus in adults or children, failing to respond to steroids, if plasma exchange failed or not appropriate.",
                 outcome: "Major improvement in opsoclonis, myoclonus or associated ataxia as measured on a visual analogue scale of severity before and after treatment.")
-disease = Disease.find(43)
+disease = Disease.find(48)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Opsoclonus myoclonus (parainfectious)",
@@ -655,7 +735,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg divided over no fewer than 5 days.",
                 criteria: "Acute dysautonomia requiring intensive care management with no clear underlying neuroinflammatory cause. (If any evidence for large fibre involvement should be considered to be Guillain Barre syndrome.)",
                 outcome: "Successful discharge from intensive care and symptomatic recovery")
-disease = Disease.find(44)
+disease = Disease.find(49)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Acute idiopathic dysautonomia",
@@ -670,7 +750,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "0.5 g/kg as for complex regional pain syndrome.",
                 criteria: "Chronic severe facial pain refractory to all appropriate standard therapies and with an aetiology involving a purported immune pathophysiology.",
                 outcome: "Reduction in pain by at least 5 points on visual analogue scale, or 2 points versus placebo.")
-disease = Disease.find(45)
+disease = Disease.find(50)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Chronic facial pain",
@@ -685,16 +765,112 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg divided over 2-5 days. Repeat after time of relapse if major response.",
                 criteria: "Diabetic femoral neuropathy or plexopathy resulting in weakness in the innervated muscles and significant disability.",
                 outcome: "Reduction in pain by at least 5 points on visual analogue scale, or 2 points versus placebo.")
-disease = Disease.find(46)
+disease = Disease.find(51)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Diabetic femoral neuropathy",
-    description: "Diabetic femoral neuropathy, or diabetic amyotrophy or diabetic lumbosacral plexopathy, is characterised by pain in the affected area of faily rapid onset, closely followed by weakness.
+    name:  "Diabetic proximal neuropathy",
+    description: "Diabetic proximal neuropathy, or diabetic femoral neuropathy or diabetic amyotrophy or diabetic lumbosacral plexopathy, is characterised by pain in the affected area of faily rapid onset, closely followed by weakness.
               In some cases the prognosis is like that of non diabetic lumbosacral neuritis or the more common brachial neuritis. In others, there is little if any improvement after months and the condition
               may become bilateral. There are case reports of a variable, sometimes good response to immunoglobulin, in conjunction with steroids and oral immunosuporession, justified because biopsy reveals a
               microvasculitis. There is also raised protein in cerebrospinal fluid. Suggest therefore a trial of immunoglobulin if no improvement after three months, where immunosuppression or steroids alone have failed.
               Treat as for CIDP if a major response. Note that if there is evidence of demyelination on nerve conduction study, and especially if there was no major pain component initially, if may be appropriate to reclassify the patient as having multifocal
               motor neuropathy or CIDP even if they are diabetic.")
+
+Disease.create!(speciality: "Neurology",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg divided over 2-5 days single course",
+                criteria: "Authorities typically recommend treatment only as part of a double-blinded placebo controlled trial. Plasma exchange is an alterative.",
+                outcome: "Reduction in OCD, anxiety, or tic severity scale scores.")
+disease = Disease.find(52)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "PANDAS",
+    description: "Pediatric autoimmune neuropsychiatric disorders associated with streptococcal infection (PANDAS) is a <i>hypothesised</i> autoimmune encephalopathy
+                  following group A streptococcal infection and resulting especially in obsessive compulsive disorder and tics. Controversial treatments include
+                  prophylactic antibiotics to prevent exacerbations from further infections, and plasma exchange or immunoglobulin. An initial study showed sustained
+                  improvement following a single coourse of immunoglobulin for a current exacerbation of previous tics or OCD temporally related to streptococcal infection (Perlmutter et al., 1999).
+                  However these relusts have not reliably been replicated.")
+
+Disease.create!(speciality: "Neurology",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(53)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Adrenoleukodystrophy",
+    description: "Adrenoleukodystrophy."
+    )
+
+Disease.create!(speciality: "Neurology",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(54)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Alzheimer's disease",
+    description: "Alzheimer's disease."
+    )
+
+Disease.create!(speciality: "Neurology",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "If multifocal motor neuropathy is a differential diagnosis see under that indication.",
+                outcome: "Not recommended.")
+disease = Disease.find(55)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Amyotrophic lateral sclerosis",
+    description: "Amyotrophic lateral sclerosis (motoneurone disease). Note that aysymmetrical exclusively lower motoneurone involvement may be
+                  hard to distinguish from multifocal motor neuropathy even if no conduction block, and a trial of immunoglobulin efficacy might
+                  be appropriate in that circumstance."
+    )
+
+Disease.create!(speciality: "Neurology",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(56)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Chronic fatigue syndrome",
+    description: "Chronic fatigue syndrome."
+    )
+
+Disease.create!(speciality: "Neurology",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(57)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Critical illness neuropathy",
+    description: "Critical illness neuropathy."
+    )
+
+Disease.create!(speciality: "Neurology",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(58)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Multiple sclerosis",
+    description: "Multiple sclerosis."
+    )
 
 
 Disease.create!(speciality: "Infectious Diseases",
@@ -704,7 +880,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 criteria: "With vaccine in those less able to respond to the vaccine (aged 60 or over or immunosuppressed with CD4 count <200 or those at risk of severe complicaions because of chronic liver disease,
                         including chronic hepatitis B or C).",
                 outcome: "Not recorded.")
-disease = Disease.find(47)
+disease = Disease.find(59)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Hapatitis A",
@@ -719,7 +895,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 criteria: "Immunosuppressed individuals (Group A and Group B) who have had significant exposure and known susceptibiity based on vaccine history or IgG levels.
                           Within 6 days of exposure, but consider also between 6 and 18 days.",
                 outcome: "Prevention of measles.")
-disease = Disease.find(48)
+disease = Disease.find(60)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Measles in immunosuppressed",
@@ -734,7 +910,7 @@ Disease.create!(speciality: "Infectious Diseases",
                         Infants under 9 months of age with a significant exposure to measles.
                         Subgam to be given within 6 days of exposure in pregnant women and infants. For infants aged 6-8 months can offer MMR if exposure outside of household and within 72 hours.",
                 outcome: "Prevention or resolution of measles.")
-disease = Disease.find(49)
+disease = Disease.find(61)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Measles in pregnant women and infants",
@@ -747,7 +923,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 regimen: "<1 year: 250mg. 1 – 2 years: 500mg. >3 years: 750mg. Repeat at 3 weekly intervals if stool samples positive until 2 consecutive negative weekly stool samples.",
                 criteria: "To prevent or attenuate an attack in an immunocompromised person inadvertently given live polio vaccine or an immunocompromised person whose contacts are inadvertently given live polio vaccine.",
                 outcome: "Prevention or resolution of infection.")
-disease = Disease.find(50)
+disease = Disease.find(62)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Polio vaccine in immunosuppressed",
@@ -762,7 +938,7 @@ Disease.create!(speciality: "Infectious Diseases",
                           Also clean wound thoroughly and give booster of tentatus-containing vaccine.",
                 criteria: "Susceptible individuals (incomplete immunisation) sustaining high risk tetanus prone injury (soil or manure exposed wound, burn or animal bite or extensive tissue necrosis).",
                 outcome: "Prevention of infection.")
-disease = Disease.find(51)
+disease = Disease.find(63)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Tetanus prone injury",
@@ -775,7 +951,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 regimen: "200ml to 800ml of intravenouos immunoglobulin depending on patient's weight and the immunuglobulin product.",
                 criteria: "Acute illness with muscle spasms or hypertonia in the absence of a more likely diagnosis.",
                 outcome: "Resolution of infection.")
-disease = Disease.find(52)
+disease = Disease.find(64)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Clinical Tetanus",
@@ -789,7 +965,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 criteria: "Intra-muscular injections contra-indicated in individual with significant exposure to chickenpox or shingles and at increased risk (significantly immunosuppressed, neonates and pregnant women)
                           and no antibodies based on VZV antibody testing.",
                 outcome: "Prevention of infection.")
-disease = Disease.find(53)
+disease = Disease.find(65)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Varicella zoster exposure",
@@ -798,11 +974,40 @@ DiseaseDescription.create!(
 
 Disease.create!(speciality: "Infectious Diseases",
                 commissioning: "Prior panel approval not required (emergency list)",
+                priority: "2. Blue",
+                regimen: "2g/kg as a single dose.",
+                criteria: "Diagnosis of life threatening streptococcal or staphylococcal toxic shock syndrome (TSS), preferably with isolation of organism, and failure to achieve rapid improvement
+                          with antibiotic therapy and other supportive measures.",
+                outcome: "Improvement of FBC, ALK, CPK; reduction in hospital inpatient stay; survival.")
+disease = Disease.find(66)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Necrotising (PVL-associated) staphylococcal sepsis or toxic shock syndrome",
+    description: "Necrotising (Panton-Valentine leukocidin (PVL)-associated) staphylococcal sepsis or toxic shock syndrome."
+    )
+
+Disease.create!(speciality: "Infectious Diseases",
+                commissioning: "Prior panel approval not required (emergency list)",
+                priority: "2. Blue",
+                regimen: "0.4 g/kg single dose, consider repeating.",
+                criteria: "Severe cases (WCC >15, acute rising creatinine or signs/symptoms of colitis) not responding to oral
+                          vancomycin 125 mg qds with or wihout iv netromidazole or oral rifampicin. Consider immunoglobulin
+                          especially if multiple relapses or evidence of malnutrition.",
+                outcome: "Any significant clearance of C. difficile; duration of hospital inpatient stay.")
+disease = Disease.find(67)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Severe or recurrent C. difficile colitis",
+    description: "Severe or recurrent Clostridium difficile colitis."
+    )
+
+Disease.create!(speciality: "Infectious Diseases",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "1. Grey",
                 regimen: "0.2 g/kg single dose within 14 days of exposure and ideally within 7 days.",
                 criteria: "Intra-muscular injections contra-indicated in individual with significant exposure to infection and at increased risk (significantly immunosuppressed, neonates and pregnant women)",
                 outcome: "Prevention of infection.")
-disease = Disease.find(54)
+disease = Disease.find(68)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Post-exposure prophylaxis (excluding varicella)",
@@ -810,6 +1015,71 @@ DiseaseDescription.create!(
                   This excludes varicella exposure, which is a separate Red indication for immunogobulin."
     )
 
+Disease.create!(speciality: "Infectious Diseases",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(69)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Immunodeficiency secondary to paediatric HIV infection",
+    description: "Immunodeficiency secondary to paediatric HIV infection."
+    )
+
+Disease.create!(speciality: "Infectious Diseases",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(70)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Neonatal sepsis",
+    description: "Neonatal sepsis (prevention or treatment)."
+    )
+
+Disease.create!(speciality: "Infectious Diseases",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(71)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Sepsis in the intensive care unit",
+    description: "Sepsis in the intensive care unit not related to specific toxins or C. difficile."
+    )
+
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval not required",
+                priority: "1. Red",
+                regimen: "2 g/kg single dose given over 10-12 hours, in conjunction with high dose aspirin. Second dose if no response or relapse within 48h.",
+                criteria: "Clinical diagnosis by a paediatrician or immunologist.",
+                outcome: "Resolution of fever.")
+disease = Disease.find(72)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Kawasaki disease",
+    description: "Kawasaki disease."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval not required",
+                priority: "1. Red",
+                regimen: "2 g/kg single dose or divided over 3 days.",
+                criteria: "Diagnosis by a dermatologist with life threatening or when involved body surface area >10% and other treatments contraindicated.",
+                outcome: "Resolution of the disease.")
+disease = Disease.find(73)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Toxic epidermal necrolysis",
+    description: "Toxic epidermal necrolysis (Stevens Johnson syndrome)."
+    )
 
 Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval required",
@@ -817,12 +1087,97 @@ Disease.create!(speciality: "Other",
                 regimen: "1 g/kg course given to mother starting at 14 weeks gestation given fortnightly, and then weekly from 18 weeks gestation to delivery.",
                 criteria: "Usually diagnosis of neonatal hepatic failure haemochromatosis during previous pregnancy and there is 90% risk of occurrence in subsequent pregnancy.",
                 outcome: "Fetal survival to term.")
-disease = Disease.find(55)
+disease = Disease.find(74)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Alloimmunne foetal haemochromatosis",
     description: "Alloimmune foetal and neonatal haemochromatosis disease."
     )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required",
+                priority: "2. Blue",
+                regimen: "Up to 2 g/kg course, repeated according to donor specific antibody levels; for renal desensitisation given 0.1 g/kg for 8-12 doses.",
+                criteria: "Patients in whom renal, heart or lung transplant is prevented because of antibodies.",
+                outcome: "Donor specific antibody (DSA) levels, subsequent rejection episodes, patient/graft survival, graft function.")
+disease = Disease.find(75)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Transplantation (solid organ) antibody incompatible transplant",
+    description: "Transplantation (solid organ) antibody incompatible transplant (AIT)."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required",
+                priority: "2. Blue",
+                regimen: "Up to 2 g/kg course, repeated for 2-3 courses.",
+                criteria: "Patients experiencing steroid resistant rejection or where other therapies are contraindicated after transplant.",
+                outcome: "Rejection episodes, patient/graft survival, graft function.")
+disease = Disease.find(76)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Transplantation (solid organ) antibody mediated rejection",
+    description: "Transplantation (solid organ) antibody mediated rejection (AMR)."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required (emergency list)",
+                priority: "2. Blue",
+                regimen: "0.5 g/kg a day for 5 days.",
+                criteria: "Patients with viral pneumonitis after heart or lung transplant (excluding influenza virus).",
+                outcome: "Record the virus type (e.g. HSV, VZV, CMV, RSV). Reversal of radiological infiltrates, length of hospital stay, survival.")
+disease = Disease.find(77)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Transplantation (solid organ) viral pneumonitis",
+    description: "Transplantation (solid organ) viral pneumonitis."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required",
+                priority: "2. Blue",
+                regimen: "0.4 g/kg course was given every three weeks to mother from 12 to 24 weeks gestation in an open label study (Friedman et al., 2010)
+                          and is listed in the DOH guideline (2011) but other reports used 1-2 g/kg courses 2-4 weekly and extending to end of pregnancy. Often given with steroids.",
+                criteria: "IVIg therapy can be given during pregnancy when history of autoimmune congenital heart block in at least one previous pregnancy AND
+                          maternal anti-Ro or anti-La antibodies are present. May also be given post-natally to newborn until absence of maternal antibodies if evidence of disease.",
+                outcome: "Improvement in the degree of heart block at birth.")
+disease = Disease.find(78)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Autoimmune congenital heart block (anti-Ro)",
+    description: "Autoimmune congenital heart block (anti-Ro) or paediatric myocarditis. Plasma exchange is an alternative treatment."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required",
+                priority: "2. Blue",
+                regimen: "1.5 g/kg course monthly for three months.",
+                criteria: "When sight threatened. Generally given when failure of response to locally administered steroids and systemic steroids and when
+                          immunosuppressives and biological agents inappropriate or ineffective.",
+                outcome: "Improvement in sight.")
+disease = Disease.find(79)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Autoimmune uveitis",
+    description: "Autoimmune uveitis, including Vogt-Koyanagi-Harada syndrome"
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required",
+                priority: "2. Blue",
+                regimen: "2 g/kg course divided over 2-5 days given long term typically every 1-2 months over 3 years (Ahmed et al., 2012). Adjust to frequency
+                          that prevents relapses and trial withdrawal annually.",
+                criteria: "Severely affected where corticosteroids with adjuvant agents ineffective or inappropriate.",
+                outcome: "Reduction in relapses, reduction in steroid therapy, improvement in quality of life, blisters, pruritis.")
+disease = Disease.find(80)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Immunobullous diseases",
+    description: "Immunobullous diseases."
+    )
+
+
+
 
 Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval required (left-hand grey)",
@@ -831,7 +1186,7 @@ Disease.create!(speciality: "Other",
                           ongoing standard therapy and wound care (avoiding debridement)",
                 criteria: "Cases refractory to maximum tolerated doses of steroids and steroid sparing agents.",
                 outcome: "Resolution of lesions.")
-disease = Disease.find(56)
+disease = Disease.find(81)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Pyoderma gangrenosum",
@@ -844,7 +1199,7 @@ Disease.create!(speciality: "Other",
                 regimen: "2 g/kg course for stabilisation of symptoms.",
                 criteria: "To be given as part of an overall treatment strategy that may include steroids, immunosuppression and newer anti IL-1 and IL-6 biological agents.",
                 outcome: "Improvement in features of systemic inflammation.")
-disease = Disease.find(57)
+disease = Disease.find(82)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Systemic juvenile idiopathic arthritis",
@@ -859,7 +1214,7 @@ Disease.create!(speciality: "Other",
                 regimen: "2 g/kg course for stabilisation of symptoms (Jayne et al., 2000).",
                 criteria: "An optional treatment for short-term disease management if standard therapies not suitable.",
                 outcome: "Improvement in features of systemic inflammation.")
-disease = Disease.find(58)
+disease = Disease.find(83)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Systemic vasculitides and ANCA disorders",
@@ -873,12 +1228,120 @@ Disease.create!(speciality: "Other",
                 regimen: "2 g/kg course repeated after 4-6 weeks if relapse after good response (Mitzel-Khaoukhov et al., 2010).",
                 criteria: "Consider in severe chronic cases where immunosuppressives or biological therapies not suitable.",
                 outcome: "Improvement in features of systemic inflammation.")
-disease = Disease.find(59)
+disease = Disease.find(84)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Severe urticaria",
     description: "Severe intractable urticaria has been treated with immunoglobulin but does not appear in a recent review of management (Schaeffer et al., 2017) which instead
                   focuses on omalizumab or ciclospirin for cases refractory to antihistamines and short courses of steroids."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "0.4-0.6 g/kg course repeated every 4 weeks until stabilisation of IgG levels.",
+                criteria: "IgG levels more than 2SD below mean for age (see description) and normal B cells.",
+                outcome: "Improvement in features of systemic inflammation.")
+disease = Disease.find(85)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Atopic dermatitis/ eczema",
+    description: "Atopic dermatitis/ eczema. Immunoglobulin use is now generally restricted to cases where atopic dermatitis is associated with
+    transient hypogammaglobulinaemia of infancy (Izadi et al., 2018). Even in this circumstance there are no controlled studies."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "Not established.",
+                criteria: "Not established.",
+                outcome: "Not established.")
+disease = Disease.find(86)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Paraneoplastic disorders that are known not to be B- or T-cell mediated",
+    description: "Paraneoplastic disorders that are known not to be B- or T-cell mediated include those associated with ectopic ACTH, ADH,
+                parathyroid hormone related protein, insulin like substances, carcinoid, aldosterone, epidermal growth factor, glucagonoma,
+                G-CSF, erythropoietin, mucins and fibroblast growth factor. There would be no particular justificaion to use immunoglobulin in
+                such circumstances, unless there arose specific evidence to the contrary.")
+
+Disease.create!(speciality: "Other",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg divided over 5 days single course.",
+                criteria: "For stabilisation of haematological or cardiac manifestations where active disease and concurrent infection.",
+                outcome: "Improvement in selective manifesations predefined by established severity criteria.")
+disease = Disease.find(87)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "SLE without secondary immunocytopenias",
+    description: "SLE without secondary immunocytopenias (including juvenile) is not normally treated with immunoglobulin unless there is a specific
+    secondary antibody deficiency. However, if there is active disease and concomitant infection, immunosuppression may not be desirable and there are retrospective
+    series showing benefit from immunoglobulin for selective manifestations such as haematological or cardiac involvement (Camara et al., 2014).")
+
+Disease.create!(speciality: "Other",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(88)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Rheumatoid arthritis",
+    description: "Rheumatoid arthritis."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(89)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Asthma",
+    description: "Asthma."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(90)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Graves' ophthalmopathy",
+    description: "Graves' ophthalmopathy."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(91)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "IVF failure",
+    description: "In vitro fertilisation (IVF) failure."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Shown to be ineffective (black)",
+                priority: "4. Black",
+                regimen: "Not recommended.",
+                criteria: "Not recommended.",
+                outcome: "Not recommended.")
+disease = Disease.find(92)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Recurrent spontaneous pregnancy loss",
+    description: "Recurrent spontaneous pregnancy loss."
     )
 
 
