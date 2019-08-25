@@ -150,7 +150,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(10)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Immune Thromocytopenia (ITP) (first dose)",
+    name:  "Acute immune thromocytopenia (ITP) (first dose)",
     description: "Immune Thromocytopenia (ITP) - first dose."
     )
 
@@ -163,8 +163,24 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(11)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Immune Thromocytopenia (ITP) (maintenance)",
-    description: "Immune Thromocytopenia (ITP) - maintenance treatment."
+    name:  "Acute immune thromocytopenia (ITP) (maintenance)",
+    description: "Immune Thromocytopenia (ITP) - maintenance treatment. Note that after requiring 5-6 immunoglobulin courses, and still requiring further treatment,
+                  the patient has moved to the chronic phase of ITP."
+    )
+
+Disease.create!(speciality: "Haematology",
+                commissioning: "Prior panel approval required (left-hand grey)",
+                priority: "3. Grey",
+                regimen: "1 g/kg initialy every 4 weeks, or 2 g/kg if failure to respond to 1 g/kg doses during acute management. Adjust to maximum interdose period while controlling symptoms.",
+                criteria: "Patient haemorrhaging refractory to all other treatment during period where other treatments are being tried.",
+                outcome: "Increase in platelet count, resolution of bleeding, number of bleeding complications.")
+disease = Disease.find(12)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Chronic immune thromocytopenia (ITP)",
+    description: "Chronic immune thromocytopenia (ITP) is defined as a platelet count <100 x 109/L at 6 months following onset with no other cause found. Immunoglobulin does not appear to reduce the
+                potential for acute ITP to progress to the chronic phase but has a role in some chronic cases to minimise bleeding complications in conjunction with steroids (to the limit of tolerability),
+                immunosuppressives and thrombopoietin receptor antagonists."
     )
 
 Disease.create!(speciality: "Haematology",
@@ -174,10 +190,10 @@ Disease.create!(speciality: "Haematology",
                 criteria: "Parvovirus B19 infection confirmed by PCR, with high viral load usually above 109 IU/ml.
                           Foetal hydrops likely associated with parvovirus B19.",
                 outcome: "Rise in haemoglobin. Transfusion independence. Reticulocyte count.")
-disease = Disease.find(12)
+disease = Disease.find(13)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Acquired red cell aplasia",
+    name:  "Acquired red cell aplasia (parvovirus B19)",
     description: "Acquired red cell aplasia associated with chronic parvovirus B19 infection – short term use."
     )
 
@@ -189,7 +205,7 @@ Disease.create!(speciality: "Haematology",
                           In pregnancy, for women with warm AHA refractory to corticosteroids or with evidence of fetal anaemia.
                           Neonates of mothers with AHA who have evidence of haemolysis and rising bilirubin despite intensive phototherapy.",
                 outcome: "Rise in haemoglobin. Transfusion independence. Reduction in haemolysis markers (bilirubin, lactate dehydrogenase).")
-disease = Disease.find(13)
+disease = Disease.find(14)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Autoimmune haemolytic anaemia (first dose)",
@@ -205,7 +221,7 @@ Disease.create!(speciality: "Haematology",
                           Neonates of mothers with AHA who have evidence of haemolysis and rising bilirubin despite intensive phototherapy.
                           Maximum of 2 repeated courses.",
                 outcome: "Rise in haemoglobin. Transfusion independence. Reduction in haemolysis markers (bilirubin, lactate dehydrogenase).")
-disease = Disease.find(14)
+disease = Disease.find(15)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Autoimmune haemolytic anaemia (relapse)",
@@ -220,7 +236,7 @@ Disease.create!(speciality: "Haematology",
                           Prevention of above in patients who had a previous reaction or who have single or multiple allo-antibodies and may require a blood transfusion.",
                 outcome: "Rise in haemoglobin. Transfusion Independence. Reduction in haemolysis markers (bilirubin, lactate dehydrogenase).
                           When preventative: avoiding haemolysis, maintenance of post-transfusion Hb at 1 – 3 weeks, no need for repeat transfusion.")
-disease = Disease.find(15)
+disease = Disease.find(16)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Post-transfusion hyperhaemolysis",
@@ -235,7 +251,7 @@ Disease.create!(speciality: "Haematology",
                           or prior to invasive procedure, or as directed by patient's haemophilia centre.
                           Excludes acquired VWD associated with IgM gammopathy.",
                 outcome: "Rise of factor level. Resolution of bleeding. Number of bleeding episodes.")
-disease = Disease.find(16)
+disease = Disease.find(17)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Coagulation factor inhibitors",
@@ -249,7 +265,7 @@ Disease.create!(speciality: "Haematology",
                 criteria: "Diagnosis by consultant haematologist from bone marrow biopsy,
                         or pancytopenia with unresponsive to conventional treatment (e.g. corticosteroids, immunosuppressive agents, chemotherapy) or such treatment inappropriate.",
                 outcome: "Improvement of cytopenias. Survival. Improvement of HLH markers – ferritin/soluble CD25.")
-disease = Disease.find(17)
+disease = Disease.find(18)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Haemophagocytic syndrome",
@@ -262,11 +278,41 @@ Disease.create!(speciality: "Haematology",
                 regimen: "1-2 g/kg in 2-5 divided doses daily",
                 criteria: "Sudden severe thrombocytopenia 5 to 10 days post-transfusion of blood products with active bleeding.",
                 outcome: "Increase in platelet count. Resolution of bleeding. Number of bleeding complications.")
-disease = Disease.find(18)
+disease = Disease.find(19)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Post-transfusion purpura",
     description: "Post-transfusion purpura – short term use. Very rare in UK following implementation of universal leukocyte reductin of blood components in 1999. Typically occurs in Caucasian HPA-1a antigen negative females previously exposed to HPA-1a antigen in pregnancy or transfusion."
+    )
+
+Disease.create!(speciality: "Haematology",
+                commissioning: "Prior panel approval not required (emergency list)",
+                priority: "3. Grey",
+                regimen: "2 g/kg divided over 2-5 days single course for stabilisation while preparing other therapies, e.g. rituximab.",
+                criteria: "Multiorgan involvement with circulating antibodies, to be given in conjunction with anticoagulation and steroids, and where plasma exchange not immediately available as an appropriate alternative.",
+                outcome: "Survival, reduced thrombotic events.")
+disease = Disease.find(20)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Catastrophic antiphospholipid syndrome",
+    description: "Catastrophic antiphospholipid syndrome describes multi-organ involvement with circulating lupus anticoagulant or anticardiolipin or antiphospholipid antibodies. Note that significant cerebral
+                  infarction with these antibodies is alone a justification for immunoglobulin and described as a separate indication."
+    )
+
+Disease.create!(speciality: "Haematology",
+                commissioning: "Requires IFR (right-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg divided over 2-5 days single course repeated if relapse after response.",
+                criteria: "Option in cases as outlined in description who are not suitable for immunosuppressive therapy.",
+                outcome: "Reduction in requirement for transfusion.")
+disease = Disease.find(21)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Acquired red cell aplasia NOT due to parvovirus B19",
+    description: "Secondary causes of acquired red cell aplasia are generally treated according to the underlying condition. For the remaining
+                  primary or refractory cases, with presumed autoimmune aetiology, immunosuppression is instituted with ciclophosphamide, azathioprine, rituximab, ciclosporin or tacrolimus. Immunoglobulin
+                  has also been used in such circumstances (Mouthon et al., 2005). In contrast, immunoglobulin is specific and highly effective therapy for parvovirus B19 associated disease and
+                  is a separately listed indication."
     )
 
 Disease.create!(speciality: "Neurology",
@@ -278,7 +324,7 @@ Disease.create!(speciality: "Neurology",
                           ONLS (Overall Neuropathy Limitation Score), Hand dynamometry, Inflammatory RODS score, timed 10m walk,
                           timed up and go 10m walk, Berg Balance scale, Other validated disability score.
                           All patients should have documented assessment pre-treatment, on relapse after first course dosing if relapse occurs, and at best response after end of short term treatment to demonstrate meaningful functional improvement.")
-disease = Disease.find(19)
+disease = Disease.find(22)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "CIDP (short term)",
@@ -294,7 +340,7 @@ Disease.create!(speciality: "Neurology",
                           ONLS (Overall Neuropathy Limitation Score), hand dynamometry, inflammatory RODS score, timed 10m walk,
                           timed up and go 10m walk, Berg balance scale, other validated disability score.
                           Annual withdrawal or clinical review scoring to document ongoing need. If > 2-3 failed withdrawals, no need for further withdrawal trials.")
-disease = Disease.find(20)
+disease = Disease.find(23)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "CIDP (maintenance)",
@@ -308,7 +354,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Diagnosis of GBS or variant with significant disability (Hughes Grade 4) or disease progression towards intubation and ventilation or
                           mEGRIS score ≥ 3 or poor prognosis with mEGOS ≥ 4. (Miller-Fisher syndrome does not usually require Ig).",
                 outcome: "Measure IgG level change as described in regimen.")
-disease = Disease.find(21)
+disease = Disease.find(24)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Guillain-Barre syndrome",
@@ -322,7 +368,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Diagnosis by a neurologist, with significant functional impairment inhibiting normal daily activities and other therapies have failed, are contra-indicated or undesirable.",
                 outcome: "Clinically meaningful improvement in 3 of: MRC score (7 pairs of muscles in upper and lower limb scored 0–5, maximum 70), INCAT sensory sum score,
                           ONLS (Overall Neuropathy Limitation Score), Hand dynamometry, Inflammatory RODS score, timed 10m walk, timed 10m up and go walk, Berg Balance scale.")
-disease = Disease.find(22)
+disease = Disease.find(25)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "IgM Paraprotein-associated demyelinating neuropathy (short term)",
@@ -338,7 +384,7 @@ Disease.create!(speciality: "Neurology",
                 outcome: "Clinically meaningful improvement in 3 of: MRC score (7 pairs of muscles in upper and lower limb scored 0–5, maximum 70), INCAT sensory sum score,
                           ONLS (Overall Neuropathy Limitation Score), Hand dynamometry, Inflammatory RODS score, timed 10m walk, timed 10m up and go walk, Berg Balance scale, other validated disability score.
                           6-monthly withdrawal or clinical review scoring to document ongoing need.")
-disease = Disease.find(23)
+disease = Disease.find(26)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "IgM Paraprotein-associated demyelinating neuropathy (long term)",
@@ -359,7 +405,7 @@ Disease.create!(speciality: "Neurology",
                           timed up and go 10m walk, CDASI, FVC, HAQ. Polymyositis: ADLs, MRC sumscore, quantitative muscle strengths,
                           time up and go 10m walk, HAQ, FVC.
                           Record before initiation, on relapse if occurs after first course, after second course, and at yearly intervals thereafter.")
-disease = Disease.find(24)
+disease = Disease.find(27)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Inflammatory Myopathies",
@@ -372,7 +418,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course, repeated after several days if no response.",
                 criteria: "Myasthenic crisis of potentially life threatening nature (ITU with respoiratory or bulbar failure) diagnosed by a neurologist where plasma excahgen not available or failed.",
                 outcome: "Quantitative Myasthenia Gravis Score (Duke), respiratory function e.g. forced vital capacity, dysphagia score, dysarthria 1-50 counting, diplopia or ptosis measurement.")
-disease = Disease.find(25)
+disease = Disease.find(28)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Myasthenia Gravis crisis",
@@ -386,7 +432,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Myasthenia diagnosed by a neurologist with weakness requiring hospital admission where plasma exchange not available or failed and rituximab biosimilar failed or unsuitable.
                           Stabilisation prior to surgery or thymectomy.",
                 outcome: "Improvement in Quantitative Myasthenia Gravis Score, forward arm abduction time, variation of another myasthenic muuscular score, respiratory function e.g. forced vital capacity, dysphagia score, dysarthria 1-50 counting, diplopia or ptosis measurement.")
-disease = Disease.find(26)
+disease = Disease.find(29)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Myasthenia Gravis maintenance therapy",
@@ -399,7 +445,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course divided over 2-5 days repeated at intervals of three months or at relapse interval if relapsed during short term treatment.  Attempt dose reductions of 20% each course until demonstrated inferior response.",
                 criteria: "Diagnosis by neurologist with or without persistent conduction block and significant functional impairment inhibiting normal daily activities",
                 outcome: "Improvement in 3 of: MRC score from 7 pre-defined pairs of muscles, RODS for MMN, Hand dynamometry, ONLS, timed 10m walk, any other validated MMN disability measure.")
-disease = Disease.find(27)
+disease = Disease.find(30)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Multifocal Motor Neuropathy (short term)",
@@ -414,7 +460,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Significant functional improvement after short term treatment.",
                 outcome: "Improvement in 3 of: MRC score from 7 pre-defined pairs of muscles, RODS for MMN, Hand dynamometry, ONLS, timed 10m walk, any other validated MMN disability measure.
                           Annual withdrawal or clinical review scoring to document ongoing need. If > 2-3 failed withdrawals, no need for further withdrawal trials.")
-disease = Disease.find(28)
+disease = Disease.find(31)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Multifocal motor neuropathy (maintenance)",
@@ -427,7 +473,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg divided over 2-5 days every month for three months as initial trial.",
                 criteria: "When other therapies such as steroids have failed.",
                 outcome: "Continue therapy if seizure reduction of a least 30%.")
-disease = Disease.find(29)
+disease = Disease.find(32)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Rasmussen’s encephalitis",
@@ -440,7 +486,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course divided over 2-5 days. 2nd course when relapse, or after 4 weeks if poor response, or after 8 weeks if response and no relapse.",
                 criteria: "When other therapies such as steroids have failed.",
                 outcome: "Improvement in 2 of: reduction in stiffness, timed up an dgo 10 m walk, BRIT score, number of spasms per day, validated measure of functional abilities.")
-disease = Disease.find(30)
+disease = Disease.find(33)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Stiff person syndrome (initiation trial)",
@@ -454,7 +500,7 @@ Disease.create!(speciality: "Neurology",
                           Attempt dose reductions of 20% each course until demonstrated inferior response.",
                 criteria: "When respose to intial short term trial.",
                 outcome: "Improvement in 2 of: reduction in stiffness, timed up an dgo 10 m walk, BRIT score, number of spasms per day, validated measure of functional abilities.")
-disease = Disease.find(31)
+disease = Disease.find(34)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Stiff person syndrome (maintenance)",
@@ -469,7 +515,7 @@ Disease.create!(speciality: "Neurology",
                           commissioned requiring prior panel approval, but since life-threating brainstem involvement or encephalopathy can occur, there could be
                           insufficient time for panel approval.",
                 outcome: "Clinically meaningful improvement in GCS, seizures or a validated disabillity measure recorded 2-4 weeks after initation of treatment.")
-disease = Disease.find(32)
+disease = Disease.find(35)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Acute disseminated encephalomyelitis",
@@ -485,7 +531,7 @@ Disease.create!(speciality: "Neurology",
                           commissioned requiring prior panel approval, but since encephalopathy may be acutely life-threatening, there could be
                           insufficient time for panel approval.",
                 outcome: "Clinically meaningful improvement in GCS, seizures or a validated disabillity measure recorded 2-4 weeks after initation of treatment.")
-disease = Disease.find(33)
+disease = Disease.find(36)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Autoimmune encephalitis",
@@ -498,7 +544,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course divided over 2-5 days for short term stabilisation.",
                 criteria: "Acute cerebral infarction in the presence of evidence on blood tests for antiphospholipid syndrome.",
                 outcome: "Prevention of further cerebral infarction.")
-disease = Disease.find(34)
+disease = Disease.find(37)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Cerebral infarction with antiphospholipid antibodies",
@@ -513,7 +559,7 @@ Disease.create!(speciality: "Neurology",
                           and failure to respond to other therapies, such as ketamine, magnesium, and tadalafil.
                           In the absence of clear data on long-term use, such use should be instituted as part of a placebo-controlled trial.",
                 outcome: "Reduction in pain by at least 5 points on visual analogue scale, or 2 points versus placebo.")
-disease = Disease.find(35)
+disease = Disease.find(38)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Complex regional pain syndrome",
@@ -527,7 +573,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Infarction or haemorrhage visible on MRI brain, encephalopathy requiring intensive care management,
                           and clear evidence of active vasculitis from laboratory findings, systemic vasculitic involvement or vascular imaging.",
                 outcome: "Prevention of further cerebral infarction.")
-disease = Disease.find(36)
+disease = Disease.find(39)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "CNS vasculitis",
@@ -540,7 +586,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "1 g/kg dose given every 4 weeks for 3 doses (Billiau et al., 2007). Continuatino for another 3 doses if >50% seizure reduction.",
                 criteria: "Short to medium control of seizures in children with West syndrome or other intractable epilepsy, when standard antiepileptic drugs, ketotic diet and steroids have failed.",
                 outcome: ">50% seizure frequency reduction.")
-disease = Disease.find(37)
+disease = Disease.find(40)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Intractable childhood epilepsy",
@@ -561,7 +607,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Acquired neuromyotonia, with or without Morvan syndrome, debilitating and refractory after treatment with steroids and oral
                           immunosuppression, and after treatment of any underlying malignancy. Plasma exchange should be tried first if available and not contraindicated.",
                 outcome: "Major improvement in debilitating and painful muscle cramps, severity of which measured on visual analogue scale before and after treatment.")
-disease = Disease.find(38)
+disease = Disease.find(41)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Neuromyotonia",
@@ -579,7 +625,7 @@ Disease.create!(speciality: "Neurology",
                 criteria: "Acquired neuromyotonia, with or without Morvan syndrome, debilitating and refractory after treatment with steroids and oral
                           immunosuppression, and after treatment of any underlying malignancy. Plasma exchange should be tried first if available and not contraindicated.",
                 outcome: "Major improvement in debilitating and painful muscle cramps, severity of which measured on visual analogue scale before and after treatment.")
-disease = Disease.find(39)
+disease = Disease.find(42)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Opsoclonus myoclonus (paediatric neuroblastoma)",
@@ -594,7 +640,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg single course divided over 2-5 days repeated after 8 weeks if partial response.",
                 criteria: "Non paranoplastic opsoclonus myoclonus in adults or children, failing to respond to steroids, if plasma exchange failed or not appropriate.",
                 outcome: "Major improvement in opsoclonis, myoclonus or associated ataxia as measured on a visual analogue scale of severity before and after treatment.")
-disease = Disease.find(40)
+disease = Disease.find(43)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Opsoclonus myoclonus (parainfectious)",
@@ -609,7 +655,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg divided over no fewer than 5 days.",
                 criteria: "Acute dysautonomia requiring intensive care management with no clear underlying neuroinflammatory cause. (If any evidence for large fibre involvement should be considered to be Guillain Barre syndrome.)",
                 outcome: "Successful discharge from intensive care and symptomatic recovery")
-disease = Disease.find(41)
+disease = Disease.find(44)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Acute idiopathic dysautonomia",
@@ -624,7 +670,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "0.5 g/kg as for complex regional pain syndrome.",
                 criteria: "Chronic severe facial pain refractory to all appropriate standard therapies and with an aetiology involving a purported immune pathophysiology.",
                 outcome: "Reduction in pain by at least 5 points on visual analogue scale, or 2 points versus placebo.")
-disease = Disease.find(42)
+disease = Disease.find(45)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Chronic facial pain",
@@ -639,7 +685,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg divided over 2-5 days. Repeat after time of relapse if major response.",
                 criteria: "Diabetic femoral neuropathy or plexopathy resulting in weakness in the innervated muscles and significant disability.",
                 outcome: "Reduction in pain by at least 5 points on visual analogue scale, or 2 points versus placebo.")
-disease = Disease.find(43)
+disease = Disease.find(46)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Diabetic femoral neuropathy",
@@ -658,7 +704,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 criteria: "With vaccine in those less able to respond to the vaccine (aged 60 or over or immunosuppressed with CD4 count <200 or those at risk of severe complicaions because of chronic liver disease,
                         including chronic hepatitis B or C).",
                 outcome: "Not recorded.")
-disease = Disease.find(44)
+disease = Disease.find(47)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Hapatitis A",
@@ -673,7 +719,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 criteria: "Immunosuppressed individuals (Group A and Group B) who have had significant exposure and known susceptibiity based on vaccine history or IgG levels.
                           Within 6 days of exposure, but consider also between 6 and 18 days.",
                 outcome: "Prevention of measles.")
-disease = Disease.find(45)
+disease = Disease.find(48)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Measles in immunosuppressed",
@@ -688,7 +734,7 @@ Disease.create!(speciality: "Infectious Diseases",
                         Infants under 9 months of age with a significant exposure to measles.
                         Subgam to be given within 6 days of exposure in pregnant women and infants. For infants aged 6-8 months can offer MMR if exposure outside of household and within 72 hours.",
                 outcome: "Prevention or resolution of measles.")
-disease = Disease.find(46)
+disease = Disease.find(49)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Measles in pregnant women and infants",
@@ -701,7 +747,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 regimen: "<1 year: 250mg. 1 – 2 years: 500mg. >3 years: 750mg. Repeat at 3 weekly intervals if stool samples positive until 2 consecutive negative weekly stool samples.",
                 criteria: "To prevent or attenuate an attack in an immunocompromised person inadvertently given live polio vaccine or an immunocompromised person whose contacts are inadvertently given live polio vaccine.",
                 outcome: "Prevention or resolution of infection.")
-disease = Disease.find(47)
+disease = Disease.find(50)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Polio vaccine in immunosuppressed",
@@ -716,7 +762,7 @@ Disease.create!(speciality: "Infectious Diseases",
                           Also clean wound thoroughly and give booster of tentatus-containing vaccine.",
                 criteria: "Susceptible individuals (incomplete immunisation) sustaining high risk tetanus prone injury (soil or manure exposed wound, burn or animal bite or extensive tissue necrosis).",
                 outcome: "Prevention of infection.")
-disease = Disease.find(48)
+disease = Disease.find(51)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Tetanus prone injury",
@@ -729,7 +775,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 regimen: "200ml to 800ml of intravenouos immunoglobulin depending on patient's weight and the immunuglobulin product.",
                 criteria: "Acute illness with muscle spasms or hypertonia in the absence of a more likely diagnosis.",
                 outcome: "Resolution of infection.")
-disease = Disease.find(49)
+disease = Disease.find(52)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Clinical Tetanus",
@@ -743,15 +789,26 @@ Disease.create!(speciality: "Infectious Diseases",
                 criteria: "Intra-muscular injections contra-indicated in individual with significant exposure to chickenpox or shingles and at increased risk (significantly immunosuppressed, neonates and pregnant women)
                           and no antibodies based on VZV antibody testing.",
                 outcome: "Prevention of infection.")
-disease = Disease.find(50)
+disease = Disease.find(53)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Varicella zoster exposure",
     description: "Varicella zoster exposure in immunosuppressed where intramuscular Varicella Ig is contraindicated."
     )
 
-
-
+Disease.create!(speciality: "Infectious Diseases",
+                commissioning: "Prior panel approval not required (emergency list)",
+                priority: "1. Grey",
+                regimen: "0.2 g/kg single dose within 14 days of exposure and ideally within 7 days.",
+                criteria: "Intra-muscular injections contra-indicated in individual with significant exposure to infection and at increased risk (significantly immunosuppressed, neonates and pregnant women)",
+                outcome: "Prevention of infection.")
+disease = Disease.find(54)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Post-exposure prophylaxis (excluding varicella)",
+    description: "Post-exposure prophylaxis for certain viral or other infections if intramuscular injection contraindicated or when hyperimmune immunoglobulins are unavailable.
+                  This excludes varicella exposure, which is a separate Red indication for immunogobulin."
+    )
 
 
 Disease.create!(speciality: "Other",
@@ -760,11 +817,68 @@ Disease.create!(speciality: "Other",
                 regimen: "1 g/kg course given to mother starting at 14 weeks gestation given fortnightly, and then weekly from 18 weeks gestation to delivery.",
                 criteria: "Usually diagnosis of neonatal hepatic failure haemochromatosis during previous pregnancy and there is 90% risk of occurrence in subsequent pregnancy.",
                 outcome: "Fetal survival to term.")
-disease = Disease.find(51)
+disease = Disease.find(55)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Alloimmunne foetal haemochromatosis",
     description: "Alloimmune foetal and neonatal haemochromatosis disease."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required (left-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg course, repeated after 1 month. Subsequent courses if relapse thereafter at a minimum frequency to prevent relapse in conjunction with
+                          ongoing standard therapy and wound care (avoiding debridement)",
+                criteria: "Cases refractory to maximum tolerated doses of steroids and steroid sparing agents.",
+                outcome: "Resolution of lesions.")
+disease = Disease.find(56)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Pyoderma gangrenosum",
+    description: "Salvage therapy for pyoderma gangrenosum refractory to other treatment (Cafardi et al., 2014)."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required (left-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg course for stabilisation of symptoms.",
+                criteria: "To be given as part of an overall treatment strategy that may include steroids, immunosuppression and newer anti IL-1 and IL-6 biological agents.",
+                outcome: "Improvement in features of systemic inflammation.")
+disease = Disease.find(57)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Systemic juvenile idiopathic arthritis",
+    description: "Systemic juvenile idiopathic arthritis is defined as arthritis lacking typical circulating autoantibodies but with several features of systemic inflammation including fever,
+                  rashes, hepatosplenomegaly, lymphadenopathy or serositis. There is overlap with Still's disease, which does not necessarily have arthritis. It may be complicated by development
+                  of macrophage activation syndrome (MAS)."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required (left-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg course for stabilisation of symptoms (Jayne et al., 2000).",
+                criteria: "An optional treatment for short-term disease management if standard therapies not suitable.",
+                outcome: "Improvement in features of systemic inflammation.")
+disease = Disease.find(58)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Systemic vasculitides and ANCA disorders",
+    description: "Systemic vasculitides and ANCA disorders have been treated with immunoglobulin but this treatment does not appear in the European League Against Rheumatism recommendations on
+    ANCA disorders (Yates et al., 2016), instead focusing on rituximab for severe disease."
+    )
+
+Disease.create!(speciality: "Other",
+                commissioning: "Prior panel approval required (left-hand grey)",
+                priority: "3. Grey",
+                regimen: "2 g/kg course repeated after 4-6 weeks if relapse after good response (Mitzel-Khaoukhov et al., 2010).",
+                criteria: "Consider in severe chronic cases where immunosuppressives or biological therapies not suitable.",
+                outcome: "Improvement in features of systemic inflammation.")
+disease = Disease.find(59)
+DiseaseDescription.create!(
+    disease_id: disease.id,
+    name:  "Severe urticaria",
+    description: "Severe intractable urticaria has been treated with immunoglobulin but does not appear in a recent review of management (Schaeffer et al., 2017) which instead
+                  focuses on omalizumab or ciclospirin for cases refractory to antihistamines and short courses of steroids."
     )
 
 

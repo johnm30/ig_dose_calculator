@@ -142,33 +142,42 @@
 </div>
 <% dose = @settings["selected_dose"] %>
 <% if dose != nil %>
-  <div class="col-xs-6">
+  <div class="col-xs-6" style="font-size: 20px; color:#565051;">
     <% disease_description = DiseaseDescription.find_by(id: selected_disease_id) %>
-    <h3 style="font-size: 32px;padding-top:2px">
-      <%# the selected_disease_id is actually the id of the DiseaseDescription because obtained from collection select on DiseaseDescription %>
-      <%= link_to calculations_show_path(disease_description.disease.id) do %>
-        <span><%= disease_description.name %></span>
-      <% end %>
-    </h3>
+
     <% if @expand_description[disease_description.disease.id.to_s] != 1 %>
-      <div style="font-size: 24px;">
+      <h3 style="font-size: 32px">
+      <%# the selected_disease_id is actually the id of the DiseaseDescription because obtained from collection select on DiseaseDescription %>
+      <%= disease_description.name %>
+      <%= link_to calculations_show_path(disease_description.disease.id) do %>
+        <span >&#9660;</span>
+      <% end %>
+      </h3>
+      <div class= style="font-size: 24px;">
         <%= link_to "Dose:" , {:action => "help", :controller => "static_pages", :anchor => "regimen_help" } %>
         <%= dose %>
       </div>
     <% else %>
-      <div style="font-size: 20px;"> <%# the padding is just to show the superscript question mark %>
+      <h3 style="font-size: 32px">
+      <%# the selected_disease_id is actually the id of the DiseaseDescription because obtained from collection select on DiseaseDescription %>
+      <%= disease_description.name %>
+      <%= link_to calculations_show_path(disease_description.disease.id) do %>
+        <span >&#9650;</span>
+      <% end %>
+      </h3>
+      <div > <%# the padding is just to show the superscript question mark %>
         <%= link_to "Description:" , {:action => "help", :controller => "static_pages", :anchor => "indication_help" } %>
         <%= disease_description.description.sub(/^./, &:upcase) %>
       </div>
-      <div style="font-size: 20px;"> <%# the padding is just to show the superscript question mark %>
+      <div > <%# the padding is just to show the superscript question mark %>
         <%= link_to "Speciality:" , {:action => "help", :controller => "static_pages", :anchor => "speciality_help" } %>
         <%= disease_description.disease.speciality.sub(/^./, &:upcase) %>
       </div>
-      <div style="font-size: 20px;"> <%# the padding is just to show the superscript question mark %>
+      <div > <%# the padding is just to show the superscript question mark %>
         <%= link_to "Eligibility Criteria:" , {:action => "help", :controller => "static_pages", :anchor => "criteria_help" } %>
         <%= disease_description.disease.criteria.sub(/^./, &:upcase) %>
       </div>
-      <div style="font-size: 20px;"> <%# the padding is just to show the superscript question mark %>
+      <div > <%# the padding is just to show the superscript question mark %>
         <% priority = disease_description.disease.priority %>
         <% if priority == "1. Red" %>
           <%= link_to "Demand Management Priority Colour Code:" , {:action => "help", :controller => "static_pages", :anchor => "priority_help" } %>
@@ -186,13 +195,17 @@
           <%= link_to "Demand Management Priority Colour Code:" , {:action => "help", :controller => "static_pages", :anchor => "priority_help" } %> unlisted
         <% end %>
       </div>
-      <div style="font-size: 20px;">
+      <div >
         <%= link_to "Dose:" , {:action => "help", :controller => "static_pages", :anchor => "regimen_help" } %>
         <%= dose %>
       </div>
-      <div style="font-size: 20px;">
+      <div >
         <%= link_to "Outcome Measures for National Database:" , {:action => "help", :controller => "static_pages", :anchor => "outcome_help" } %>
         <%= disease_description.disease.outcome %>
+      </div>
+      <div>
+        <%= link_to "Commissioning:" , {:action => "help", :controller => "static_pages", :anchor => "commissioning_help" } %>
+        <%= disease_description.disease.commissioning %>
       </div>
     <% end %>
   </div>
