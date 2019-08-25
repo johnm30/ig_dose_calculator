@@ -234,6 +234,7 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
 
           # check that there is really a number in dosage_left
           #dosage_left = "1150.05 to 3.2g"
+          dosage_left.downcase!
           logger.debug "Dosage left = #{dosage_left}; length = #{dosage_left.length}"
 
           # search for a hyphen and deal with that
@@ -252,9 +253,42 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
             # ? denotes match nothing, eg if no decimal point
             # so above means match a substring beginning with at least one digit, and then a period or nothing and then any digits after the period including none
             logger.debug "Low dose = #{low_dose}, high dose = #{high_dose}."
-            low_number = low_dose.to_f
+            if (low_dose == nil && high_dose == nil)
+              low_dose = dosage_left.scan(/zero/).first
+              if low_dose == "zero"
+                high_dose = dosage_left.scan(/one/).first
+                if high_dose == "one"
+                  high_dose = 1
+                else
+                  high_dose = dosage_left.scan(/two/).first
+                  if high_dose == "two"
+                    high_dose = 2
+                  end
+                end
+              else
+                low_dose = dosage_left.scan(/one/).first
+                if low_dose == "one"
+                  low_dose = 1
+                  high_dose = dosage_left.scan(/two/).first
+                  if high_dose == "two"
+                    high_dose = 2
+                  end
+                else
+                  low_dose = dosage_left.scan(/two/).first
+                  if low_dose == "two"
+                    low_dose = 2
+                  end
+                end
+              end
+            end
+
+
+            logger.debug "Low dose = #{low_dose}, high dose = #{high_dose}."
+            low_number = low_dose.to_f if low_dose != "zero"
             high_number = high_dose.to_f
-            if low_number != 0 && high_number != 0
+            if low_dose == "zero" && high_number != 0
+              settings["selected_dose"] = "0 to #{round_to_previous_5(dose * high_number)} g " + dosage_right
+            elsif low_number != 0 && high_number != 0
               settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} to #{round_to_previous_5(dose * high_number)} g " + dosage_right
             elsif low_number != 0
               settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} g " + dosage_right
@@ -272,7 +306,17 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
             if number != 0
               settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
             else
-              settings["selected_dose"] = dosage
+              dosage_left = dosage_left.scan(/one/).first
+              if dosage_left == "one"
+                number = 1
+              else
+                dosage_left = dosage_left.scan(/two/).first
+                if dosage_left == "two"
+                  number = 2
+                else
+                  settings["selected_dose"] = dosage
+                end
+              end
             end
           end
           logger.debug "Number = #{number}; low number = #{low_number}; high number = #{high_number}."
