@@ -184,7 +184,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "2. Blue",
                 regimen: "1-1.2 g/kg in divided doses; repeated for maximum 2 relapses",
                 criteria: "Parvovirus B19 infection confirmed by PCR, with high viral load usually above 109 IU/ml.
@@ -213,7 +213,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "2. Blue",
                 regimen: "1-2 g/kg in divided doses",
                 criteria: "Symptomatic or severe anaemia, except in patients with co-morbidities, when steroids failed or contraindicated or prior to splenectory.
@@ -231,7 +231,7 @@ DiseaseDescription.create!(
 Disease.create!(speciality: "Haematology",
                 commissioning: "Prior panel approval not required",
                 priority: "2. Blue",
-                regimen: "2 g/kg over 2-5 days with iv methylprednisolone; when preventative, 1-2 g/kg with iv methylprednisolone",
+                regimen: "2 g/kg divided over 2-5 days with iv methylprednisolone; when preventative, 1-2 g/kg with iv methylprednisolone",
                 criteria: "Symptomatic or severe anaemia (Hb <6g/dL, or sometimes higher, with evidence of on-going intravascular haemolysis due to a delayed haemolytic transfusion/hyperhaemolysis).
                           Prevention of above in patients who had a previous reaction or who have single or multiple allo-antibodies and may require a blood transfusion.",
                 outcome: "Rise in haemoglobin. Transfusion Independence. Reduction in haemolysis markers (bilirubin, lactate dehydrogenase).
@@ -244,12 +244,13 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "2. Blue",
                 regimen: "1 g/kg a day for two days",
                 criteria: "Life- or limb-threatening haemorrhage and failure to respond to other treatments,
                           or prior to invasive procedure, or as directed by patient's haemophilia centre.
-                          Excludes acquired VWD associated with IgM gammopathy.",
+                          Excludes acquired VWD associated with IgM gammopathy. This because of a poor sustained response to immunoglobulin
+                          compared to that in IgG-associated disease.",
                 outcome: "Rise of factor level. Resolution of bleeding. Number of bleeding episodes.")
 disease = Disease.find(17)
 DiseaseDescription.create!(
@@ -259,11 +260,11 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "2. Blue",
-                regimen: "2 g/kg in 2-5 divided doses daily; repeated for maximum 2 relapses",
+                regimen: "2 g/kg divided over 2-5 days; repeated for maximum 2 relapses",
                 criteria: "Diagnosis by consultant haematologist from bone marrow biopsy,
-                        or pancytopenia with unresponsive to conventional treatment (e.g. corticosteroids, immunosuppressive agents, chemotherapy) or such treatment inappropriate.",
+                        or pancytopenia unresponsive to conventional treatment (e.g. corticosteroids, immunosuppressive agents, chemotherapy) or such treatment inappropriate.",
                 outcome: "Improvement of cytopenias. Survival. Improvement of HLH markers – ferritin/soluble CD25.")
 disease = Disease.find(18)
 DiseaseDescription.create!(
@@ -275,7 +276,7 @@ DiseaseDescription.create!(
 Disease.create!(speciality: "Haematology",
                 commissioning: "Prior panel approval not required",
                 priority: "2. Blue",
-                regimen: "1-2 g/kg in 2-5 divided doses daily",
+                regimen: "1-2 g/kg divided over 2-5 days",
                 criteria: "Sudden severe thrombocytopenia 5 to 10 days post-transfusion of blood products with active bleeding.",
                 outcome: "Increase in platelet count. Resolution of bleeding. Number of bleeding complications.")
 disease = Disease.find(19)
@@ -529,7 +530,7 @@ disease = Disease.find(35)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Multifocal Motor Neuropathy (short term)",
-    description: "MMultifocal Motor Neuropathy (MMN) - short term treatment. Note that treatment regime is the same as for CIDP."
+    description: "Multifocal Motor Neuropathy (MMN) - short term treatment. Note that treatment regime is the same as for CIDP."
     )
 
 Disease.create!(speciality: "Neurology",
@@ -599,7 +600,7 @@ disease = Disease.find(40)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Acute disseminated encephalomyelitis",
-    description: "Acute disseminated encephalomyelitis (ADEM) if high-dose steroids have failed."
+    description: "Acute disseminated encephalomyelitis (ADEM), including idiopathic transverse myelitis, if high-dose steroids have failed."
     )
 
 Disease.create!(speciality: "Neurology",
@@ -889,7 +890,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "1. Red",
                 regimen: "0.15 g/kg of Ig ideally within 72 hours of exposure although can be given up to 6 days later.",
                 criteria: "Immunosuppressed individuals (Group A and Group B) who have had significant exposure and known susceptibiity based on vaccine history or IgG levels.
@@ -903,7 +904,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "1. Red",
                 regimen: "For pregnant contacts: approximately 2250mg = 3 vials of Subgam. For infants: 0.6ml/kg up to a maximum of 1 vial (750mg) Subgam",
                 criteria: "Pregnant women identified as susceptible based on vaccine history or antibody testing who have had a significant exposure to measles.
@@ -959,7 +960,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "1. Red",
                 regimen: "0.2 g/kg single dose within 14 days of exposure and ideally within 7 days.",
                 criteria: "Intra-muscular injections contra-indicated in individual with significant exposure to chickenpox or shingles and at increased risk (significantly immunosuppressed, neonates and pregnant women)
@@ -1108,7 +1109,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "2. Blue",
                 regimen: "Up to 2 g/kg course, repeated for 2-3 courses.",
                 criteria: "Patients experiencing steroid resistant rejection or where other therapies are contraindicated after transplant.",
@@ -1121,7 +1122,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval required (emergency list)",
+                commissioning: "Prior panel approval not required (emergency list)",
                 priority: "2. Blue",
                 regimen: "0.5 g/kg a day for 5 days.",
                 criteria: "Patients with viral pneumonitis after heart or lung transplant (excluding influenza virus).",
