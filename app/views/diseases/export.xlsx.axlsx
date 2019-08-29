@@ -1,11 +1,19 @@
 wb = xlsx_package.workbook
-wb.use_autowidth = true
+wb.use_autowidth = false
 
 wb.styles do |style|
-  project_heading = style.add_style(b: true, sz: 14)
+  project_heading = style.add_style(b: true, sz: 14,
+                                    :alignment => { :horizontal => :center,
+                                            :vertical => :top ,
+                                            :wrap_text => true},
+                                    :border => { :style => :thin, :color => "FFFF0000" })
   heading = style.add_style(b: true)
+  wrap_text = style.add_style(:alignment => { :horizontal => :center,
+                                            :vertical => :top ,
+                                            :wrap_text => true},
+                              :border => { :style => :thin, :color => "FFFF0000" })
 
-  wb.add_worksheet(name: "Index of all Diseases") do |sheet|
+  wb.add_worksheet(name: "Index of all Ig Indications") do |sheet|
     # Add a title row
     # sheet.add_row ["Table of Damage per Round vs Armour Class"], style: project_heading
     # Add the date this was downloaded
@@ -13,12 +21,12 @@ wb.styles do |style|
     # Add a blank row
     sheet.add_row []
     # Create the header row
-    sheet.add_row @header
+    sheet.add_row @header, style: project_heading
     # Create entries for each item
     @rows_array.each do |row|
-      sheet.add_row row
+      sheet.add_row row, style: wrap_text
     end
-    # sheet.column_widths 6,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+    sheet.column_widths 6,20,40,13,30,12,30,30,20
   end
 end
 

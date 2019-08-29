@@ -5,12 +5,12 @@
 <% provide(:title, @user.name) %>
 
 <div class="row">
-  <aside class="col-md-3">
+  <div class="col-md-3">
     <section class="user_info">
       <%= render 'shared/user_info', user: @user %>
     </section>
     </br>
-  </aside>
+  </div>
   <div class="col-md-9">
     <div class="col-xs-12">
     <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>

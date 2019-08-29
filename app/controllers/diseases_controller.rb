@@ -61,48 +61,17 @@ class DiseasesController < ApplicationController
     # there is one associated disease description, and several associated features, with sensitivities
 
     # set the first row as headers, name description, incidence, prevalence, list of all features (where values are strengths of association)
-    @header = ["ID", "Name", "Description", "Incidence", "Prevalence"]
+    @header = ["ID", "Name", "Description", "Speciality", "Criteria", "Demand Management Priority",
+              "Dose Regimen", "Outcome Measures", "Commissioning Status"]
 
     # then append the names of all the features - probably sort by id
-    create_feature_categories
-    create_time_course_categories
-    create_inheritance_categories
-    create_age_at_onset_categories
-
-    features = Hash.new
-    features = Feature.all
 
 
-    feature_names = Array.new
-    feature_names << "Male:Female"
-
-    #list of ids of the features with the category time course
-    feature_names += @time_course_categories
-    feature_names += @age_at_onset_categories
-    feature_names += @inheritance_categories
-
-    @feature_categories.each do |name|
-      # all the features in a particular category
-      features_array = Feature.where("category = ?", name)
-      features_array.each do |feature|
-        feature_names << feature.name
-      end
-    end
 
     # this is the way to add multiple elements to an array, concatenate two arrays
-    @header += feature_names
+    #@header += feature_names
 
-
-
-    # when I display all the information about diseases, it is done in the new action, right half of the view
-    # where if index shows just one disease from a link from diagnose diseases, new shows all diseases and
-    # show shows only those matching search criteria
-    # just does render @diseases in diseases/new view
-    # @diseases is got from:
-    @diseases = Disease.sort_by_description_no_paginate
-
-    # the work is done by pointing to _disease.html.erb partial for each disease - this is like a row
-
+    @diseases = Disease.order(id: :asc)
 
     @rows_array = Array.new
 
@@ -110,62 +79,18 @@ class DiseasesController < ApplicationController
       row = Array.new
       row << disease.id # ?or just row = disease.to_a to get all the parameters into an array
       row << disease.disease_description.name
-      row << disease.disease_description.description
-      row << disease.incidence
-      row << disease.prevalence
+      description = disease.disease_description.description.gsub(/\s+/, " ")
+      row << description
+      row << disease.speciality
+      criteria = disease.criteria.gsub(/\s+/, " ")
+      row << criteria
+      row << disease.priority
+      regimen = disease.regimen.gsub(/\s+/, " ")
+      row << regimen
+      outcome = disease.outcome.gsub(/\s+/, " ")
+      row << outcome
+      row << disease.commissioning
 
-      feature = features.find_by(name: "Male")
-      row << disease.feature_sensitivity(feature)
-
-      @time_course_categories.each do |name|
-        feature = features.find_by(name: name)
-        if disease.associated?(feature)
-          row << disease.feature_sensitivity(feature)
-        else
-          row << 0
-        end
-      end
-
-      @age_at_onset_categories.each do |name|
-        feature = features.find_by(name: name)
-        if disease.associated?(feature)
-          row << disease.feature_sensitivity(feature)
-        else
-          row << 0
-        end
-      end
-
-      @inheritance_categories.each do |name|
-        feature = features.find_by(name: name)
-        if disease.associated?(feature)
-          row << disease.feature_sensitivity(feature)
-        else
-          row << 0
-        end
-      end
-
-      @feature_categories.each do |name|
-        # all the features in a particular category
-        features_array = Feature.where("category = ?", name)
-        features_array.each do |feature|
-          if disease.associated?(feature)
-            row << disease.feature_sensitivity(feature)
-          else
-            row << 0
-          end
-        end
-      end
-
-
-=begin
-      Feature.each do |feature|
-        if disease.associated?(feature)
-          row << disease.feature_sensitivity(feature)
-        else
-          row << "No"
-        end
-      end
-=end
       @rows_array << row
     end
     #logger.debug "Rows = #{@rows_array.inspect}"
@@ -175,7 +100,7 @@ class DiseasesController < ApplicationController
 
     # If this doesn't work try checking gemfile and bundle install and restarting the server
     respond_to do |format|
-      format.xlsx {response.headers['Content-Disposition'] = "attachment; filename = disease_table.xlsx"}
+      format.xlsx {response.headers['Content-Disposition'] = "attachment; filename = indications_table.xlsx"}
       format.html { render :export }
     end
   end
