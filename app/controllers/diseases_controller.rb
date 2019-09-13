@@ -11,6 +11,7 @@ class DiseasesController < ApplicationController
     @commissionings ||= create_commissionings
     @priorities ||= create_priorities
     @specialities ||= create_specialities
+    session[:search_term] = nil # resetting this when redoing a new page
 
     # Class method defined in Disease model
     current_page = params[:page] || 1
@@ -46,6 +47,7 @@ class DiseasesController < ApplicationController
     @disease_description = @disease.disease_description
     @sort_by = session[:sort_by]
     @expand_description = get_expand_descriptions
+    session[:search_term] = nil
 
     render 'new'
   end
@@ -70,7 +72,7 @@ class DiseasesController < ApplicationController
 
     # this is the way to add multiple elements to an array, concatenate two arrays
     #@header += feature_names
-
+    session[:search_term] = nil
     @diseases = Disease.order(id: :asc)
 
     @rows_array = Array.new
@@ -112,6 +114,7 @@ class DiseasesController < ApplicationController
 
   # create puts the new Disease in the database based on form params
   def create
+    session[:search_term] = nil
     @disease = Disease.new(diseases_params)
     if @disease.save
       # For a has_one association, using the @disease.disease_description.new
@@ -185,6 +188,7 @@ class DiseasesController < ApplicationController
   def update
     # when using update, we use params[:id] perhaps because it came from a form
     # rather than from clicking a link
+    session[:search_term] = nil
     @expand_description = get_expand_descriptions
     @commissionings ||= create_commissionings
     @priorities ||= create_priorities
@@ -306,11 +310,38 @@ class DiseasesController < ApplicationController
     else
       @expand_description[disease_id] = 1
     end
-    #render 'new'
     session[:expand_description] = @expand_description
     #logger.debug "Expand description is #{@expand_description.inspect}"
     #logger.debug "Session Expand description is #{session[:expand_description].inspect}"
-    redirect_to request.referrer || diseases_url  # if call from calculations form redirects to that form
+    #redirect_back(fallback_location: diseases_url)
+    logger.debug "Params action = #{params[:action]}" # this is expander not session, I am looking to detect the previous action whether it was show or new
+    logger.debug "Request referrer = #{request.referer}" # just diseases, I think because it detects the previous render of new
+    search_term = session[:search_term]
+    if search_term == nil
+      redirect_back(fallback_location: diseases_url)
+    else
+      # essentially now just redoing the show action
+      @commissionings ||= create_commissionings
+      @priorities ||= create_priorities
+      @specialities ||= create_specialities
+      @sort_by = session[:sort_by]
+
+      disease_descriptions = DiseaseDescription.search(search_term)
+      @disease_count = disease_descriptions.count
+      disease_id_list = disease_descriptions.reorder('name ASC').pluck(:disease_id)
+      diseases_unpaginated = Disease.all
+      @diseases = []
+      disease_id_list.each do |id|
+        disease = diseases_unpaginated.find(id)
+        @diseases << disease
+      end
+      @disease = Disease.new
+      @expand_description = get_expand_descriptions
+      render 'new'
+    end
+    #redirect_to request.referrer || diseases_url  # if call from calculations form redirects to that form
+    # if being called from the short list of diseases created by search, need to display only those diseases
+    # if do render 'new' as in the show action, the array of diseases has been lost, beause neither defined in new or show.
   end
 
   def sort

@@ -59,12 +59,9 @@
     <% if params[:action] != "index" %>
       <% if @diseases.any? %>
         <h3 style="padding-top:2px; font-weight:bold">
-          <% if params[:action] != "show" || session[:search_term] == nil %>
+          <% if session[:search_term] == nil %>
             Indications (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
-          <% else %>
-            Indications containing "<%= session[:search_term] %>" (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
-          <% end %>
-          <span style="font-size:16px;">
+            <span style="padding-top:4px;font-size:16px;">
             Sort by:
             <% if @sort_by == "speciality" %>
               <%= link_to "Speciality", diseases_sort_path %>
@@ -79,12 +76,18 @@
             <% elsif @sort_by == "priority" %>
               <%= link_to "Demand Management Priority", diseases_sort_path %>
             <% end %>
-          </span>
+            </span>
+          <% else %>
+            Indications containing "<%= session[:search_term] %>" (<%= @disease_count %>)<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "diseases_page_help" } %></sup>
+          <% end %>
+
         </h3>
           <ol class="diseases">
             <%= render @diseases %>
           </ol>
-          <% if params[:action] != "show" %>
+          <%# will-paginate only works for an active record object not an array, so if @diseases is an array
+          from search term in show or expander after show it will not work %>
+          <% if params[:action] != "show" && session[:search_term] == nil %>
             <%= will_paginate @diseases %>
           <% end %>
       <% else %>
