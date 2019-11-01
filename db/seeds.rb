@@ -1175,7 +1175,14 @@ disease = Disease.find(80)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Immunobullous diseases",
-    description: "Immunobullous diseases."
+    description: "Immunobullous diseases includes pemphigus vulgaris, pemphigoid, dermatitis herpetiformis, linear IgA disease and epidermolysis bullosa acquisita.
+    In a metanalysis of Ig for pemphigus (17 cases), 70% had a beneficial response (Engineer & Ahmed, 2001), and so has been recommended when conventional therapy has failed.
+    Epidermolysis bullosa acquisita is a chronic condition that often responds poorly to conventional therapy and there are case series describing the benefit of Ig (Engineer & Ahmed, 2001).
+    Dermatitis herpetiformis is normally treated with dapsone and gluten diet withdrawal and there does not appear to be a role for Ig therapy. Linear IgA disease is an auoimmune sometimes drug
+    related disase of blisters on skin, often in a ring pattern, or mucous membranes whose name comes from the linear deposition of IgA along the basement membrane
+    on direct immunofluorescence. It occurs more in teh elderly but there is a childhood form called chronic bullous disease of childhood. Severe cases may appear
+    as toxic epidermal necrolysis. Ig therapy would typically be after drug withdrawal, steroids, tetracyclines, erythromycin, dapsone, colchicine or mycophenolate. There are
+    single case reports describing its use."
     )
 
 
