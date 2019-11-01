@@ -948,7 +948,7 @@ DiseaseDescription.create!(
 Disease.create!(speciality: "Infectious Diseases",
                 commissioning: "Prior panel approval not required",
                 priority: "1. Red",
-                regimen: "200ml to 800ml of intravenouos immunoglobulin depending on patient's weight and the immunuglobulin product.",
+                regimen: "200ml to 800ml of intravenouos immunoglobulin depending on patient's mass and the immunuglobulin product.",
                 criteria: "Acute illness with muscle spasms or hypertonia in the absence of a more likely diagnosis.",
                 outcome: "Resolution of condition.")
 disease = Disease.find(64)
