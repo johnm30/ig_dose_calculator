@@ -60,7 +60,7 @@ Disease.create!(speciality: "Immunology",
                 regimen: "0.4-0.6 g/kg each month; dose requirement may increase based on clinical outcome.",
                 criteria: "Diagnosed by clinical immunologist. Severe, persistent, opportunistic or recurrent bacterial infections despite continuous oral antibiotic therapy for 6 months,
                           or documented failure of serum antibody response to unconjugated pneumococcal or other polysaccharide vaccine challenge.",
-                outcome: "Reduction in number of infections, treatment courses of antibiotics, days in hospital; record pre-treatment and 6 monthly thereafter.")
+                outcome: "Trough IgG. Reduction in number of infections, treatment courses of antibiotics, days in hospital; record pre-treatment and 6 monthly thereafter.")
 disease = Disease.find(4)
 DiseaseDescription.create!(
     disease_id: disease.id,
@@ -75,7 +75,7 @@ Disease.create!(speciality: "Immunology",
                 criteria: "Diagnosed by clinical immunologist. Severe, persistent, opportunistic or recurrent bacterial infections despite continuous oral antibiotic therapy for 6 months,
                           or documented failure of serum antibody response to unconjugated pneumococcal or other polysaccharide vaccine challenge. Clear evidence of benefit from
                           first 6-12 month trial.",
-                outcome: "Reduction in number of infections, treatment courses of antibiotics, days in hospital; record 6 monthly.")
+                outcome: "Trough IgG. Reduction in number of infections, treatment courses of antibiotics, days in hospital; record 6 monthly.")
 disease = Disease.find(5)
 DiseaseDescription.create!(
     disease_id: disease.id,
@@ -92,7 +92,7 @@ Disease.create!(speciality: "Immunology",
                         and (when clinically appropriate) documented failure of serum antibody response to unconjugated pneumococcal or other polysaccharide vaccine challenge.
                         Prophylactic use in B-cell aplasia produced by chimeric antigen recepor T-cell therapy against B-cell antigens.
                         ",
-                outcome: "Reduction in number of infections and days in hospital; record pre-treatment and 6 monthly thereafter. Review annually and consider seasonal treatment.")
+                outcome: "Trough IgG. Reduction in number of infections and days in hospital; record pre-treatment and 6 monthly thereafter. Review annually and consider seasonal treatment.")
 disease = Disease.find(6)
 DiseaseDescription.create!(
     disease_id: disease.id,
@@ -905,7 +905,7 @@ DiseaseDescription.create!(
 Disease.create!(speciality: "Infectious Diseases",
                 commissioning: "Prior panel approval not required",
                 priority: "1. Red",
-                regimen: "For pregnant contacts: approximately 2250mg = 3 vials of Subgam. For infants: 0.6ml/kg up to a maximum of 1 vial (750mg) Subgam",
+                regimen: "For pregnant contacts: approximately 3000mg of human normal immunoglobulin (HNIG) (in vials of Subgam). For infants: 0.6ml/kg up to a maximum of 1000mg Subgam",
                 criteria: "Pregnant women identified as susceptible based on vaccine history or antibody testing who have had a significant exposure to measles.
                         Infants under 9 months of age with a significant exposure to measles.
                         Subgam to be given within 6 days of exposure in pregnant women and infants. For infants aged 6-8 months can offer MMR if exposure outside of household and within 72 hours.",
@@ -948,7 +948,8 @@ DiseaseDescription.create!(
 Disease.create!(speciality: "Infectious Diseases",
                 commissioning: "Prior panel approval not required",
                 priority: "1. Red",
-                regimen: "200ml to 800ml of intravenouos immunoglobulin depending on patient's mass and the immunuglobulin product.",
+                regimen: "200ml to 800ml of intravenous immunoglobulin depending on patient's mass and the immunuglobulin product. (Dosage based on equivalent dose of anti-tetanus
+                          antibodies of 5000 IU for individuals < 50kg and 10000 for individuals > 50kg."
                 criteria: "Acute illness with muscle spasms or hypertonia in the absence of a more likely diagnosis.",
                 outcome: "Resolution of condition.")
 disease = Disease.find(64)
@@ -1086,13 +1087,15 @@ Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval required",
                 priority: "1. Red",
                 regimen: "1 g/kg course given to mother starting at 14 weeks gestation given fortnightly, and then weekly from 18 weeks gestation to delivery.",
-                criteria: "Usually diagnosis of neonatal hepatic failure haemochromatosis during previous pregnancy and there is 90% risk of occurrence in subsequent pregnancy.",
+                criteria: "Pregnant mothers with a previous miscarriage and fetal post-mortem evidence of haemochromatosis, or women with previous live birth of
+                neonate with confirmed alloimmune haemochromatosis. Decision to treat by consultant obstetrician with input from liver unit specialist.",
                 outcome: "Fetal survival to term.")
 disease = Disease.find(74)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Alloimmunne fetal haemochromatosis",
-    description: "Alloimmune fetal and neonatal haemochromatosis disease."
+    name:  "Alloimmunne fetal or neonatal haemochromatosis",
+    description: "Alloimmune fetal or neonatal haemochromatosis or gestational alloimmune liver disease (GALD) usually in the context of a
+    diagnosis of neonatal hepatic failure haemochromatosis during a previous pregnancy and knowledge that there is 90% risk of occurrence in subsequent pregnancy."
     )
 
 Disease.create!(speciality: "Other",
