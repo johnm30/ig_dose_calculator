@@ -949,7 +949,7 @@ Disease.create!(speciality: "Infectious Diseases",
                 commissioning: "Prior panel approval not required",
                 priority: "1. Red",
                 regimen: "200ml to 800ml of intravenous immunoglobulin depending on patient's mass and the immunuglobulin product. (Dosage based on equivalent dose of anti-tetanus
-                          antibodies of 5000 IU for individuals < 50kg and 10000 for individuals > 50kg."
+                          antibodies of 5000 IU for individuals < 50kg and 10000 for individuals > 50kg.",
                 criteria: "Acute illness with muscle spasms or hypertonia in the absence of a more likely diagnosis.",
                 outcome: "Resolution of condition.")
 disease = Disease.find(64)
