@@ -137,6 +137,9 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
   <p> While many regimens of 2 g/kg can be administered in as few as 2 split daily doses, note that in certain conditions, due to autonomic instability, the 2 g/kg dose must always
       be split over 5 days.
   </p>
+  <p> As described in the NHS England ommissinoing guideline, the dose in adults is rounded down to the nearest whole vial. Since 5 g vials are normally available the App rounds down to the nearest 5 g multiple.
+      In children where the calculated dose is less than one vial, the dose is rounded up to 5g.
+  </p>
 
   <div class= "bottom">
     <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
@@ -268,6 +271,9 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
   <h3>Unlisted Dosages</h3>
   <p> In some circumstances it may not be possible to enter an indication, or there may be a specific reason to calculate a dose from a g/kg dosage. Entering the dosage here will calculate the dose to give based on ideal body weight.
   </p>
+  <p>
+      Make sure no indication is selected in the Indications drop-down box above by clicking the blank row at the top of the list of indications, or clicking Calculate will default to using the selected indication.
+  </p>
 
   <div class= "bottom">
     <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
@@ -276,8 +282,12 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 
 <span id = "unlisted_regimen_help">&nbsp;</span>
 <div class= "help">
-  <h3>Unlisted Regimen</h3>
-  <p> In some circumstances it may not be possible to enter an indication, or there may be a specific reason to calculate a dose from a g/kg dosage. Entering a regime here that includes a dose or dose range in g/kg will usually yield a conversion into actual doses.
+  <h3>Manually Entered Unlisted Regimen</h3>
+  <p> If you wish to enter a regimen manually, either a single dose in g/kg or a dose range (e.g. 0.5 to 1.5 g/kg), rather than using the unlisted dosaged box to the left, typing it here will usually yield a conversion into actual doses.
+      Please delete the entry here, if you wish to calculate a listed indication dose or use the unlisted dosage box.
+  </p>
+  <p>
+    Make sure no indication is selected in the Indications drop-down box above by clicking the blank row at the top of the list of indications, or clicking Calculate will default to using the selected indication.
   </p>
 
   <div class= "bottom">

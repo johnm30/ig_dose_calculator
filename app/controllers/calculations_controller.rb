@@ -174,7 +174,7 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
                                             :immunology_select, :haematology_select, :neurology_select, :infectious_diseases_select, :other_select,
                                             :selected_disease_id, :manual_dosage, :manual_regimen)
       logger.debug "Settings after params = #{settings}"
-      # iterate for all AC, storing the answer for the actual AC
+
       sex = settings["sex"]
       height = settings["height"].to_i
       weight = settings["weight"].to_i
@@ -230,6 +230,7 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
           dosage_left = dosage[0..unit_position-4].to_s
 
           dosage_right = dosage[dosage.rindex('kg')+3..dosage.length-1]
+          dosage_right = "dose" if dosage_right == nil
           logger.debug "Dosage right = #{dosage_right}"
 
           # check that there is really a number in dosage_left
@@ -288,6 +289,8 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
             high_number = high_dose.to_f
             if low_dose == "zero" && high_number != 0
               settings["selected_dose"] = "0 to #{round_to_previous_5(dose * high_number)} g " + dosage_right
+            elsif dose * high_number < 10.0
+              settings["selected_dose"] = "#{round_to_previous_5(dose * high_number)} g " + dosage_right
             elsif low_number != 0 && high_number != 0
               settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} to #{round_to_previous_5(dose * high_number)} g " + dosage_right
             elsif low_number != 0
@@ -410,9 +413,13 @@ f.collection_select "selected_disease_id", DiseaseDescription.all, :disease_id, 
 
     def round_to_previous_5(value)
 
+      return 5 if value < 5.0
+
       return value.to_i if value % 5 == 0
 
       answer = ((value/5).to_int) * 5
+
+
 
       return answer.to_i
     end
