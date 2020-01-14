@@ -1114,8 +1114,11 @@ DiseaseDescription.create!(
 Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval not required (emergency list)",
                 priority: "2. Blue",
-                regimen: "Up to 2 g/kg course, repeated for 2-3 courses.",
-                criteria: "Patients experiencing steroid resistant rejection or where other therapies are contraindicated after transplant.",
+                regimen: "Up to 2 g/kg course, repeated for 2-3 courses. Note that Barts Health Renal Transplant team has a specific regime of regular plasma exchange
+                          combined with Ig 0.1g/kg on days 3, 5 and 7 of treatment regime, and 2g/kg on day 9. A low volume Ig brand is preferable.",
+                criteria: "Patients experiencing steroid resistant rejection or where other therapies are contraindicated after transplant. In renal transplant rejection, antibody-mediated
+                as opposed to cellular rejection is determined by the presence of donor specific HLA antibodies (DSA) and the histological appearance
+                on biopsy. DSA monitoring is repeated on day 3 and on day 9 of the treatment regime.",
                 outcome: "Rejection episodes, patient/graft survival, graft function.")
 disease = Disease.find(76)
 DiseaseDescription.create!(
