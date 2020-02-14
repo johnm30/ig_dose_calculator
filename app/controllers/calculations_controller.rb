@@ -289,8 +289,8 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
             high_number = high_dose.to_f
             if low_dose == "zero" && high_number != 0
               settings["selected_dose"] = "0 to #{round_to_previous_5(dose * high_number)} g " + dosage_right
-            elsif dose * high_number < 10.0
-              settings["selected_dose"] = "#{round_to_previous_5(dose * high_number)} g " + dosage_right
+            elsif dose * high_number < 15.0
+              settings["selected_dose"] = "#{round_to_2_gram_vial(dose * high_number)} g " + dosage_right
             elsif low_number != 0 && high_number != 0
               settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} to #{round_to_previous_5(dose * high_number)} g " + dosage_right
             elsif low_number != 0
@@ -309,17 +309,29 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
               number = dosage_left.to_f
             end
             if number != 0 && number != nil
-              settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
+              if (dose * number < 15.0)
+                settings["selected_dose"] = "#{round_to_2_gram_vial(dose * number)} g " + dosage_right
+              else
+                settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
+              end
             else
               number = dosage_left.scan(/one/).first
               if number == "one"
                 number = 1
-                settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
+                if (dose * number < 15.0)
+                  settings["selected_dose"] = "#{round_to_2_gram_vial(dose * number)} g " + dosage_right
+                else
+                  settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
+                end
               else
                 number = dosage_left.scan(/two/).first
                 if number == "two"
                   number = 2
-                  settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
+                  if (dose * number < 15.0)
+                    settings["selected_dose"] = "#{round_to_2_gram_vial(dose * number)} g " + dosage_right
+                  else
+                    settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
+                  end
                 else
                   settings["selected_dose"] = dosage
                 end
@@ -422,6 +434,16 @@ f.collection_select "selected_disease_id", DiseaseDescription.all, :disease_id, 
 
 
       return answer.to_i
+    end
+
+    # there are 2 g vials so with 5's can generate any value except 1 and 3.
+    def round_to_2_gram_vial(value)
+
+      return 2 if value == 1.0
+      return 4 if value == 3.0
+      logger.debug "Returned value = #{value}"
+      return value.to_i
+
     end
 
 end
