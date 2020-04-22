@@ -7,7 +7,8 @@
     </h3>
 </div>
   <%= f.label :sex, "Sex", class: "col-xs-2", style: "text-align:right"  %>
-      <% if  @settings != nil && @settings[:sex] != nil && @settings[:sex] == "1" %>
+  <% logger.debug "settings = #{@settings}, @settings[:sex] = #{@settings["sex"]}" %>
+      <% if  @settings != nil && @settings["sex"] != nil && @settings["sex"] == "1" %>
         <div class="col-xs-1">
           <%= f.radio_button :sex, "1",  :checked => true, class: "form_control" %>
           <%= f.label :sex, 'Male', class: "control-label", style: "text-align:left;font-weight:normal" do %>
