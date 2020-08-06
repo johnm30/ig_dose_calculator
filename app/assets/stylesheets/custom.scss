@@ -55,9 +55,9 @@ body {
 }
 
 /* default width is 1170 pixels which is a bit narrow for a widescreen nowadays */
-@media (min-width: 980px) {
+@media (min-width: 950px) {
     .container {
-        width: 980px;
+        width: 945px;
     }
 }
 
