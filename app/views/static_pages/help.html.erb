@@ -4,7 +4,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 <p>This is an app useable on all mobiles, tablets and desktops that calculates the immunoglobulin dose to administer, taking into account
-the ideal body mass (IBM) adjustment recommended in the NHS England Updated Commissioning Criteria for the use of therapeutic immunoglobulin (Ig).
+the ideal body mass (IBM) adjustment recommended in the NHS England Updated Commissioning Policy for the use of therapeutic immunoglobulin (Ig) (December 2021).
 </p>
 
 </br>
@@ -45,7 +45,7 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "diseases_page_help">&nbsp;</span>
 <div class= "help">
   <h3>Indications</h3>
-  <p> This is a list of all the indications for immunoglobulin therapy. Click on the inverted triangle next to an indication name to see detailed information about the indication, specifically a description of the disease,
+  <p> This is a list of all the indications for immunoglobulin therapy as well as indications that were considered and rejected by the NHS England Commissioners. Click on the inverted triangle next to an indication name to see detailed information about the indication, specifically a description of the disease,
   the speciality it falls under (to aid in searching through the list), the eligibility criteria for immunoglobulin, the Demand Management priority colour code, the recommended dose regimen usually in g/kg, the outcome measures
   to enter in the National database and the Commissioning Category (including whether or not prior permission from the subregional panel is required).
   </p>
@@ -71,7 +71,7 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <div class= "help">
   <h3>Description</h3>
   <p> This is a brief description of the disease considered to be an indication for immunoglobulin treatment. There may be greater detail presented here for some grey and non-commissioned indications
-      to aid in decision making.
+      to aid in individual funding request (IFR) applications to the national IFR panel and potential subregional immunoglobulin assessment panel (SRIAP) support of such applications.
   </p>
 
   <div class= "bottom">
@@ -93,10 +93,14 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "criteria_help">&nbsp;</span>
 <div class= "help">
   <h3>Eligibility Criteria</h3>
-  <p> For Red and Blue indications in the listed specialities, eligibility criteria are taken from NHS England's Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019). For other specialities, the Department of Health updated guidance (2011) is used.
-      For indications not specified in these documents, criteria are determined from a brief review of the limited literature on immunoglobulin's efficacy. The second phase of NHS England's update will review Red and Blue indications outside
-      of these specialities (the "Infectious Diseases" and "Other" speciality groups) and the third phase will review grey indications.
+  <p> Eligibility criteria are taken from NHS England's Immunoglobulin Commissioning Policy (December 2021). The two categories are:
+  <ul class="fa-ul">
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>Commissioned without prior approval (generally conditions requiring urgent treatment where there is no equally good alternative management)</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>Those that require prior subregional immunoglobulin assessment panel (SRIAP) approval</p></li>
+    </ul>
   </p>
+  <p>For indications not specified in the current guideline, criteria are determined from previous NHS England guidelines that listed them as
+  grey indications or from a brief review of the limited literature on immunoglobulin's efficacy.</p>
 
   <div class= "bottom">
     <%= link_to "Return",'javascript:history.go(-1);', class: 'btn btn-primary navbar-btn' %>
@@ -106,15 +110,17 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "priority_help">&nbsp;</span>
 <div class= "help">
   <h3>Demand Management Priority Colour Code</h3>
-  <p> For Red and Blue indications in the listed specialities, the Demand Management Priority system has been superceded by the new commissioning criteria (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019).
-      However, in situations of short supply, the priorities still apply:
+  <p> The Demand Management Priority system has been superceded by the new commissioning criteria (Immunoglobulin Commissioning Policy, Dec 2021). However, in situations of short supply, the red and blue priorities could still be applied. Note that there is no longer a grey
+  priority. These indications were either switched to commissioned (blue or red) or are simply no longer commissioned. I have made them blue indications if there are considered to be equally effective alternative treatments, red if not. I have kept former left and right hand grey legacy indications
+  to aid in IFR request prioritisation. Note that demand management prioritiy is separate from prior SRIAP approval requirement; an indication could be red because there is no equivalent alternative but require prior approval because it is generally non-urgent or there might be some
+  decision making around dosing or management strategy:
     <ul class="fa-ul">
     <li><p><i class="fa-li fa fa-hand-o-right"></i>"Red": defined as indications where there may be no other good alternative treatment, these are therefore the highest priority indications where there is short supply.</p></li>
     <li><p><i class="fa-li fa fa-hand-o-right"></i>"Blue": indications with good evidence for efficacy, but there are alternative treatments available that may be as effective.</p></li>
-    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Grey": indications with limited, if any, evidence for efficacy. These are the lowest priority indications in circumstances of short supply.</p></li>
-    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Black": indications where there is positive evidence that immunoglobulin is <i>not</i> effective. Applications should not normally be sought for such indications.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Grey": indications where there was formally limited, if any, evidence for efficacy. These are the lowest priority indications in circumstances of short supply.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i>"Black": indications where there was positive evidence that immunoglobulin is <i>not</i> effective. IFR applications should not normally be sought for such indications.</p></li>
     <li><p><i class="fa-li fa fa-hand-o-right"></i>"Unlisted": this is an indication that has never been considered by NHS England or the Department of Health in regard to its suitability fo immunoglobulin treatment. It might be added onto
-        the local database because of previous local applications.</p></li>
+        this database because of previous national IFR panel applications made with support of the subregional panel.</p></li>
     </ul>
 
   <div class= "bottom">
@@ -125,8 +131,8 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "regimen_help">&nbsp;</span>
 <div class= "help">
   <h3>Recommended Dosage Regimen</h3>
-  <p> For Red and Blue indications in the listed specialities, the new commissioning criteria (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019) describe the recommended
-      dosages and regimens for each indication. Other indications do not yet have these speficied in all cases so typical regimens are taken from the literature.
+  <p> The commissioning criteria (Immunoglobulin Commissioning Policy, Dec 2021) describe the recommended
+      dosages and regimens for each indication. Other indications do not have these speficied in all cases so typical regimens are taken from the literature of from previous commissioning guidance.
   </p>
   <p> It is now no longer considered necessary to check for IgA deficiency before administration in routine as well as in urgent indications (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019).
   </P>
@@ -137,8 +143,8 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
   <p> While many regimens of 2 g/kg can be administered in as few as 2 split daily doses, note that in certain conditions, due to autonomic instability, the 2 g/kg dose must always
       be split over 5 days.
   </p>
-  <p> As described in the NHS England ommissinoing guideline, the dose in adults is rounded down to the nearest whole vial. Since 5 g vials are normally available the App rounds down to the nearest 5 g multiple.
-      In children where the calculated dose is less than 15g, the dose is made up using 5g and 2g vials.
+  <p> As described in the NHS England Commissioning Policy, the dose in adults is rounded down to the nearest whole vial. Since 5 g vials are normally available the App rounds down to the nearest 5 g multiple. Splitting of doses into daily
+  amounts is done using whole vials. The dose need not be exactly the same each day. In children the dose should be by ideal body weight only; where the calculated dose is less than 15g, the dose is made up using 5g and 2g vials.
   </p>
 
   <div class= "bottom">
@@ -149,14 +155,14 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "outcome_help">&nbsp;</span>
 <div class= "help">
   <h3>Outcome Measures</h3>
-  <p> For Red and Blue indications in the listed specialities, the new commissioning criteria (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019) list the outcome measures that are
-      expected to be entered on the national database. In other specialities the Department of Health updated guideline (2011) is used. The outcome measures are not specified for most other indications so they have been instead determined based on review of the limited
-      literature and on extrapolation from Red and Blue indications.
+  <p> For commissioned indications, the new commissioning criteria (Immunoglobulin Commissioning Policy, Dec 2021) lists the outcome measures that are
+      expected to be entered on the national database. For other indications, previous Department of Health guidelines (c.f. 2011) are used. The outcome measures are not specified for most other indications so they have been instead determined based on review of the limited
+      literature.
   </p>
   <p> For some indications, there will be some choice re outcome measures to be used depending on the individual patient. Since many require before and after treatment measurements, these measures
       must be decided upon and taken before treatment. It is therefore expected that the form submitted to pharmacy will include the outcome measures being used and the pre-treatment results.
       There must be a plan for recording the post-treatment outcome around 2-4 weeks after treatment and commuicating this to pharmacy for entry on the database. </p>
-  <p> Note that for a number of indications, the IgG level must be measured as a baseline before treatment, e.g. Guillain Barre Syndrome; this is because monitoring of its change determines further management.
+  <p> Note that for some indications, e.g. in immunology, the IgG level must be measured as a baseline before treatment; this is because monitoring of its change determines further management.
   </p>
   <p> In most situations, long term treatment requires annual review. When a request for a repeat course is made of pharmacy, the time of last review should be checked. If a review is due, this is
       communicated to the clinician if review data have not been submitted with the request. If this information is not provided by the time of the <i>next</i> course, that course of immunoglobulin may not be dispensed until
@@ -168,7 +174,7 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
     <li><p><i class="fa-li fa fa-hand-o-right"></i>Record outcome measures again to confirm that the improved scores following a previous course compared with pre-treatment scores have been maintained.</p></li>
     </ul>
   </p>
-  <p> Note that the latest guidance (Immunoglobulin Commissioning Guidelines V1.3, Feb 2019) points out that in certain conditions, most notably CIDP and inflammatory myopathies, spontaneous stabilisation is common
+  <p> Note that the commissioning policy points out that in certain conditions, most notably CIDP and inflammatory myopathies, spontaneous stabilisation is common
       and so the first of the above methods of long term review (i.e. trial withdrawal) should be used on at least 2-3 occasions.
   </p>
 
@@ -180,69 +186,54 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "commissioning_help">&nbsp;</span>
 <div class= "help">
   <h3>NHS England Commissioning</h3>
-  <p> Most established indications for immunoglobulin therapy are commissioned directly by NHS England. However, the rules for whether commissioning consent needs to be obtained
-      in advance by an Immunoglobulin Panel acting on behalf of NHS England have been clarified in the latest Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019). The different levels of status of various
-      indications with respect to commissioning are listed below:
+  <p> Most established indications for immunoglobulin therapy are commissioned directly by NHS England. The rules for whether commissioning consent needs to be obtained
+      in advance by a subregional Immunoglobulin Panel (SRIAP) acting on behalf of NHS England have been clarified for each indication:
     <ul class="fa-ul">
-    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission not required.</i> This category roughly corresponds to red priority indications where prior permisison was not required. This is
-    because immunoglobulin is recognised to be the best treatment for the indication, assuming the eligibility criteria are met.</p></li>
-    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission not required (emergency list).</i> These are conditions that normally require prior permission, usually because of limited evidence for
-    efficacy at the time of the previous Commissioning update in 2011, or because there are considered to be equally effective alternative treatments. However, it was recognised that in some of these conditions patients might suffer
-    harm because of the potential delay before the decision of an immunoglobulin panel that meets monthly. Hence many regions have agreed and drawn up "exception" lists of emergency indications. Any indications that
-    have not yet been reviewed as of the 2019-2020 update but were previously red indications as of the 2011 update should still be given without requiring prior
-    panel approval.
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission not required.</i> This is because treatment is standard and often clinically urgent.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission not required (emergency list).</i> These are conditions that normally require prior permission because there are considered to be equally effective alternative treatments. However, it was recognised that in some of these conditions patients might suffer
+    harm because of the potential delay. Hence many regions have agreed and drawn up "exception" lists of emergency indications.
     </p>
     <p>
-    This emergency list is based on the draft local list for the North-East London Subregional Panel v0.4 (Jun 2019).
+    This emergency list is based on the draft local list for the North-East London Subregional Panel v0.4 (Jun 2019), in some cases made obsolete by changes in the commissioning policy (Dec 2021).
     </p></li>
     <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission required.</i> The prior permission of the local immunoglobulin panel or of the subregional immunoglobulin panal is required before the immunoglobulin can be dispensed.
-    This submission is normally managed by pharmacy using the information provided by clinicians. There may be up to a month's delay before a decision is reached. If a clinician considers the decision must be made
-    more urgently than this, they would follow the Trust's procedure for prescribing and dispensing urgent non-formulary medicines (typically local Drugs and Therapeutics committee Chair's action).
-    It would need to be very clear that the patient i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has a justification
-    for requiring this treatment urgently as opposed to being given any other standard treatment for their condition.</p></li>
-    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Prior panel permission required (left-hand Grey indication).</i> In drawing up their latest Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019),
-    NHS England have not yet considered former grey indications. In 2011, these were divided into 'left-hand Grey' indications (potential immune-mediated diseases with some evidence of benefit) and
-    'right-hand Grey' indications (little or no evidence of benefit). In a recent communication (July 2019), NHS England clarified interim commissioning arrangements for these indications. 'Left-hand Grey' indications
-    are to be commissioned routinely, requiring prior approval provided they have not been placed on the Emergency List where no prior approval is required. However, commissioned Grey indications will be subject
-    to quarterly review by the London Ig commissioning oversight group.
-    </p>
-    <p>As with other indications requiring prior approval, if a clinician considers the decision must be made more urgently than this, they would follow
-    the Trust's procedure for prescribing and dispensing urgent non-formulary medicines (typically local Drugs and Therapeutics committee Chair's action).
-    It would need to be very clear that the patient i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has a justification
-    for requiring this treatment urgently as opposed to being given any other standard treatment for their condition.</p></li>
-    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Requires IFR (right-hand Grey indication).</i> In drawing up their latest Immunoglobulin Commissioning Guidelines V1.3 (Feb 2019),
-    NHS England have not yet considered former Grey indications. In 2011, these were divided into 'left-hand Grey indications' (potential immune-mediated diseases with some evidence of benefit) and
-    'right-hand Grey' indications (little or no evidence of benefit). In a recent communication (July 2019), NHS England clarified interim commissioning arrangements for these indications. This was changed in a further clarification
-    in February 2020. As part of the period of collection of evidence, for 'right-hand Grey' indications, the IFR request only needs to be submitted to the Subregional Immunoglobulin Assessment Panel. The panel will require the same justifications
-    as for "left-hand Grey" indications, and in addition they will require good peer-reviewed evidence. However, exceptionality does not need to be demonstrated. Note that <i>no actual IFR to commissioners needs to be made any longer</i>,
-    but the commissioners are to be informed of cases and outcomes.
-    </p>
-    <p>
-    As of the guidance update of February 2020, indications not yet thought of by the pre-existing Guidance (2011) will require an evidence appraisal and demonstration of exceptionality
-    to be submitted to NHS England's Individual Funding Request (IFR) team, and then funded by NHS England if approved.
-    </p>
-    <p>
-    The procedure for making an IFR request to the NHS England IFR team would be to make a draft written submission first to the Subregional Immunoglobulin Panel. In the submission, it would need to be demonstrated that the patient
-    i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has an evidence-based justification
-    for requiring this treatment as opposed to being given any other standard treatment for their condition. The grounds for exceptionality would be that the case is i) a rare sub-type of an indication not properly considered by
-    NHS England when drawing up its latest guidance in 2011, or ii) that the condition itself has not been considered by NHS England, or iii) for a right-hand grey indication, there is compelling new evidence since 2011
-    of the efficacy of immunoglobulin compared to other treatments. It is not yet known if the IFR team will take a view to pass repeated (and therefore increasingly non-exceptional) requests in situations ii) or iii) while waiting for updated
-    guidance on Grey indications in 2020, on the basis that this period pending interim NHS England updates is itself exceptional. The Subregional Immunoglobulin Panel
-    will review draft submissions, and may offer advice to optimise submissions or offer support for submissions where appropriate.
-     </p>
-    <p>
-    As with other indications requiring prior approval, if a clinician considers the decision must be made more urgently than this, they would follow
-    the Trust's procedure for prescribing and dispensing urgent non-formulary medicines (typically local Drugs and Therapeutics committee Chair's action). The information detailed above
-    for IFR submissions would need to be provided to the Trust as well as additional evidence that the requirement is urgent and there are no valid alternative treatments to administer in the time frame.
-    It is possible in this circumstance that the clinician's department would bear responsibility for its cost because retrospective approval from the IFR team may well not be granted.
+    This submission is normally managed by pharmacy using the information provided by clinicians. There may be some days' delay before a decision is reached, usually requiring recommendation by two panel members and sign-off by the Chair or Deputy Chair. If a clinician considers the decision must be made
+    more urgently than this, see below.</p></li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Not commissioned and requires IFR (former left-hand Grey indication).</i> This is a legacy category. Left-hand grey indications had sparse evidence for efficacy and were previously commissioned. On commissioning review in 2021, left-hand grey indications were switched either to commissioned or not commissioned.
+    However, for indications that are now not commissioned it may nevertheless be helpful for IFR applicants and SRIAPs to know how they were formally considered.
     </p>
     </li>
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Not commissioned and requires IFR (former right-hand Grey indication).</i> This is a legacy category. Right-hand grey indications had no good evidence for efficacy and were not commissioned. It may be helpful for IFR applicants and SRIAPs to know how they were formally considered.
+    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Not commissioned and requires IFR (unlisted).</i> This would be an indication that has never been considered by NHS commissioning, i.e. neither a former grey indication, nor a former black indication where clear evidence of no benefit. It is possible that
+    they may receive a commissioning status in future updates based on new evidence. However, immunoglobulin is not currently commissioned for such indications. Nevertheless, exceptionality may be more easy to justify to an IFR team than a former grey indication that has actively
+    been switched to non-commisioned status, presumably on the basis of new negative evidence or lack of positive evidence.
     <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Shown to be ineffective (Black indication).</i>These are indications listed as 'Black' in previous NHS England guidance based on clear
     evidence that immunoglobulin is ineffective for this indication. Immunoglobulin will not be commissioned for this indication.</p></li>
-    <li><p><i class="fa-li fa fa-hand-o-right"></i><i>Unlisted.</i>These are indications that have not been considered in NHS England guidance. It is possible that
-    they may receive a commossioning status in future guidance based on new evidence. However, immunoglobulin is not currently commissioned for such indications. It is likely that an IFR request would have to be made to the local Clinical Commissioning Group
-    on grounds of exceptionality and if unsuccessful the clinician's department would bear responsibility for its cost if given.</p></li>
     </ul>
+    </p>
+    <p>
+    The procedure for making an IFR request to the NHS England IFR team would be to make a draft written submission first to the Subregional Immunoglobulin Assessment Panel (SRIAP). In the submission, it would need to be demonstrated that the patient
+    i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has an evidence-based justification
+    for requiring this treatment as opposed to being given any other standard treatment for their condition. There may be a rescinding of the temporary "waiver" on requirement for exceptionality that may have applied to former right-hand grey indications on the
+    basis that the commissioners had not had the opportunity to consider new evidence that became available after the previous guidance of 2011. Grounds for exceptionality might be that the case is i) an indication with a rare sub-type not properly considered by
+    NHS England when drawing up its policy in 2021, or ii) that the condition itself has never been considered by NHS England, or iii) for a right-hand grey indication, there is compelling new evidence since 2021
+    of the efficacy of immunoglobulin compared to other treatments. The SRIAP will review draft submissions, and may offer advice to optimise submissions or offer support for submissions where appropriate.
+    Again, it might be hard to justify an IFR when the commissioning policy has specifically switched an indication from grey to non commissioned.
+     </p>
+    <p>
+    With any indication requiring prior approval or not commissioned, if a clinician considers the decision must be made more urgently than the panel can achieve, they would follow
+    the Trust's procedure for prescribing and dispensing urgent non-formulary medicines (typically local Drugs and Therapeutics committee Chair's action). The information detailed above
+    for IFR submissions should be provided to the Trust. It should be made very clear that the patient i) fits the indication specified, ii) fits the eligibility criteria if published, iii) has had their pre-treatment outcome measures recorded, iv) has a justification
+    for requiring this treatment urgently as opposed to being given any other standard treatment for their condition in the time frame.
+    The clinician's department would bear responsibility for its cost if no IFR submission is made within one month after administration of the Ig, of if it is made in time and rejected by the National IFR Panel.
+    </p>
+    <p>
+    The clinician should first consider the likelihood of acceptance before requesting a decision to treat, for example, an indication where the commissioning policy has listed the status as black or specifically switched the status from grey to non commissioned.</p>
+    </p>
+
+
+
+
   </p>
 
 
@@ -254,7 +245,7 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "patient_help">&nbsp;</span>
 <div class= "help">
   <h3>Patient</h3>
-  <p> Enter the patient's sex, height and mass.
+  <p> Enter the patient's sex, whether they are a child, their height and mass. Sex and mass is not required in children; height determines their IBW.
   </p>
   <p> Height is needed to determine if the patient's actual mass is significantly greater than their ideal
   body mass. The latter is calculated according to the Robinson formula (J. D. Robinson, 1983, converted to metric):
@@ -264,6 +255,17 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
   </p>
   <p>
   Woman: 49 kg + 0.67 kg per cm height over 152 cm
+  </p>
+  <p> In children an adult IBW formula is clearly inappropriate. The Devine formula, for example, which is similar to the Robinson formula, was found to overestimate IBW by over 6 kg in larger children and by over 8 g in smaller children, when compared
+  with the McLaren method which uses the 50% centile mass for a child of particular height and age (Kang et al, 2019). The McLaren method is similar to the Moore method listed in the UK Medicines Information document on "How should medicines be dosed in chldren who are obese", which is
+  referenced by the NHS Commissioning Policy. In contrast, the Traub formula underestimated mass in a sample of 1-3 year olds by just 0.3 kg overall, and 0.26 kg in the smallest 5% of children in the sample and 0.2 kg in the tallest children. In 3 to 17 year olds, it underestimated mass by 0.66 kg overall, 0.56 in the smallest 5% and 0.62 in the tallest 5%.
+  Rather than resort to height and weight charts, this formula is therefore used and it does not require the child's age:
+  </p>
+  <p>
+  IBW (kg) = 2.396 x e^(0.01863 x height (cm))
+  </p>
+  <p>
+  Note that in children, unlike adults, no correction for obesity is used as stated in the commissioning policy.
   </p>
 
   <div class= "bottom">
@@ -288,7 +290,7 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <span id = "unlisted_regimen_help">&nbsp;</span>
 <div class= "help">
   <h3>Manually Entered Unlisted Regimen</h3>
-  <p> If you wish to enter a regimen manually, either a single dose in g/kg or a dose range (e.g. 0.5 to 1.5 g/kg), rather than using the unlisted dosaged box to the left, typing it here will usually yield a conversion into actual doses.
+  <p> If you wish to enter a regimen manually, either a single dose in g/kg or a dose range (e.g. 0.5 to 1.5 g/kg), rather than using the unlisted dosage box to the left, typing it here will usually yield a conversion into actual doses by parsing the text field.
       Please delete the entry here, if you wish to calculate a listed indication dose or use the unlisted dosage box.
   </p>
   <p>
@@ -305,7 +307,7 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
 <div class= "help">
   <h3>Calculate</h3>
   <p> Clicking this button calculates the total immunoglobulin dose to administer. If the actual body mass is > 20% more than ideal body mass (IBM), the mass to be used
-  to calculate Ig dose will be reduced according to the formula (use kg):
+  to calculate Ig dose will be adjusted according to the formula (use kg):
   </p>
   <p>
     Corrected mass = IBM + 0.4(actual mass – IBM)
@@ -329,12 +331,24 @@ the ideal body mass (IBM) adjustment recommended in the NHS England Updated Comm
          Version History
        </h3>
     <p>
-    This is version 0.2 of the
+    This is version 0.3 of the
     <a href="https://igcalculator.herokuapp.com/">Ig Calculator</a>
     application.
+    </p>
+    <p>
+    Changes from version 0.2:
+    <ul class="fa-ul">
+    <li>Used Traub formula for paediatric IBW calculation</li>
+    <li>Removed overweight adjustment in paediatric cases according to the commissioning policy (2021)</li>
+    <li>Updated many indications according to the Dec 2021 NHS Commissioning policy</li>
+    <li>Fixed an error where listing of dose ranges when below 30 g dose removed the dose range</li>
+    </ul>
+    </p>
+    <p>
     Changes from version 0.1:
     <ul class="fa-ul">
     <li>Dosed to nearest 2 g vial when very low dose</li>
     <li>Updated the "right-hand grey" criteria according to the Feb 2020 NHS Commissioning guidance</li>
+    </ul>
     </p>
     </br></br></br></br>

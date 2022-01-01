@@ -188,16 +188,22 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
         else
           ibm = 52 + 0.75 * (height - 152)
         end
-      else
+      elsif sex == "0"
         if height <= 152
           ibm = 49
         else
           ibm = 49 + 0.67 * (height - 152)
         end
+      else
+        ibm = 2.396 * 2.718 ** (0.01863 * height)
       end
       corrected_weight = weight.to_f
-      if weight > ibm + ibm / 5.0
-        corrected_weight = ibm + 0.4 * (weight - ibm)
+      if sex != "2"
+        if weight > ibm + ibm / 5.0
+          corrected_weight = ibm + 0.4 * (weight - ibm)
+        end
+      else
+        corrected_weight = ibm #note in children actual weight is ignored
       end
 
       dose = corrected_weight
@@ -287,19 +293,32 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
             logger.debug "Low dose = #{low_dose}, high dose = #{high_dose}."
             low_number = low_dose.to_f if low_dose != "zero"
             high_number = high_dose.to_f
-            if low_dose == "zero" && high_number != 0
-              settings["selected_dose"] = "0 to #{round_to_previous_5(dose * high_number)} g " + dosage_right
-            elsif dose * high_number < 15.0
-              settings["selected_dose"] = "#{round_to_2_gram_vial(dose * high_number)} g " + dosage_right
-            elsif low_number != 0 && high_number != 0
-              settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} to #{round_to_previous_5(dose * high_number)} g " + dosage_right
-            elsif low_number != 0
-              settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} g " + dosage_right
-            elsif high_number != 0
-              settings["selected_dose"] = "#{round_to_previous_5(dose * high_number)} g " + dosage_right
+            if dose * high_number < 14.9
+              if low_dose == "zero" && high_number != 0
+                settings["selected_dose"] = "0 to #{round_to_2_gram_vial(dose * high_number)} g " + dosage_right
+              elsif low_number != 0 && high_number != 0
+                settings["selected_dose"] = "#{round_to_2_gram_vial(dose * low_number)} to #{round_to_2_gram_vial(dose * high_number)} g " + dosage_right
+              elsif low_number != 0
+                settings["selected_dose"] = "#{round_to_2_gram_vial(dose * low_number)} g " + dosage_right
+              elsif high_number != 0
+                settings["selected_dose"] = "#{round_to_2_gram_vial(dose * high_number)} g " + dosage_right
+              else
+                settings["selected_dose"] = dosage
+              end
             else
-              settings["selected_dose"] = dosage
+              if low_dose == "zero" && high_number != 0
+                settings["selected_dose"] = "0 to #{round_to_previous_5(dose * high_number)} g " + dosage_right
+              elsif low_number != 0 && high_number != 0
+                settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} to #{round_to_previous_5(dose * high_number)} g " + dosage_right
+              elsif low_number != 0
+                settings["selected_dose"] = "#{round_to_previous_5(dose * low_number)} g " + dosage_right
+              elsif high_number != 0
+                settings["selected_dose"] = "#{round_to_previous_5(dose * high_number)} g " + dosage_right
+              else
+                settings["selected_dose"] = dosage
+              end
             end
+
           else
             logger.debug "Dosage left when no hyphen = #{dosage_left}"
             number = dosage_left.to_f
@@ -309,7 +328,7 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
               number = dosage_left.to_f
             end
             if number != 0 && number != nil
-              if (dose * number < 15.0)
+              if (dose * number < 14.9)
                 settings["selected_dose"] = "#{round_to_2_gram_vial(dose * number)} g " + dosage_right
               else
                 settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
@@ -318,7 +337,7 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
               number = dosage_left.scan(/one/).first
               if number == "one"
                 number = 1
-                if (dose * number < 15.0)
+                if (dose * number < 14.9)
                   settings["selected_dose"] = "#{round_to_2_gram_vial(dose * number)} g " + dosage_right
                 else
                   settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right
@@ -327,7 +346,7 @@ disease_id_array = Disease.where((["speciality = ?" , "neurology"])) - it might 
                 number = dosage_left.scan(/two/).first
                 if number == "two"
                   number = 2
-                  if (dose * number < 15.0)
+                  if (dose * number < 14.9)
                     settings["selected_dose"] = "#{round_to_2_gram_vial(dose * number)} g " + dosage_right
                   else
                     settings["selected_dose"] = "#{round_to_previous_5(dose * number)} g " + dosage_right

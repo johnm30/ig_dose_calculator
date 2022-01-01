@@ -1,16 +1,18 @@
 <div class="col-xs-12"></br></div>
 
 <div class="field" >
-  <div class="col-xs-2">
-  <h3 style="padding-top:2px"> <%# the padding is just to show the superscript question mark %>
-      Patient<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "patient_help" } %></sup>
-    </h3>
-</div>
-  <%= f.label :sex, "Sex", class: "col-xs-2", style: "text-align:right"  %>
+<%#  <div class="col-xs-2">
+<%#  <h3 style="padding-top:2px"> <%# the padding is just to show the superscript question mark %>
+<%#      Patient<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "patient_help" } %>
+<%#    </h3>
+<%#  </div> %>
+  <%= f.label :sex, "Patient", class: "col-xs-2", style: "text-align:left" do %>
+    <span style = "padding-top:2px;font-weight:1200; font-size:38px;">Patient<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "patient_help" } %></sup></span>
+  <% end %>
   <% logger.debug "settings = #{@settings}, @settings[:sex] = #{@settings["sex"]}" %>
-      <% if  @settings != nil && @settings["sex"] != nil && @settings["sex"] == "1" %>
+      <% if  @settings != nil && @settings["sex"] != nil && @settings["sex"] == "2" %>
         <div class="col-xs-1">
-          <%= f.radio_button :sex, "1",  :checked => true, class: "form_control" %>
+          <%= f.radio_button :sex, "1", class: "form_control" %>
           <%= f.label :sex, 'Male', class: "control-label", style: "text-align:left;font-weight:normal" do %>
             <span style = "font-weight:1200; font-size:28px;">&#9794;</span>
           <% end %>
@@ -21,7 +23,13 @@
             <span style = "font-weight:1200; font-size:28px;">&#9792;</span>
           <% end %>
         </div>
-      <% else %>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "2", :checked => true, class: "form_control" %>
+          <%= f.label :sex, 'Child', class: "control-label", style: "text-align:left; font-weight:normal" do %>
+            <span style = "font-weight:1200; font-size:28px;">Child</span>
+          <% end %>
+        </div>
+      <% elsif  @settings != nil && @settings["sex"] != nil && @settings["sex"] == "0" %>
         <div class="col-xs-1">
           <%= f.radio_button :sex, "1",  class: "form_control" %>
           <%= f.label :sex, "Male", class: "control-label", style: "text-align:left;font-weight:normal" do  %>
@@ -32,6 +40,31 @@
           <%= f.radio_button :sex, "0",  :checked => true, class: "form_control" %>
           <%= f.label :sex, "Female", class: "control-label", style: "text-align:left; font-weight:normal" do %>
             <span style = "font-weight:1200; font-size:28px;">&#9792;</span>
+          <% end %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "2", class: "form_control" %>
+          <%= f.label :sex, 'Child', class: "control-label", style: "text-align:left; font-weight:normal" do %>
+            <span style = "font-weight:1200; font-size:28px;">Child</span>
+          <% end %>
+        </div>
+        <% else %>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "1", :checked => true, class: "form_control" %>
+          <%= f.label :sex, "Male", class: "control-label", style: "text-align:left;font-weight:normal" do  %>
+            <span style = "font-weight:1200; font-size:28px;">&#9794;</span>
+          <% end %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "0",  class: "form_control" %>
+          <%= f.label :sex, "Female", class: "control-label", style: "text-align:left; font-weight:normal" do %>
+            <span style = "font-weight:1200; font-size:28px;">&#9792;</span>
+          <% end %>
+        </div>
+        <div class="col-xs-1">
+          <%= f.radio_button :sex, "2",  class: "form_control" %>
+          <%= f.label :sex, 'Child', class: "control-label", style: "text-align:left; font-weight:normal" do %>
+            <span style = "font-weight:1200; font-size:28px;">Child</span>
           <% end %>
         </div>
       <% end %>
