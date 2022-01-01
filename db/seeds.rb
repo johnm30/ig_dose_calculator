@@ -23,7 +23,7 @@ Disease.create!(speciality: "Immunology",
 disease = Disease.find(1)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Primary immunodeficiency (updated)",
+    name:  "Primary immunodeficiency (updated 2022)",
     description: "Primary immunodeficiencies associated with significant antibody defects (excluding specific antibody deficiency which is a separate Red priority commissioned indication) – long term use."
     )
 
@@ -36,7 +36,7 @@ Disease.create!(speciality: "Immunology",
 disease = Disease.find(2)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Thymoma immunodeficiency (updated)",
+    name:  "Thymoma immunodeficiency long term use (updated 2022)",
     description: "Thymoma with immunodeficiency – long term use."
     )
 
@@ -50,7 +50,7 @@ Disease.create!(speciality: "Immunology",
 disease = Disease.find(3)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "HSCT in primary immunodeficiencies (updated)",
+    name:  "HSCT in primary immunodeficiencies – long term use (updated 2022)",
     description: "Patients with primary immunodeficiency having haematopoietic stem cell transplantation (HSCT) – long term use."
     )
 
@@ -64,7 +64,7 @@ Disease.create!(speciality: "Immunology",
 disease = Disease.find(4)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Specific antibody deficiency 6-12 month trial (updated)",
+    name:  "Specific antibody deficiency 6-12 month trial (updated 2022)",
     description: "Specific antibody deficiency - 6-12 month trial."
     )
 
@@ -79,7 +79,7 @@ Disease.create!(speciality: "Immunology",
 disease = Disease.find(5)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Specific antibody deficiency beyond 6-12 months (updated)",
+    name:  "Specific antibody deficiency beyond 6-12 months (updated 2022)",
     description: "Specific antibody deficiency - long term maintenance after first 6-12 months."
     )
 
@@ -96,7 +96,7 @@ Disease.create!(speciality: "Immunology",
 disease = Disease.find(6)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Secondary antibody deficiency (updated)",
+    name:  "Secondary antibody deficiency long term use (updated 2022)",
     description: "Secondary antibody deficiency - long term use."
     )
 
@@ -111,7 +111,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(7)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Neonatal alloimmune thrombocytopenia (updated)",
+    name:  "Neonatal alloimmune thrombocytopenia (updated 2022)",
     description: "Neonatal alloimmune thrombocytopenia (NAIT)."
     )
 
@@ -124,7 +124,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(8)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Fetal-maternal Alloimmune Thrombocytopenia (updated)",
+    name:  "Fetal-maternal Alloimmune Thrombocytopenia (updated 2022)",
     description: "Fetal-maternal Alloimmune Thrombocytopenia (FMAIT)"
     )
 
@@ -138,7 +138,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(9)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Haemolytic disease of the newborn (updated)",
+    name:  "Haemolytic disease of the newborn - short term use (updated 2022)",
     description: "Haemolytic disease of the newborn - short term use."
     )
 
@@ -152,7 +152,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(10)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Acute immune thromocytopenia (ITP) short term use (updated)",
+    name:  "Acute immune thromocytopenia (ITP) short term use (updated 2022)",
     description: "Immune thromocytopenia (ITP) - short term use."
     )
 
@@ -165,28 +165,28 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(11)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Acute immune thromocytopenia (ITP) maintenance (updated)",
+    name:  "Acute immune thromocytopenia (ITP) maintenance (updated 2022)",
     description: "Acute immune thromocytopenia (ITP) - maintenance treatment. Note that after requiring 5-6 immunoglobulin courses, and still requiring further treatment,
                   the patient has moved to the chronic phase of ITP."
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Requires IFR",
+                commissioning: "Prior panel approval required",
                 priority: "3. Grey",
                 regimen: "1 g/kg initialy every 4 weeks, or 2 g/kg if failure to respond to 1 g/kg doses during acute management. Adjust to maximum interdose period while controlling symptoms.",
-                criteria: "Patient haemorrhaging refractory to all other treatment during period where other treatments are being tried.",
+                criteria: "Antenatally to maintain platelets above 20x10^9/l and 50x10^9/l during delivery.",
                 outcome: "Increase in platelet count, resolution of bleeding, number of bleeding complications.")
 disease = Disease.find(12)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Chronic immune thromocytopenia (ITP) (no longer commissioned)",
+    name:  "Chronic immune thromocytopenia (ITP) (updated 2022)",
     description: "Chronic immune thromocytopenia (ITP) is defined as a platelet count <100 x 109/L at 6 months following onset with no other cause found. Immunoglobulin does not appear to reduce the
                 potential for acute ITP to progress to the chronic phase but has a role in some chronic cases to minimise bleeding complications in conjunction with steroids (to the limit of tolerability),
-                immunosuppressives and thrombopoietin receptor antagonists."
+                immunosuppressives and thrombopoietin receptor antagonists. Only commissioned antenatally in this situation because immunosuppression inappropriate."
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval required (emergency list)",
                 priority: "2. Blue",
                 regimen: "1-1.2 g/kg in divided doses; repeated for maximum 2 relapses",
                 criteria: "Parvovirus B19 infection confirmed by PCR, with high viral load usually above 109 IU/ml.
@@ -195,7 +195,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(13)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Acquired red cell aplasia from parvovirus B19 (updated)",
+    name:  "Acquired red cell aplasia from parvovirus B19 (updated 2022)",
     description: "Acquired red cell aplasia associated with chronic parvovirus B19 infection – short term use."
     )
 
@@ -210,12 +210,12 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(14)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Autoimmune haemolytic anaemia acute episode (updated)",
+    name:  "Autoimmune haemolytic anaemia acute episode (updated 2022)",
     description: "Autoimmune haemolytic anaemia (AHA) including Evans syndrome – acute episode."
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval required (emergency list)",
                 priority: "2. Blue",
                 regimen: "1-2 g/kg in divided doses.",
                 criteria: "Symptomatic or severe anaemia, except in patients with co-morbidities, when steroids failed or contraindicated or prior to splenectory.
@@ -226,7 +226,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(15)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Autoimmune haemolytic anaemia relapse (updated)",
+    name:  "Autoimmune haemolytic anaemia relapse (updated 2022)",
     description: "Autoimmune haemolytic anaemia (AHA) including Evans syndrome – short term use on relapse."
     )
 
@@ -241,12 +241,12 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(16)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Post-transfusion hyperhaemolysis (updated)",
+    name:  "Post-transfusion hyperhaemolysis short term use (updated 2022)",
     description: "Post-transfusion hyperhaemolysis (treatment or prevention) – short term use."
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval required (emergency list)",
                 priority: "2. Blue",
                 regimen: "0.4 g/kg for 5 days or 1 g/kg a day for two days, with other treatments such as plasmapheresis, desmopressin, factor VII",
                 criteria: "Life- or limb-threatening haemorrhage and failure to respond to other treatments,
@@ -257,12 +257,12 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(17)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Coagulation factor inhibitors (updated)",
+    name:  "Coagulation factor inhibitors short term use (updated 2022)",
     description: "Coagulation factor inhibitors (alloantibodies and autoantibodies) in acquired von Willebrand disease (VWD) – short term use."
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval required (emergency list)",
                 priority: "2. Blue",
                 regimen: "2 g/kg divided over 2-5 days with steroids; repeated for maximum 2 relapses.",
                 criteria: "Diagnosis by consultant haematologist or rheumatologist from H score (pyrexia, organomegaly, multiple cytopenias, triglycerides, fibrinogen, ferritin, AST, bone marrow Bx, immunosuppressants)",
@@ -270,7 +270,7 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(18)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Haemophagocytic syndrome (updated)",
+    name:  "Haemophagocytic syndrome short term use (updated 2022)",
     description: "Haemophagocytic syndrome (haemophagocytic lymphohistiocytosis (HLH))– short term use."
     )
 
@@ -283,12 +283,12 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(19)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Post-transfusion purpura (updated)",
+    name:  "Post-transfusion purpura short term use (updated 2022)",
     description: "Post-transfusion purpura – short term use. Very rare in UK following implementation of universal leukocyte reduction of blood components in 1999. Typically occurs in Caucasian HPA-1a antigen negative females previously exposed to HPA-1a antigen in pregnancy or transfusion."
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Prior panel approval required (removed from emergency list)",
+                commissioning: "Prior panel approval required (emergency list)",
                 priority: "3. Grey",
                 regimen: "2 g/kg divided over 4-5 days single course for stabilisation while preparing other therapies, e.g. rituximab.",
                 criteria: "3+ Multiorgan thromboses developing in <7 days with histological evidence of microhaemorrhage in at least one organ and with circulating antibodies, to be given in conjunction with anticoagulation and steroids, and where plasma exchange not immediately available as an appropriate alternative.",
@@ -296,13 +296,13 @@ Disease.create!(speciality: "Haematology",
 disease = Disease.find(20)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Catastrophic antiphospholipid syndrome (updated)",
+    name:  "Catastrophic antiphospholipid syndrome (updated 2022)",
     description: "Catastrophic antiphospholipid syndrome describes multi-organ involvement with circulating lupus anticoagulant or anticardiolipin or antiphospholipid antibodies. Note that significant cerebral
-                  infarction with these antibodies is alone a justification for immunoglobulin and described as a separate indication."
+                  infarction alone with these antibodies could be a justification for immunoglobulin and described as a separate indication but is not commissioned."
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Requires IFR (former right-hand grey)",
                 priority: "3. Grey",
                 regimen: "2 g/kg divided over 2-5 days single course repeated if relapse after response.",
                 criteria: "Option in cases as outlined in description who are not suitable for immunosuppressive therapy.",
@@ -318,7 +318,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Requires IFR (former right-hand grey)",
                 priority: "3. Grey",
                 regimen: "2 g/kg divided over 2-5 days single course.",
                 criteria: "There are no longer any clear criteria for the use of immunoglubulin (see description)",
@@ -336,7 +336,7 @@ DiseaseDescription.create!(
 
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Requires IFR (former right-hand grey)",
                 priority: "3. Grey",
                 regimen: "2 g/kg maximum divided over 2-5 days weekly for 4 weeks.",
                 criteria: "Neutrophil count persistently lower than 0.5x10^9/l with severe infection and failure to respond to G-CSF and other immunosuppressives
@@ -354,7 +354,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Requires IFR (former right-hand grey)",
                 priority: "3. Grey",
                 regimen: "0.4 g/kg daily for 3 days has been used (Zhao et al., 2016).",
                 criteria: "No clear recommendations for use.",
@@ -370,7 +370,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Haematology",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Requires IFR (former right-hand grey)",
                 priority: "3. Grey",
                 regimen: "2 g/kg divided over 2-5 days.",
                 criteria: "No clear recommendations for use.",
@@ -455,13 +455,13 @@ Disease.create!(speciality: "Neurology",
 disease = Disease.find(30)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "IgM Paraprotein-associated demyelinating neuropathy short term (updated)",
+    name:  "IgM Paraprotein-associated demyelinating neuropathy short term (updated 2022)",
     description: "IgM Paraprotein-associated demyelinating neuropathy - short term treatment. Note that Ig is seldom significantly effective.
                  Alternative underlying haematological diagnoses should be considered which may direct treatment. Not for long term use if ineffective or relapse; instead rituximab (or biosimilar) is commissioned."
     )
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Not commissioned",
+                commissioning: "Not commissioned and requires IFR (former left-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "2 g/kg course divided over 2-5 days repeated at intervals of three months or at relapse interval if relapsed during short term treatment.  Attempt dose reductions of 20% each course until demonstrated inferior response.",
                 criteria: "Significant functional improvement after short term treatment",
@@ -481,7 +481,7 @@ Disease.create!(speciality: "Neurology",
                 regimen: "2 g/kg course divided over 2-5 days. 2nd course after 4-8 weeks.
                           Maintenance every three months or at relapse interval normally for a maximum of 12 months.",
                 criteria: "Diagnosis of myositis by specialist, where diagnosis is PM or DM with significant muscle weakness or
-                          where dysphagia unresponsive to corticosteroids and other immunosuppressive agents or
+                          where dysphagia or respiratory failure unresponsive to corticosteroids and other immunosuppressive agents or
                           where DM with refractory skin involvement.
                           Use steroids first line if progression not rapid. 2nd line rituximab or biosimilar as adjunctive therapy. 3rd line abatacept (fusion of cytotoxic T-lymphocyte-associated antigen 4 (CTLA-4) with Fc of IgG1). Ig is therefore considered 4th line treatment, best considered an adjunct while awaiting response to immunosuppressives.",
                 outcome: "Clinically meaningful improvement in 3 measures. Dermatomyositis: ADLs, MRC sumscore, quantitative muscle strengths,
@@ -599,26 +599,27 @@ disease = Disease.find(40)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Acute disseminated encephalomyelitis (ADEM), Devics (neuromyelitis optica spectrum) and transverse myelitis short term treatment (updated 2022)",
-    description: "Non-MS CNS inflammatory disease covering the clinical phenotype of AQP4 ab disease, NMOSD, ADEM (with or without encephalopathy, including brainstem attacks), myelin ologodendrocyte associated glycoprotein (MOG) disease, transverse myelitis, optic neuritis. Specifically excludes MS, Behcets, sarcoid."
+    description: "Non-MS CNS inflammatory disease covering the clinical phenotype of aquaporin 4 (AQP4) antibody disease (Devics) , neuromyelitis optica spectrum disorder (NMOSD), acute disseminated encephalomyelitis (ADEM) (with or without encephalopathy, including brainstem attacks), myelin ologodendrocyte associated glycoprotein (MOG) disease, transverse myelitis, optic neuritis. Specifically excludes MS, Behcets, sarcoid."
     )
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval required",
                 priority: "2. Blue",
                 regimen: "2 g/kg course divided over 5 days, repeated at 3-6 week intervals up to 3 times. if repeat doses required consider alternative longer term strategy immediately",
-                criteria: "Non infective encephalitis clinically strongly suspected (inflammatory CNS disorder with active csf, seizures, consistent MR imaging changes) or antibody confirmed with functional disability and failure to respond to high-dose steroids or plasma exchange or when plasma exchange not appropriate.
+                criteria: "Non infective encephalitis clinically strongly suspected (evidence of inflammatory CNS disorder with active csf, seizures, consistent MR imaging changes) or antibody confirmed with functional disability and failure to respond to high-dose steroids or plasma exchange or when plasma exchange not appropriate.
+                          Exclusions are infective encephalitis or non inflammatory causes of encephalopathy or seizures.
                           This requires prior approval but since encephalopathy may be acutely life-threatening, there could be
                           insufficient time. Consider recruitment in Enceph-Ig trial. Note that paraneoplastic neurological disorder is a separate category that need not be encepahlitic but requires identification of relevant tumour.",
-                outcome: "Clinically meaningful improvement in GCS, seizures, MRI appearance, hyponatraemia, antibody titre or a validated disability measure (eg modified Rankin score, validated cognitive test) recorded 2-4 weeks after initiation of treatment.")
+                outcome: "Clinically meaningful improvement in GCS, seizures, MRI appearance, hyponatraemia if relevant, antibody titre or a validated disability measure (eg modified Rankin score, validated cognitive test) recorded 2-4 weeks after initiation of treatment.")
 disease = Disease.find(41)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Autoimmune encephalitis (updated 2022)",
-    description: "Autoimmune encephalitis/ encephalitides (including with NMDA receptor, VGKC, LGI1, Caspr2, GAD, DPPX, AMPA, GABAb antibodies among others)."
+    description: "Autoimmune encephalitis/ encephalitides (including with NMDA receptor, VGKC, LGI1, Caspr2 (voltage gated potassium channel), GAD, DPPX, AMPA, GABAb antibodies among others)."
     )
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Not commissioned and requires IFR but multi-organ catastrophic thrombosis commissioned",
                 priority: "3. Grey",
                 regimen: "2 g/kg course divided over 2-5 days for short term stabilisation.",
                 criteria: "Acute cerebral infarction in the presence of evidence on blood tests for antiphospholipid syndrome.",
@@ -627,11 +628,11 @@ disease = Disease.find(42)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "Cerebral infarction with antiphospholipid antibodies",
-    description: "Cerebral infarction with antiphospholipid antibodies."
+    description: "Cerebral infarction with antiphospholipid antibodies. There is concern that if clear acute stroke and known previous antiphospholipid associated disease, Ig could reduce permanent disability."
     )
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Not commissioned",
+                commissioning: "Not commissioned and requires IFR (former left-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "0.5 g/kg dose.",
                 criteria: "Chronic complex regional pain syndrome diagnosed by a multidisciplinary team including a Consultant Neurologist or Pain Specialist,
@@ -646,7 +647,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Not commissioned",
+                commissioning: "Not commissioned and requires IFR (former unlisted)",
                 priority: "3. Grey",
                 regimen: "2 g/kg course divided over 2-5 days for short-term stabilisation pending immunosuppressive therapy.",
                 criteria: "Infarction or haemorrhage visible on MRI brain, encephalopathy requiring intensive care management,
@@ -656,11 +657,11 @@ disease = Disease.find(44)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "CNS vasculitis (updated 2022)",
-    description: "CNS vasculitis. This was formally listed as a grey indication."
+    description: "CNS vasculitis. See under ANCA associated systemic vasculitis."
     )
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Not commissioned",
+                commissioning: "Not commissioned and requires IFR (former left-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "1 g/kg dose given every 4 weeks for 3 doses (Billiau et al., 2007). Continuation for another 3 doses if >50% seizure reduction.",
                 criteria: "Short to medium control of seizures in children with West syndrome or other intractable epilepsy, when standard antiepileptic drugs, ketotic diet and steroids have failed.",
@@ -683,7 +684,7 @@ Disease.create!(speciality: "Neurology",
                 priority: "2. Blue",
                 regimen: "2 g/kg single course divided over 2-5 days, repeated at 6 weeks then titrated; combine with other treatments.",
                 criteria: "Autoimmune neuromyotonia, with or without Morvan syndrome, debilitating and supported with electrophysiological studies with or without voltage gated K channel (Caspr) antibodies. Refractory after treatment with symptomatic anticonvulsants, steroids and oral
-                          immunosuppression, plasma exchange. Treat any underlying malignancy."
+                          immunosuppression, plasma exchange. Treat any underlying malignancy.",
                 outcome: "Timed up and go walk, myotonia behaviour scale, Rivermed mobility index, brief pain inventory, neurophysiological assessment, major improvement in debilitating and painful muscle cramps, severity of which measured on visual analogue scale before and after treatment.")
 disease = Disease.find(46)
 DiseaseDescription.create!(
@@ -742,7 +743,7 @@ DiseaseDescription.create!(
                 consider recategorising as Guillain Barre syndrome which is routinely commissioned without prior panel approval.")
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Not commissioned",
+                commissioning: "Not commissioned and requires IFR (former right-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "0.5 g/kg as for complex regional pain syndrome.",
                 criteria: "Chronic severe facial pain refractory to all appropriate standard therapies and with an aetiology involving a purported immune pathophysiology.",
@@ -757,7 +758,7 @@ DiseaseDescription.create!(
               objective features such as trophic skin changes. An IFR might only be supported if there was some rationale in the literature for an immune mechanism, as purported in refractory epilepsy. Formerly listed as a right-hand grey indication.")
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Not commissioned",
+                commissioning: "Not commissioned and requires IFR (former right-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "2 g/kg divided over 2-5 days. Repeat after time of relapse if major response.",
                 criteria: "Diabetic femoral neuropathy or plexopathy resulting in weakness in the innervated muscles and significant disability.",
@@ -774,7 +775,7 @@ DiseaseDescription.create!(
               motor neuropathy or CIDP even if they are diabetic. Formerly listed as a grey indication.")
 
 Disease.create!(speciality: "Neurology",
-                commissioning: "Not commissioned",
+                commissioning: "Not commissioned and requires IFR (former right-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "2 g/kg divided over 2-5 days single course.",
                 criteria: "Authorities typically recommend treatment only as part of a double-blinded placebo controlled trial. Plasma exchange is an alterative.",
@@ -872,22 +873,22 @@ DiseaseDescription.create!(
 ################################################################################
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required",
+                commissioning: "Prior panel approval via UKHSA health protection team (https://www.gov.uk/healthprotectionteam)",
                 priority: "1. Red",
-                regimen: "Subgam by intramuscular injection: <10 years 500mg, >10 years 750mg.",
-                criteria: "With vaccine in those less able to respond to the vaccine (aged 60 or over or immunosuppressed with CD4 count <200 or those at risk of severe complications because of chronic liver disease,
+                regimen: "Subgam by intramuscular injection: <10 years 500mg, >10 years 1000mg.",
+                criteria: "Given with vaccine when within 2 weeks of exposure (or otherwise when within 2-4 weeks of exposure) in those less able to respond to the vaccine (aged 60 or over OR immunosuppressed with CD4 count <200 OR those at risk of severe complications because of chronic liver disease,
                         including chronic hepatitis B or C).",
                 outcome: "Does not contract hepatitis A.")
 disease = Disease.find(59)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Hepatitis A",
+    name:  "Hepatitis A (updated 2022)",
     description: "Immunoglobulin is given together with vaccine to high risk contacts of patients with acute Hepatitis A infection within 2 weeks of exposure,
                 or without vaccine to those exposed 2-4 weeks ago to modify disease course when at risk of severe complications (e.g. chronic liver disease including from hepatitis B or C)."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required",
+                commissioning: "Prior panel approval via UKHSA health protection team (https://www.gov.uk/healthprotectionteam)",
                 priority: "1. Red",
                 regimen: "0.15 g/kg of Ig ideally within 72 hours of exposure although can be given up to 6 days later.",
                 criteria: "Immunosuppressed individuals (Group A and Group B) who have had significant exposure and known susceptibility based on vaccine history or IgG levels.
@@ -896,12 +897,12 @@ Disease.create!(speciality: "Infectious Diseases",
 disease = Disease.find(60)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Measles in immunosuppressed",
+    name:  "Measles in immunosuppressed (updated 2022)",
     description: "Measles (immunosuppressed individuals)."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required",
+                commissioning: "Prior panel approval via UKHSA health protection team (https://www.gov.uk/healthprotectionteam)",
                 priority: "1. Red",
                 regimen: "For pregnant contacts: approximately 3000mg of human normal immunoglobulin (HNIG) (in vials of Subgam). For infants: 0.6ml/kg up to a maximum of 1000mg Subgam",
                 criteria: "Pregnant women identified as susceptible based on vaccine history or antibody testing who have had a significant exposure to measles.
@@ -911,20 +912,20 @@ Disease.create!(speciality: "Infectious Diseases",
 disease = Disease.find(61)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Measles in pregnant women and infants",
+    name:  "Measles in pregnant women and infants (updated 2022)",
     description: "Measles in pregnant women and infants."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required",
+                commissioning: "Prior panel approval via UKHSA health protection team (https://www.gov.uk/healthprotectionteam)",
                 priority: "1. Red",
-                regimen: "<1 year: 250mg. 1 – 2 years: 500mg. >3 years: 750mg. Repeat at 3 weekly intervals if stool samples positive until 2 consecutive negative weekly stool samples.",
+                regimen: "<1 year: 250mg. 1 – 2 years: 500mg. >3 years: 750mg. Repeat at 3 weekly intervals if stool samples positive until 2 negative weekly stool samples.",
                 criteria: "To prevent or attenuate an attack in an immunocompromised person inadvertently given live polio vaccine or an immunocompromised person whose contacts are inadvertently given live polio vaccine.",
                 outcome: "Prevention or resolution of infection.")
 disease = Disease.find(62)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Polio vaccine in immunosuppressed",
+    name:  "Polio vaccine in immunosuppressed (updated 2022)",
     description: "An immunosuppressed individual inadvertently given live polio vaccine or exposed to contacts given live vaccine."
     )
 
@@ -934,13 +935,13 @@ Disease.create!(speciality: "Infectious Diseases",
                 regimen: "TIG: 250 IU for most uses, 500 IU if >24 hours elapsed or risk of heavy contamination or following burns.
                           Alternatively Subgam 16% one vial of 750mg.
                           Also clean wound thoroughly and give booster of tentatus-containing vaccine.",
-                criteria: "Susceptible individuals (incomplete immunisation) sustaining high risk tetanus prone injury (soil or manure exposed wound, burn or animal bite or extensive tissue necrosis).",
+                criteria: "Susceptible individuals (incomplete immunisation) sustaining high risk tetanus prone injury (soil or manure exposed wound, burn or animal bite or extensive tissue necrosis) within incubation period for tetanus of 10-21 days.",
                 outcome: "Prevention of infection.")
 disease = Disease.find(63)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Tetanus prone injury",
-    description: "Prophylaxis in tetanus prone injury. Intravenous Ig contains reasonable quantities of anti-tetanus antibody when tested (specific antibody (TIG) not always available in UK)."
+    name:  "Tetanus prone injury (updated 2022)",
+    description: "Prophylaxis in tetanus prone injury. Intravenous Ig contains reasonable quantities of anti-tetanus antibody when tested (specific antibody tetanus specific immunoglobulin (TIG) not always available in UK)."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
@@ -953,65 +954,65 @@ Disease.create!(speciality: "Infectious Diseases",
 disease = Disease.find(64)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Clinical tetanus",
+    name:  "Clinical tetanus (updated 2022)",
     description: "Suspected case of symptomatic tetanus."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required",
+                commissioning: "Prior panel approval via UKHSA health protection team (https://www.gov.uk/healthprotectionteam)",
                 priority: "1. Red",
-                regimen: "0.2 g/kg single dose within 14 days of exposure and ideally within 7 days.",
-                criteria: "Intra-muscular injections contra-indicated in individual with significant exposure to chickenpox or shingles and at increased risk (significantly immunosuppressed, neonates and pregnant women)
+                regimen: "0.2 g/kg single dose within 14 days of exposure and ideally within 7 days. No further dose if second exposure within 3 weeks of first dose.",
+                criteria: "Intra-muscular injections of VZIG contra-indicated in individual with significant exposure to chickenpox or shingles and at increased risk (significantly immunosuppressed (Group A or Group B), neonates and pregnant women)
                           and no antibodies based on VZV antibody testing.",
                 outcome: "Prevention of infection.")
 disease = Disease.find(65)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Varicella zoster exposure",
+    name:  "Varicella zoster exposure (updated 2022)",
     description: "Varicella zoster exposure in immunosuppressed where intramuscular Varicella Ig is contraindicated."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval not required (urgency acknowledged by policy)",
                 priority: "2. Blue",
-                regimen: "2g/kg as a single dose.",
+                regimen: "1 g/kg as a single dose, consider further 1 g/kg dose if no improvement at 24 hours",
                 criteria: "Diagnosis of life threatening streptococcal or staphylococcal toxic shock syndrome (TSS), preferably with isolation of organism, and failure to achieve rapid improvement
                           with antibiotic therapy and other supportive measures.",
                 outcome: "Improvement of FBC, ALK, CPK; reduction in hospital inpatient stay; survival.")
 disease = Disease.find(66)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Necrotising (PVL-associated) staphylococcal sepsis or toxic shock syndrome",
-    description: "Necrotising (Panton-Valentine leukocidin (PVL)-associated) staphylococcal sepsis or toxic shock syndrome."
+    name:  "Staphylococcal or streptococcal toxic shock syndrome - short term use (updated 2022)",
+    description: "Necrotising (including Panton-Valentine leukocidin (PVL)-associated) staphylococcal or streptococcal sepsis or toxic shock syndrome. The benefit of Ig in streptococcal sepsis TSS is more controversial."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval required (formerly on emergency list)",
                 priority: "2. Blue",
-                regimen: "0.4 g/kg single dose, consider repeating.",
+                regimen: "0.4 g/kg single dose, consider repeating once.",
                 criteria: "Severe cases (WCC >15, acute rising creatinine or signs/symptoms of colitis) not responding to oral
-                          vancomycin 125 mg qds with or wihout iv netromidazole or oral rifampicin. Consider immunoglobulin
-                          especially if multiple relapses or evidence of malnutrition.",
+                          vancomycin 125 mg qds with or without iv netromidazole or oral rifampicin. Consider immunoglobulin
+                          especially if multiple relapses or evidence of malnutrition. Tigecycline iv and fecal microbiotica transplantation (approved by NICE) are alternatives to Ig.",
                 outcome: "Any measure of significant clearance of C. difficile; duration of hospital inpatient stay.")
 disease = Disease.find(67)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Severe or recurrent C. difficile colitis",
+    name:  "Severe or recurrent C. difficile colitis (updated 2022)",
     description: "Severe or recurrent Clostridium difficile colitis."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
-                commissioning: "Prior panel approval not required (emergency list)",
-                priority: "1. Grey",
+                commissioning: "Not commissioned and requires IFR (former Grey indication)",
+                priority: "3. Grey",
                 regimen: "0.2 g/kg single dose within 14 days of exposure and ideally within 7 days.",
                 criteria: "Intra-muscular injections contra-indicated in individual with significant exposure to infection and at increased risk (significantly immunosuppressed, neonates and pregnant women)",
                 outcome: "Prevention of infection.")
 disease = Disease.find(68)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Post-exposure prophylaxis (excluding varicella)",
-    description: "Post-exposure prophylaxis for certain viral or other infections if intramuscular injection contraindicated or when hyperimmune immunoglobulins are unavailable.
-                  This excludes varicella exposure, which is a separate Red indication for immunogobulin."
+    name:  "Post-exposure prophylaxis (excluding varicella, measles, Hepatitis A, tetanus) (updated 2022)",
+    description: "Post-exposure prophylaxis for certain viral or other infections if intramuscular injection contraindicated or when hyperimmune immunoglobulins are unavailable. This was a former grey indication.
+                  This excludes varicella and certain other exposures, which are commissioned indications for immunogobulin."
     )
 
 Disease.create!(speciality: "Infectious Diseases",
@@ -1058,140 +1059,141 @@ Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval not required",
                 priority: "1. Red",
                 regimen: "2 g/kg single dose given over 10-12 hours, in conjunction with high dose aspirin. Second dose if no response or relapse within 48h.",
-                criteria: "Clinical diagnosis by a paediatrician or immunologist.",
-                outcome: "Resolution of fever.")
+                criteria: "Clinical diagnosis by a paediatrician or immunologist or in adult cases of PIMS-TS by a consultant in infection or immunologist or appropriate MDT",
+                outcome: "Resolution of fever, improvement in acute phase markers.")
 disease = Disease.find(72)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Kawasaki disease",
-    description: "Kawasaki disease. This has not yet been assessed for commissioning status, but as a red indication in 2011 and given the clinical context it
-                clearly should be able to be given without prior approval."
+    name:  "Kawasaki disease including COVID-19 Kawasaki like syndrome (updated 2022)",
+    description: "Kawasaki disease. Includes Paediatric Inflammatory Multisystem Syndrome temporarily associated with coronavirus COVID-19 (PIMS-TS) (https://www.rcpch.ac.uk/)."
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval not required",
+                commissioning: "Not commissioned (former Red indication)",
                 priority: "1. Red",
                 regimen: "2 g/kg single dose or divided over 3 days.",
-                criteria: "Diagnosis by a dermatologist and life threatening or when involved body surface area >10% and other treatments contraindicated.",
+                criteria: "Diagnosis by a dermatologist and life threatening or when involved body surface area >10% and other treatments contraindicated, if started within first 48-72 hours. This was removed from commissioning in 2021.
+                Reviews by Kohanim et al (2016) and Momin (2009) indicate it may be of benefit but evidence is hampered by lack of clinical trials, which is understandable given it is a rare and emergency and potentially rapidly fatal condition. In
+                the absence of sight of a trial showing no benefit, an SRIAP might immediately recommend use and retrospective IFR request.",
                 outcome: "Resolution of the disease.")
 disease = Disease.find(73)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Toxic epidermal necrolysis",
+    name:  "Toxic epidermal necrolysis (updated 2022)",
     description: "Toxic epidermal necrolysis (Stevens Johnson syndrome)."
     )
 
 Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval required",
                 priority: "1. Red",
-                regimen: "1 g/kg course given to mother starting at 14 weeks gestation given fortnightly, and then weekly from 18 weeks gestation to delivery.",
+                regimen: "1 g/kg course (max 60 g and calculated from mother's booking weight) given fortnightly to mother starting at 14 weeks gestation, and then weekly from 18 weeks gestation to delivery.",
                 criteria: "Pregnant mothers with a previous miscarriage and fetal post-mortem evidence of haemochromatosis, or women with previous live birth of
                 neonate with confirmed alloimmune haemochromatosis. Decision to treat by consultant obstetrician with input from liver unit specialist.",
                 outcome: "Fetal survival to term.")
 disease = Disease.find(74)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Alloimmunne fetal or neonatal haemochromatosis",
-    description: "Alloimmune fetal or neonatal haemochromatosis or gestational alloimmune liver disease (GALD) usually in the context of a
+    name:  "Alloimmunne fetal or neonatal haemochromatosis (updated 2022)",
+    description: "Alloimmune neonatal haemochromatosis, or gestational alloimmune liver disease (GALD) usually in the context of a
     diagnosis of neonatal hepatic failure haemochromatosis during a previous pregnancy and knowledge that there is 90% risk of occurrence in subsequent pregnancy."
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval required",
+                commissioning: "Prior panel approval not required",
                 priority: "2. Blue",
                 regimen: "Up to 2 g/kg course given to recipient, repeated according to donor specific antibody levels; for renal desensitisation give 0.1 g/kg for 8-12 doses.",
                 criteria: "Patients in whom renal, heart or lung transplant is prevented because of antibodies.",
-                outcome: "Donor specific antibody (DSA) levels, subsequent rejection episodes, patient/graft survival, graft function.")
+                outcome: "Renal: type of transplant, HLA class DSA, rejection episodes, patient/graft survival, eGFR. Cardiothoracic: DSA, length of ITU and hospital stay. Graft function (heart = ejection fraction, lung = spirometry, liver = liver function and clotting indices).")
 disease = Disease.find(75)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Transplantation (solid organ) antibody incompatible transplant",
-    description: "Transplantation (solid organ) antibody incompatible transplant (AIT)."
+    name:  "Transplantation (solid organ) antibody incompatible transplant - short term use (updated 2022)",
+    description: "Transplantation (solid organ) antibody incompatible transplant (AIT). Previously, prior approval was required."
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval not required (emergency list)",
+                commissioning: "Prior panel approval not required",
                 priority: "2. Blue",
                 regimen: "Up to 2 g/kg course, repeated for 2-3 courses. Note that Barts Health Renal Transplant team has a specific regime of regular plasma exchange
-                          combined with Ig 0.1g/kg on days 3, 5 and 7 of treatment regime, and 2g/kg on day 9. A low volume Ig brand is preferable.",
+                          combined with Ig 0.1g/kg on days 3, 5 and 7 of treatment regime, and 2g/kg on day 9. A low volume Ig brand is preferable. Note that plasma exchange shortly after Ig may negate the Ig and is not supported by the Commissioning policy (2021)",
                 criteria: "Patients experiencing steroid resistant rejection or where other therapies are contraindicated after transplant. In renal transplant rejection, antibody-mediated
                 as opposed to cellular rejection is determined by the presence of donor specific HLA antibodies (DSA) and the histological appearance
                 on biopsy. DSA monitoring is repeated on day 3 and on day 9 of the treatment regime.",
-                outcome: "Rejection episodes, patient/graft survival, graft function.")
+                outcome: "Renal: type of transplant, HLA class DSA, rejection episodes, patient/graft survival, eGFR. Cardiothoracic: DSA, length of ITU and hospital stay. Graft function (heart = ejection fraction, lung = spirometry, liver = liver function and clotting indices).")
 disease = Disease.find(76)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Transplantation (solid organ) antibody mediated rejection",
-    description: "Transplantation (solid organ) antibody mediated rejection (AMR)."
+    name:  "Transplantation (solid organ) antibody mediated rejection (updated 2022)",
+    description: "Transplantation (solid organ) antibody mediated rejection (AMR). Previously, prior approval was required."
     )
 
-Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval not required (emergency list)",
+Disease.create!(speciality: "Infectious Diseases",
+                commissioning: "Prior panel approval not required (urgency acknowledged by policy)",
                 priority: "2. Blue",
-                regimen: "0.5 g/kg a day for 5 days.",
-                criteria: "Patients with viral pneumonitis after heart or lung transplant (excluding influenza virus).",
-                outcome: "Record the virus type (e.g. HSV, VZV, CMV, RSV). Reversal of radiological infiltrates, length of hospital stay, survival.")
+                regimen: "1 - 2 g/kg in divided doses.",
+                criteria: "Patients with viral pneumonitis after heart or lung transplant (excluding influenza virus or patients with RSV or HPIV confined to upper respiratory tract and without risk factors such as old age, GVHD, lymphopenia, neutropenia, mismatched donor, HSCT within 1 month).",
+                outcome: "Record the virus type (e.g. HSV, VZV, CMV, RSV, HPIV (human parainfluenza virus)). Reversal of radiological infiltrates, length of hospital stay, survival.")
 disease = Disease.find(77)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Transplantation (solid organ) viral pneumonitis",
-    description: "Transplantation (solid organ) viral pneumonitis."
+    name:  "Viral pneumonitis post transplantation (solid organ or HSCT) (updated 2022)",
+    description: "Post transplantation (solid organ or haemopoietic stem cell transplantation (HSCT/ bone marrow transplantation)) viral pneumonitis."
     )
 
 Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval required",
                 priority: "2. Blue",
-                regimen: "0.4 g/kg course was given every three weeks to mother from 12 to 24 weeks gestation in an open label study (Friedman et al., 2010)
-                          and is listed in the DOH guideline (2011) but other reports used 1-2 g/kg courses 2-4 weekly and extending to end of pregnancy. Often given with steroids.",
+                regimen: "1 g/kg at 14 weeks pregnancy and again at 18 weeks with high dose oral prednisolone. Hydroxychloroquine is treatment of choice and Ig second line if refractory, e.g. in previous pregnancy, or intolerant.",
                 criteria: "IVIg therapy can be given during pregnancy when history of autoimmune congenital heart block in at least one previous pregnancy AND
-                          maternal anti-Ro or anti-La antibodies are present. May also be given post-natally to newborn until absence of maternal antibodies if evidence of disease.",
+                          maternal anti-Ro or anti-La antibodies are present AND hydroxychloroquine not suitable. May also be given post-natally to newborn until absence of maternal antibodies if evidence of disease.",
                 outcome: "Improvement in the degree of heart block at birth.")
 disease = Disease.find(78)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Autoimmune congenital heart block (anti-Ro)",
-    description: "Autoimmune congenital heart block (anti-Ro) or paediatric myocarditis. Plasma exchange is an alternative treatment."
+    name:  "Prevention of autoimmune congenital heart block (anti-Ro or anti-La) (updated 2022)",
+    description: "Prevention of autoimmune congenital heart block (anti-Ro or anti-La) or paediatric myocarditis. Second line after hydroxychloroquine."
     )
 
 Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval required",
                 priority: "2. Blue",
-                regimen: "1.5 g/kg course monthly for three months.",
-                criteria: "When sight threatened. Generally given when failure of response to locally administered steroids and systemic steroids and when
-                          immunosuppressives and biological agents inappropriate or ineffective.",
+                regimen: "1 - 1.5 g/kg course - two to three courses every 6 - 8 weeks to assess benefit, though long term use not commissioned!",
+                criteria: "When sight threatened and failure of response to locally administered steroids and systemic steroids and when
+                          immunosuppressives and biological agents inappropriate or ineffective. Anti TNF agents (infliximab, adalimumab) are treatments of choice and commissioned",
                 outcome: "Improvement in sight.")
 disease = Disease.find(79)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Autoimmune uveitis",
+    name:  "Autoimmune uveitis - short term use (updated 2022)",
     description: "Autoimmune uveitis, including Vogt-Koyanagi-Harada syndrome. The acute phase is normally responsive to high dose steroids so that immunoglobulin and immunosuppressives are
-                  reserved for rfractory cases. However, there might be an argument for using immunoglobulin earlier without prior approval if severe features of VKH (meningitis, extensive vitiligo, poliosis)."
+                  reserved for refractory cases. However, there might be an argument for using immunoglobulin earlier without prior approval if severe features of VKH (meningitis, extensive vitiligo, poliosis (white hair)). For reference, infliximab in Chrohn's
+                  disease is expected to work over 6 weeks, appreciably slower than typical Ig effects."
     )
 
 Disease.create!(speciality: "Other",
                 commissioning: "Prior panel approval required",
                 priority: "2. Blue",
-                regimen: "2 g/kg course divided over 2-5 days given long term typically every 1-2 months over 3 years (Ahmed et al., 2012). Adjust to frequency
+                regimen: "1 - 2 g/kg course divided over 2-5 days given long term typically every 1-2 months over 3 years (Ahmed et al., 2012). Adjust to frequency
                           that prevents relapses and trial withdrawal annually.",
-                criteria: "Severely affected where corticosteroids with adjuvant agents ineffective or inappropriate.",
+                criteria: "Severely affected where corticosteroids with adjuvant agents, typically rituximab, ineffective or inappropriate. Clearly second line after rituximab, but consider rapidity of response to latter.",
                 outcome: "Reduction in relapses, reduction in steroid therapy, improvement in quality of life, blisters, pruritis.")
 disease = Disease.find(80)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Immunobullous diseases",
+    name:  "Immunobullous diseases - long term use (updated 2022)",
     description: "Immunobullous diseases includes pemphigus vulgaris, pemphigoid, dermatitis herpetiformis, linear IgA disease and epidermolysis bullosa acquisita.
     In a metanalysis of Ig for pemphigus (17 cases), 70% had a beneficial response (Engineer & Ahmed, 2001), and so has been recommended when conventional therapy has failed.
     Epidermolysis bullosa acquisita is a chronic condition that often responds poorly to conventional therapy and there are case series describing the benefit of Ig (Engineer & Ahmed, 2001).
     Dermatitis herpetiformis is normally treated with dapsone and gluten diet withdrawal and there does not appear to be a role for Ig therapy. Linear IgA disease is an auoimmune sometimes drug
     related disase of blisters on skin, often in a ring pattern, or mucous membranes whose name comes from the linear deposition of IgA along the basement membrane
-    on direct immunofluorescence. It occurs more in teh elderly but there is a childhood form called chronic bullous disease of childhood. Severe cases may appear
+    on direct immunofluorescence. It occurs more in the elderly but there is a childhood form called chronic bullous disease of childhood. Severe cases may appear
     as toxic epidermal necrolysis. Ig therapy would typically be after drug withdrawal, steroids, tetracyclines, erythromycin, dapsone, colchicine or mycophenolate. There are
     single case reports describing its use."
     )
 
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval required (left-hand grey)",
+                commissioning: "Not commissioned and requires IFR (former left-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "2 g/kg course, repeated after 1 month. Subsequent courses if relapse thereafter at a minimum frequency to prevent relapse in conjunction with
                           ongoing standard therapy and wound care (avoiding debridement).",
@@ -1205,7 +1207,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval required (left-hand grey)",
+                commissioning: "Not commissioned and requires IFR (former left-hand Grey indication))",
                 priority: "3. Grey",
                 regimen: "2 g/kg course for stabilisation of symptoms.",
                 criteria: "To be given as part of an overall treatment strategy that may include steroids, immunosuppression and newer anti IL-1 and IL-6 biological agents.",
@@ -1220,21 +1222,22 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval required (left-hand grey)",
-                priority: "3. Grey",
-                regimen: "2 g/kg course for stabilisation of symptoms (Jayne et al., 2000).",
-                criteria: "An optional treatment for short-term disease management if standard therapies not suitable.",
+                commissioning: "Prior panel approval required",
+                priority: "2. Blue",
+                regimen: "2 g/kg course for stabilisation of symptoms (Jayne et al., 2000) every 4 weeks; remission expected after 3 months. Discontinue if no improvement after this time.",
+                criteria: "An optional treatment for short-term disease management if standard immunosuppression not suitable, e.g. severe infection, pregnancy",
                 outcome: "Improvement in features of systemic inflammation.")
 disease = Disease.find(83)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Systemic vasculitides and ANCA disorders",
-    description: "Systemic vasculitides and ANCA disorders have been treated with immunoglobulin but this treatment does not appear in the European League Against Rheumatism recommendations on
-    ANCA disorders (Yates et al., 2016), instead focusing on rituximab for severe disease."
+    name:  "ANCA associated systemic vasculitides (updated 2022)",
+    description: "ANCA associated systemic vasculitis previously was a grey indication that included non-ANCA associated systemic vasculitis. Now the policy indicates that the role of Ig in ANCA negative small vessel cases is unclear and each case to be assessed on
+    individual grounds. Therefore a SRIAP may approve non ANCA positive vasculitis in some cases. Note that systemic vasculitis is not primary cerebral angiitis. Treatment for this condition is high dose steroids combined with cyclophosphamide or rituximab or TNF antagonist such as infliximab.
+    A recent review did not consider Ig as therapy (Beuker et al 2018), despite the recommendation of rituximab suggesting a B-cell component even with no circulating antibody. Possibly this is because there is usually a good response to steroids short-term."
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Prior panel approval required (left-hand grey)",
+                commissioning: "Not commissioned and requires IFR (former left-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "2 g/kg course repeated after 4-6 weeks if relapse after good response (Mitzel-Khaoukhov et al., 2010).",
                 criteria: "Consider in severe chronic cases where immunosuppressives or biological therapies not suitable.",
@@ -1248,7 +1251,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Not commissioned and requires IFR (former right-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "0.4-0.6 g/kg course repeated every 4 weeks until stabilisation of IgG levels.",
                 criteria: "IgG levels more than 2SD below mean for age (see description) and normal B cells.",
@@ -1262,7 +1265,7 @@ DiseaseDescription.create!(
     )
 
 Disease.create!(speciality: "Other",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Not commissioned and requires IFR (former right-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "Not established.",
                 criteria: "Not established.",
@@ -1277,11 +1280,11 @@ DiseaseDescription.create!(
                 such circumstances, unless there arose specific evidence to the contrary.")
 
 Disease.create!(speciality: "Other",
-                commissioning: "Requires IFR (right-hand grey)",
+                commissioning: "Not commissioned and requires IFR (former right-hand Grey indication)",
                 priority: "3. Grey",
                 regimen: "2 g/kg divided over 5 days single course.",
                 criteria: "For stabilisation of haematological or cardiac manifestations where active disease and concurrent infection.",
-                outcome: "Improvement in selective manifesations predefined by established severity criteria.")
+                outcome: "Improvement in selective manifestations predefined by established severity criteria.")
 disease = Disease.find(87)
 DiseaseDescription.create!(
     disease_id: disease.id,
@@ -1366,7 +1369,7 @@ disease = Disease.find(93)
 DiseaseDescription.create!(
     disease_id: disease.id,
     name:  "COVID-19 vaccine related thrombotic thrombocytopaenia (updated 2022)",
-    description: "COVID-19 vaccine related thrombotic thrombocytopaenia (VITT) - urgent treatment irrespective of degree of thrombocytopaenia."
+    description: "COVID-19 coronavirus vaccine related thrombotic thrombocytopaenia (VITT) - urgent treatment irrespective of degree of thrombocytopaenia."
     )
 
 Disease.create!(speciality: "Neurology",
@@ -1392,9 +1395,10 @@ Disease.create!(speciality: "Neurology",
 disease = Disease.find(95)
 DiseaseDescription.create!(
     disease_id: disease.id,
-    name:  "Acute disseminated encephalomyelitis (ADEM), Devics (neuromyelitis optica spectrum) and transverse myelitis chronic relapse prevention",
+    name:  "Acute disseminated encephalomyelitis (ADEM), Devics (neuromyelitis optica spectrum) and transverse myelitis chronic relapse prevention (updated 2022)",
     description: "Non-MS CNS inflammatory disease covering the clinical phenotype of AQP4 ab disease, NMOSD, ADEM (with or without encephalopathy, including brainstem attacks), myelin ologodendrocyte associated glycoprotein (MOG) disease, transverse myelitis, optic neuritis. Specifically excludes MS, Behcets, sarcoid."
     )
+
 
 # Book reviews
 =begin

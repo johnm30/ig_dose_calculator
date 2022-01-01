@@ -12,13 +12,19 @@ and the center h1 section also has margin-botton:10px %>
   </h1>
   </br>
   <h3>
-    This App calculates Immunoglobulin doses based on a patient's height, mass and disease indication and takes into account ideal body mass
+    This App calculates Immunoglobulin doses based on a patient's height, mass and disease indication and takes into account ideal body mass and paediatric dosing
   </h3>
   </br>
-  <h3>
-    Included is a database of all potential indications for Immunoglobulin which lists dose regimes, eligibility criteria, demand management priorities and commissioning status
-    based on updated NHS England Commissioning Criteria (December 2021)
+  <h3  style= "text-align:left">
+    <ul class="fa-ul">
+    <li><i class="fa-li fa fa-hand-o-right"></i>Included is a database of all potential indications for Immunoglobulin which lists dose regimes, eligibility criteria, demand management priorities and commissioning status
+    based on the updated NHS England Commissioning Policy (December 2021)</li>
+    <li><i class="fa-li fa fa-hand-o-right"></i>The database has a search function based on the description of the indication rather than just its name, and divides indications into speciality categories</li>
+    <li><i class="fa-li fa fa-hand-o-right"></i>The App functions across all devices and all screen sizes including smart phones</li>
+    </ul>
   </h3>
+
+  </br>
   <%= link_to calculations_path, class: 'btn btn-primary navbar-btn' do %>
     <div style = "font-size:34px">
     <%= content_tag(:span, "", :class => "fa fa-calculator") %>

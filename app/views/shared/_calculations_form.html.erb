@@ -6,7 +6,7 @@
 <%#      Patient<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "patient_help" } %>
 <%#    </h3>
 <%#  </div> %>
-  <%= f.label :sex, "Patient", class: "col-xs-2", style: "text-align:left" do %>
+  <%= f.label :sex, "Patient", class: "col-xs-3", style: "text-align:left" do %>
     <span style = "padding-top:2px;font-weight:1200; font-size:38px;">Patient<sup><%= link_to "(?)" , {:action => "help", :controller => "static_pages", :anchor => "patient_help" } %></sup></span>
   <% end %>
   <% logger.debug "settings = #{@settings}, @settings[:sex] = #{@settings["sex"]}" %>
