@@ -4,8 +4,9 @@
 services:
   - type: web # valid values: https://render.com/docs/yaml-spec#type
     name: igcalculator
-    env: docker # valid values: https://render.com/docs/yaml-spec#environment
-    dockerfilePath: Dockerfile.render
+    env: ruby # valid values: https://render.com/docs/yaml-spec#environment
+    buildCommand: bundle install
+    startCommand: bundle exec puma -C config/puma.rb #this is what I used with heroku
     plan: free # optional; defaults to starter
     numInstances: 1
     envVars:
