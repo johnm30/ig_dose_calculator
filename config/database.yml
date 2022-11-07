@@ -28,10 +28,10 @@ test:
 # This is new to recent tutorial versions
 production:
   <<: *default
-#default version
-#  database: calculator_template_production
-#  username: calculator_template
-#  password: <%= ENV['CALCULATOR_TEMPLATE_DATABASE_PASSWORD'] %>
+  #default version
+  #  database: calculator_template_production
+  #  username: calculator_template
+  #  password: <%= ENV['CALCULATOR_TEMPLATE_DATABASE_PASSWORD'] %>
 
-#render version
+  #render version
   url: <%= ENV['DATABASE_URL'] %>
