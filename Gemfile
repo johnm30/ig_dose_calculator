@@ -48,7 +48,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.20.0'
+  gem 'pg', '1.3.5' #updated pg in Dec 21
   gem 'fog', '1.42'
 end
 
